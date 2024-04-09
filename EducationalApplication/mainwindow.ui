@@ -20,12 +20,85 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>22</height>
+     <height>17</height>
     </rect>
    </property>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
+  <widget class="QToolBar" name="toolBar">
+   <property name="maximumSize">
+    <size>
+     <width>16777215</width>
+     <height>16777215</height>
+    </size>
+   </property>
+   <property name="windowTitle">
+    <string>toolBar</string>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>64</width>
+     <height>64</height>
+    </size>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>BottomToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="actionOrange_Flower"/>
+   <addaction name="actionRose_Flower"/>
+   <addaction name="actionCorn"/>
+  </widget>
+  <action name="actionOrange_Flower">
+   <property name="icon">
+    <iconset resource="Resource.qrc">
+     <normaloff>:/Flowers/Images/flower_complete.png</normaloff>:/Flowers/Images/flower_complete.png</iconset>
+   </property>
+   <property name="text">
+    <string>Orange Flower</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+O</string>
+   </property>
+   <property name="menuRole">
+    <enum>QAction::NoRole</enum>
+   </property>
+  </action>
+  <action name="actionRose_Flower">
+   <property name="icon">
+    <iconset resource="Resource.qrc">
+     <normaloff>:/Flowers/Images/rose.png</normaloff>:/Flowers/Images/rose.png</iconset>
+   </property>
+   <property name="text">
+    <string>Rose Flower</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+R</string>
+   </property>
+   <property name="menuRole">
+    <enum>QAction::NoRole</enum>
+   </property>
+  </action>
+  <action name="actionCorn">
+   <property name="icon">
+    <iconset resource="Resource.qrc">
+     <normaloff>:/Flowers/Images/wild_flower_14.png</normaloff>:/Flowers/Images/wild_flower_14.png</iconset>
+   </property>
+   <property name="text">
+    <string>Corn</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+C</string>
+   </property>
+   <property name="menuRole">
+    <enum>QAction::NoRole</enum>
+   </property>
+  </action>
  </widget>
- <resources/>
+ <resources>
+  <include location="Resource.qrc"/>
+ </resources>
  <connections/>
 </ui>

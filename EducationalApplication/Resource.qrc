@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/Flowers">
+        <file>Images/flower_complete.png</file>
+        <file>Images/rose.png</file>
+        <file>Images/wild_flower_14.png</file>
+    </qresource>
+</RCC>
