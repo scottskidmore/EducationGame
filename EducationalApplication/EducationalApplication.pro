@@ -55,8 +55,11 @@ SOURCES += \
     Box2D/Dynamics/b2World.cpp \
     Box2D/Dynamics/b2WorldCallbacks.cpp \
     Box2D/Rope/b2Rope.cpp \
+    Box2D/flower.cpp \
+    flower.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    plant.cpp
 
 HEADERS += \
     Box2D/Box2D.h \
@@ -106,7 +109,10 @@ HEADERS += \
     Box2D/Dynamics/b2World.h \
     Box2D/Dynamics/b2WorldCallbacks.h \
     Box2D/Rope/b2Rope.h \
-    mainwindow.h
+    Box2D/flower.h \
+    flower.h \
+    mainwindow.h \
+    plant.h
 
 FORMS += \
     mainwindow.ui
