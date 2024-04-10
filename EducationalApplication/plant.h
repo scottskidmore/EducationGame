@@ -6,7 +6,7 @@
 class Plant {
 public:
     Plant();
-    std::string displayCode();
+    virtual std::string displayCode();
 };
 
 #endif
