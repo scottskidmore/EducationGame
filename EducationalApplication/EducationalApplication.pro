@@ -59,6 +59,7 @@ SOURCES += \
     heap.cpp \
     main.cpp \
     mainwindow.cpp \
+    model.cpp \
     plant.cpp \
     stack.cpp
 
@@ -113,6 +114,7 @@ HEADERS += \
     Box2D/flower.h \
     heap.h \
     mainwindow.h \
+    model.h \
     plant.h \
     stack.h
 
