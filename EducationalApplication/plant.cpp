@@ -26,6 +26,13 @@ std::string Plant::hintCode(){
     return code;
 }
 
+std::string Plant::basicInfo()
+{
+    return "This is a " + toString(thisPlant);
+}
+
+
+
 // std::string Plant::displayName()
 // {
 

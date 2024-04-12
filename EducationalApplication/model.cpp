@@ -3,9 +3,9 @@
 Model::Model(QObject *parent)
     : QObject{parent}
 {
-    presetPlants["actionCorn"] = new Plant(Plants::Corn);
-    presetPlants["actionRose_Flower"] = new Plant(Plants::Flower);
-    presetPlants["actionOrange_Flower"] = new Plant(Plants::Flower);
+    presetPlants[QString("actionCorn")] = new Plant(Plants::Corn);
+    presetPlants[QString("actionRose_Flower")] = new Plant(Plants::Flower);
+    presetPlants[QString("actionOrange_Flower")] = new Plant(Plants::Flower);
 }
 
 void Model::getPlantText()

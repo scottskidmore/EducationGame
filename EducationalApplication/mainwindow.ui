@@ -260,7 +260,6 @@
      <string>Hint</string>
     </property>
    </widget>
-   <zorder>startLabel</zorder>
    <zorder>timerLabel</zorder>
    <zorder>scrollArea</zorder>
    <zorder>scrollArea_2</zorder>
@@ -269,13 +268,14 @@
    <zorder>lineEdit</zorder>
    <zorder>label_3</zorder>
    <zorder>centerTextDisplayBox</zorder>
-   <zorder>startButton</zorder>
-   <zorder>previousSlide</zorder>
-   <zorder>nextSlide</zorder>
    <zorder>currentRamLabel</zorder>
    <zorder>targetRamLabel</zorder>
    <zorder>helpButton</zorder>
    <zorder>hintButton</zorder>
+   <zorder>startLabel</zorder>
+   <zorder>startButton</zorder>
+   <zorder>previousSlide</zorder>
+   <zorder>nextSlide</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
@@ -283,7 +283,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>24</height>
+     <height>21</height>
     </rect>
    </property>
   </widget>
