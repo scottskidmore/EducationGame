@@ -1,4 +1,4 @@
-#include "Plant.h"
+#include "plant.h"
 
 Plant::Plant(Plants plantType) {
     thisPlant = plantType;
@@ -26,10 +26,10 @@ std::string Plant::hintCode(){
     return code;
 }
 
-std::string Plant::displayName()
-{
+// std::string Plant::displayName()
+// {
 
-}
+// }
 
 void Plant::createCorn()
 {

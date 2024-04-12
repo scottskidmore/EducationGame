@@ -2,13 +2,13 @@
 #define HEAP_H
 
 #include <vector>
-#include "Plant.h"
+#include "plant.h"
 
 class Heap
 {
 public:
     Heap();
-    std::vector<Plant> plants;
+    std::vector<Plant*> plants;
 };
 
 #endif // HEAP_H

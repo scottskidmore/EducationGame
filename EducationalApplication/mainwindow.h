@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include "model.h"
+#include <QDebug>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -18,7 +19,21 @@ public:
     MainWindow(Model*, QWidget *parent = nullptr);
     ~MainWindow();
 
+private slots:
+    void on_startButton_clicked();
+
+    void on_previousSlide_clicked();
+
+    void on_nextSlide_clicked();
+
+    void on_hintButton_clicked();
+
+    void enableHintButton();
+
 private:
     Ui::MainWindow *ui;
+
+signals:
+    void gameStart();
 };
 #endif // MAINWINDOW_H

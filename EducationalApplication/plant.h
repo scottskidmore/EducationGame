@@ -10,6 +10,7 @@ public:
     Plant(Plants plantType);
     Plants thisPlant;
     std::string hintCode();
+    std::string basicInfo();
     std::string displayName();
     bool onHeap;
     int cost;

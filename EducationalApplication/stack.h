@@ -2,13 +2,13 @@
 #define STACK_H
 
 #include <vector>
-#include "Plant.h"
+#include "plant.h"
 
 class Stack
 {
 public:
     Stack();
-    std::vector<Plant> plants;
+    std::vector<Plant*> plants;
 };
 
 #endif // STACK_H

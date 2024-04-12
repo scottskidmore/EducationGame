@@ -3,16 +3,36 @@
 Model::Model(QObject *parent)
     : QObject{parent}
 {
-    presetPlants.push_back(new Plant(Plants::Flower));
+    presetPlants["actionCorn"] = new Plant(Plants::Corn);
+    presetPlants["actionRose_Flower"] = new Plant(Plants::Flower);
+    presetPlants["actionOrange_Flower"] = new Plant(Plants::Flower);
 }
 
 void Model::getPlantText()
 {
-    Plant* p = presetPlants.front();
-    emit sendPlantText(QString::fromStdString(p->hintCode()));
+    QObject *senderObject = QObject::sender();
+    //int size = 10;
+    //Plant* p = presetPlants.front();
+    emit sendPlantText(QString::fromStdString(presetPlants[senderObject->objectName()]->basicInfo()));
+    emit enableHint();
 }
 
 void Model::checkUserCommand(QString text)
 {
 
+}
+
+void Model::clearStack()
+{
+    stackObj.plants.clear();
+}
+
+void Model::clearHeap()
+{
+    heapObj.plants.clear();
+}
+
+void Model::startGame()
+{
+    qDebug() << "game started";
 }
