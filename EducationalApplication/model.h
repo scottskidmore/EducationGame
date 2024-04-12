@@ -12,14 +12,20 @@ class Model : public QObject
     Q_OBJECT
 public:
     explicit Model(QObject *parent = nullptr);
-    std::vector<Plant*> plants;
+    std::vector<Plant*> stackPlants;
+    std::vector<Plant*> heapPlants;
+
+private:
+    std::vector<Plant*> presetPlants;
 
 
 public slots:
     void getPlantText();
+    void checkUserCommand(QString text);
 
 signals:
     void sendPlantText(QString text);
+    void sendPlantLocation(bool onHeap, QString plant);
 };
 
 #endif // MODEL_H

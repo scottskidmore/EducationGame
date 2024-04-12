@@ -3,11 +3,16 @@
 Model::Model(QObject *parent)
     : QObject{parent}
 {
-    plants.push_back(new Plant(Plants::Flower));
+    presetPlants.push_back(new Plant(Plants::Flower));
 }
 
 void Model::getPlantText()
 {
-    Plant* p = plants.front();
+    Plant* p = presetPlants.front();
     emit sendPlantText(QString::fromStdString(p->hintCode()));
+}
+
+void Model::checkUserCommand(QString text)
+{
+
 }
