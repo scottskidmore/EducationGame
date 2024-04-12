@@ -21,8 +21,8 @@ std::string Plant::hintCode(){
         heapOrStack = "heap";
     std::string code = "This is a " + toString(thisPlant)
                        + "\nIt should be planted on the " + heapOrStack
-                       + "\nThe stack code should look like " + stackCode;
-                       + "\nThe heap code should look like " + heapCode;
+                       + "\nThe stack code should look like " + stackCode
+                       + "\nThe heap code should look like\n   " + heapCode;
     return code;
 }
 
