@@ -23,6 +23,7 @@ MainWindow::MainWindow(Model *m, QWidget *parent)
     QObject::connect(m, &Model::sendPlantToHeap, this, &MainWindow::setHeapPlant);
     QObject::connect(this, &MainWindow::sendCommandText, m, &Model::checkUserCommand);
     QObject::connect(ui->hintButton, &QPushButton::clicked, m, &Model::sendHint);
+    connect(m, &Model::ramUpdated, this, &MainWindow::updateRam);
 }
 
 MainWindow::~MainWindow()
@@ -101,5 +102,9 @@ void MainWindow::setHeapPlant(Plant* p)
 void MainWindow::on_lineEdit_returnPressed()
 {
     emit sendCommandText(ui->lineEdit->text());
+}
+
+void MainWindow::updateRam(int ram) {
+    ui->targetRamLabel->setText(QString("Target Ram: " + QString::number(ram)));
 }
 

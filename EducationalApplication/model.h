@@ -55,6 +55,7 @@ signals:
     void sendPlantLocation(bool onHeap, QString plant);
     void enableHint();
     void sendHintText(QString text);
+    void ramUpdated(int);
 };
 
 #endif // MODEL_H

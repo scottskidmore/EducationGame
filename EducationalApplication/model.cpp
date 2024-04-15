@@ -26,6 +26,7 @@ void Model::setCurrentPlant()
 void Model::sendCurrentPlantToStack()
 {
     emit sendPlantToStack(currentPlant);
+    emit ramUpdated(-currentPlant->cost);
 }
 
 void Model::sendHint()
