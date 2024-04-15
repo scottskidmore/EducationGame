@@ -15,14 +15,14 @@ MainWindow::MainWindow(Model *m, QWidget *parent)
 
     QObject::connect(ui->actionRose_Flower, &QAction::triggered, m, &Model::getPlantText);
     QObject::connect(ui->actionOrange_Flower, &QAction::triggered, m, &Model::getPlantText);
-   QObject::connect(ui->actionCorn, &QAction::triggered, m, &Model::getPlantText);
-   QObject::connect(ui->actionRose_Flower, &QAction::triggered, m, &Model::setCurrentPlant);
+    QObject::connect(ui->actionCorn, &QAction::triggered, m, &Model::getPlantText);
+    QObject::connect(ui->actionRose_Flower, &QAction::triggered, m, &Model::setCurrentPlant);
     QObject::connect(ui->actionOrange_Flower, &QAction::triggered, m, &Model::setCurrentPlant);
     QObject::connect(ui->actionCorn, &QAction::triggered, m, &Model::setCurrentPlant);
     QObject::connect(m, &Model::enableHint, this, &MainWindow::enableHintButton);
     QObject::connect(m, &Model::sendPlantText, ui->centerTextDisplayBox, &QLabel::setText);
     QObject::connect(this, &MainWindow::gameStart, m, &Model::startGame);
-    //QObject::connect(ui->scrollArea, &ScrollArea::clicked, m, &Model::sendCurrentPlantToStack);
+    QObject::connect(ui->scrollArea, &ScrollArea::clicked, m, &Model::sendCurrentPlantToStack);
     QObject::connect(m, &Model::sendPlantToStack, this, &MainWindow::setStackPlant);
 }
 
