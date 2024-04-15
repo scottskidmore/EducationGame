@@ -30,10 +30,13 @@ private slots:
 
     void enableHintButton();
 
+    void setStackPlant(Plant*);
+
 private:
     Ui::MainWindow *ui;
 
 signals:
     void gameStart();
+    void clicked();
 };
 #endif // MAINWINDOW_H
