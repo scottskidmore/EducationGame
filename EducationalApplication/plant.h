@@ -2,6 +2,7 @@
 #define PLANT_H
 #include <iostream>
 #include <string>
+#include <QString>
 
 enum class Plants;
 
@@ -15,8 +16,9 @@ public:
     bool onHeap;
     int cost;
     int reward;
-    std::string heapCode;
-    std::string stackCode;
+    QString heapCode;
+    QString stackCode;
+    QString imagePath;
 
 private:
     void createCorn();

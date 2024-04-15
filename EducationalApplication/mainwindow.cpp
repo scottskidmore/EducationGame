@@ -20,6 +20,9 @@ MainWindow::MainWindow(Model *m, QWidget *parent)
     QObject::connect(this, &MainWindow::gameStart, m, &Model::startGame);
     QObject::connect(ui->scrollArea, &ScrollArea::clicked, m, &Model::sendCurrentPlantToStack);
     QObject::connect(m, &Model::sendPlantToStack, this, &MainWindow::setStackPlant);
+    QObject::connect(m, &Model::sendPlantToHeap, this, &MainWindow::setHeapPlant);
+    QObject::connect(this, &MainWindow::sendCommandText, m, &Model::checkUserCommand);
+    QObject::connect(ui->hintButton, &QPushButton::clicked, m, &Model::sendHint);
 }
 
 MainWindow::~MainWindow()
@@ -63,14 +66,40 @@ void MainWindow::enableHintButton()
 
 void MainWindow::setStackPlant(Plant* p)
 {
+    // clear command text since it was correct
+    ui->lineEdit->setText(QString());
+
     QPushButton *button = new QPushButton(this);
     button->setMaximumSize(64, 64);
     button->setMinimumSize(64, 64);
     button->setGeometry(75, 10, 64, 64);
-    QPixmap pixmap(":/Flowers/Images/flower_complete.png");
+    QPixmap pixmap(p->imagePath);
     QIcon ButtonIcon(pixmap);
     button->setIcon(ButtonIcon);
     button->setIconSize(pixmap.rect().size());
     button->setIconSize( QSize( button->size().width(),button->size().height()));
-    ui->verticalLayout_2->addWidget(button);
+    ui->stackLayout->addWidget(button);
 }
+
+void MainWindow::setHeapPlant(Plant* p)
+{
+    // clear command text since it was correct
+    ui->lineEdit->setText(QString());
+
+    QPushButton *button = new QPushButton(this);
+    button->setMaximumSize(64, 64);
+    button->setMinimumSize(64, 64);
+    button->setGeometry(75, 10, 64, 64);
+    QPixmap pixmap(p->imagePath);
+    QIcon ButtonIcon(pixmap);
+    button->setIcon(ButtonIcon);
+    button->setIconSize(pixmap.rect().size());
+    button->setIconSize( QSize( button->size().width(),button->size().height()));
+    ui->heapLayout->addWidget(button);
+}
+
+void MainWindow::on_lineEdit_returnPressed()
+{
+    emit sendCommandText(ui->lineEdit->text());
+}
+

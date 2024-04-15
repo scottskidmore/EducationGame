@@ -37,14 +37,24 @@ private:
 public slots:
     void getPlantText();
     void setCurrentPlant();
+
+    /// \brief checkUserCommand - checks if the command entered is valid based on the current plant
+    /// this will emit send plant text if the command is wrong, with slightly modified text.
+    /// \param text - the command it is checking
     void checkUserCommand(QString text);
+
     void sendCurrentPlantToStack();
+
+    /// \brief sendHint - sends a hint to the mainwindow based on the currentPlant
+    void sendHint();
 
 signals:
     void sendPlantToStack(Plant*);
+    void sendPlantToHeap(Plant*);
     void sendPlantText(QString text);
     void sendPlantLocation(bool onHeap, QString plant);
     void enableHint();
+    void sendHintText(QString text);
 };
 
 #endif // MODEL_H

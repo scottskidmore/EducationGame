@@ -21,8 +21,8 @@ std::string Plant::hintCode(){
         heapOrStack = "heap";
     std::string code = "This is a " + toString(thisPlant)
                        + "\nIt should be planted on the " + heapOrStack
-                       + "\nThe stack code should look like " + stackCode
-                       + "\nThe heap code should look like\n   " + heapCode;
+                       + "\nThe stack code should look like " + stackCode.toStdString()
+                       + "\nThe heap code should look like\n   " + heapCode.toStdString();
     return code;
 }
 
@@ -45,6 +45,7 @@ void Plant::createCorn()
     reward = 1;
     stackCode = "Corn c;";
     heapCode = "Corn c = new Corn();";
+    imagePath = ":/Flowers/Images/wild_flower_14.png";
 
 }
 
@@ -55,6 +56,7 @@ void Plant::createFlower()
     reward = 1;
     stackCode = "Flower f;";
     heapCode = "Flower f = new Flower();";
+    imagePath = ":/Flowers/Images/flower_complete.png";
 }
 
 void Plant::createTree()
@@ -64,6 +66,7 @@ void Plant::createTree()
     reward = 3;
     stackCode = "Tree t;";
     heapCode = "Tree t = new Tree();";
+    imagePath = ":/Flowers/Images/flower_complete.png"; // needs to be updated
 }
 
 

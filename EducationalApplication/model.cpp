@@ -27,9 +27,29 @@ void Model::sendCurrentPlantToStack()
 {
     emit sendPlantToStack(currentPlant);
 }
+
+void Model::sendHint()
+{
+    emit sendPlantText(QString::fromStdString(currentPlant->hintCode()));
+}
+
 void Model::checkUserCommand(QString text)
 {
-
+    if (text == currentPlant->heapCode) {
+        Plant* p = new Plant(currentPlant->thisPlant);
+        heapObj.plants.push_back(p);
+        emit sendPlantText(QString::fromStdString(currentPlant->basicInfo()) + "\nYou planted on the heap!");
+        emit sendPlantToHeap(p);
+    }
+    else if (text == currentPlant->stackCode) {
+        Plant* p = new Plant(currentPlant->thisPlant);
+        stackObj.plants.push_back(p);
+        emit sendPlantText(QString::fromStdString(currentPlant->basicInfo()) + "\nYou planted on the stack!");
+        emit sendPlantToStack(p);
+    }
+    else {
+        emit sendPlantText(QString::fromStdString(currentPlant->basicInfo()) + "\nYour code did not match this plants heap\nor stack code. Try again.\nGet a hint if you're stuck!");
+    }
 }
 
 void Model::clearStack()

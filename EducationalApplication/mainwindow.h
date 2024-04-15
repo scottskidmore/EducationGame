@@ -32,10 +32,17 @@ private slots:
 
     void setStackPlant(Plant*);
 
+    void setHeapPlant(Plant*);
+
+    void on_lineEdit_returnPressed();
+
 private:
     Ui::MainWindow *ui;
 
 signals:
     void gameStart();
+
+    /// \brief sendCommandText - sends the text to the model that the user entered.
+    void sendCommandText(QString);
 };
 #endif // MAINWINDOW_H
