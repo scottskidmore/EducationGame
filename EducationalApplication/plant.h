@@ -24,13 +24,18 @@ private:
     void createCorn();
     void createFlower();
     void createTree();
+    void createPotato();
+    void createGrapes();
     std::string toString(Plants p);
+    int heapGrowthTrack;
 };
 
 enum class Plants {
     Corn,
     Flower,
-    Tree
+    Tree,
+    Potato,
+    Grapes
 };
 
 #endif
