@@ -17,6 +17,16 @@ void Model::getPlantText()
     emit enableHint();
 }
 
+void Model::setCurrentPlant()
+{
+    QObject *senderObject = QObject::sender();
+    currentPlant=presetPlants[senderObject->objectName()];
+}
+
+void Model::sendCurrentPlantToStack()
+{
+    emit sendPlantToStack(currentPlant);
+}
 void Model::checkUserCommand(QString text)
 {
 

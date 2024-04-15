@@ -27,6 +27,7 @@ public:
     void startGame();
     int round;
     int roundTime;
+    Plant* currentPlant=NULL;
 
 private:
     //std::vector<Plant*> presetPlants;
@@ -35,9 +36,12 @@ private:
 
 public slots:
     void getPlantText();
+    void setCurrentPlant();
     void checkUserCommand(QString text);
+    void sendCurrentPlantToStack();
 
 signals:
+    void sendPlantToStack(Plant*);
     void sendPlantText(QString text);
     void sendPlantLocation(bool onHeap, QString plant);
     void enableHint();

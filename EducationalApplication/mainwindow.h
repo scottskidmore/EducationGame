@@ -30,6 +30,8 @@ private slots:
 
     void enableHintButton();
 
+    void setStackPlant(Plant*);
+
 private:
     Ui::MainWindow *ui;
 
