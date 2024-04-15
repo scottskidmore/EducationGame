@@ -26,7 +26,8 @@ void Model::setCurrentPlant()
 void Model::sendCurrentPlantToStack()
 {
     emit sendPlantToStack(currentPlant);
-    emit ramUpdated(-currentPlant->cost);
+    totalRam = totalRam - currentPlant->cost;
+    emit ramUpdated(totalRam);
 }
 
 void Model::sendHint()
@@ -55,6 +56,10 @@ void Model::checkUserCommand(QString text)
 
 void Model::clearStack()
 {
+    for (auto plant : stackObj.plants){
+        totalRam += plant->reward;
+    }
+    emit ramUpdated(totalRam);
     stackObj.plants.clear();
 }
 

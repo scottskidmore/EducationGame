@@ -32,6 +32,7 @@ public:
 private:
     //std::vector<Plant*> presetPlants;
     std::map<QString, Plant*> presetPlants;
+    int totalRam;
 
 
 public slots:
