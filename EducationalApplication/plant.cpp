@@ -69,6 +69,26 @@ void Plant::createTree()
     imagePath = ":/Flowers/Images/flower_complete.png"; // needs to be updated
 }
 
+void Plant::createPotato()
+{
+    cost = 1;
+    onHeap = true;
+    reward = 3;
+    stackCode = "Potato p;";
+    heapCode = "Potato p = new Potato();";
+    imagePath = ":/Flowers/Images/flower_complete.png"; // needs to be updated
+}
+
+void Plant::createGrapes()
+{
+    cost = 1;
+    onHeap = true;
+    reward = 3;
+    stackCode = "Grapes g;";
+    heapCode = "Grapes g = new Grapes();";
+    imagePath = ":/Flowers/Images/flower_complete.png"; // needs to be updated
+}
+
 
 std::string Plant::toString(Plants p)
 {
@@ -77,6 +97,8 @@ std::string Plant::toString(Plants p)
     case Plants::Corn:   return "Corn";
     case Plants::Flower:   return "Flower";
     case Plants::Tree: return "Tree";
+    case Plants::Potato: return "Potato";
+    case Plants::Grapes: return "Grapes";
     default:      return "Unknown Plant";
     }
 }
