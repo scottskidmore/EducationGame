@@ -189,10 +189,10 @@
    <widget class="QLabel" name="timerLabel">
     <property name="geometry">
      <rect>
-      <x>720</x>
-      <y>10</y>
-      <width>58</width>
-      <height>16</height>
+      <x>680</x>
+      <y>20</y>
+      <width>91</width>
+      <height>20</height>
      </rect>
     </property>
     <property name="text">
@@ -202,27 +202,27 @@
    <widget class="QLabel" name="currentRamLabel">
     <property name="geometry">
      <rect>
-      <x>667</x>
+      <x>680</x>
       <y>40</y>
       <width>121</width>
       <height>20</height>
      </rect>
     </property>
     <property name="text">
-     <string>Current Ram:</string>
+     <string>Available Ram:</string>
     </property>
    </widget>
-   <widget class="QLabel" name="targetRamLabel">
+   <widget class="QLabel" name="targetScoreLabel">
     <property name="geometry">
      <rect>
-      <x>667</x>
-      <y>70</y>
+      <x>680</x>
+      <y>60</y>
       <width>121</width>
       <height>20</height>
      </rect>
     </property>
     <property name="text">
-     <string>Target Ram:</string>
+     <string>Target Score:</string>
     </property>
    </widget>
    <widget class="QPushButton" name="helpButton">
@@ -307,6 +307,19 @@
      <string/>
     </property>
    </widget>
+   <widget class="QLabel" name="CurrentScoreLabel">
+    <property name="geometry">
+     <rect>
+      <x>680</x>
+      <y>80</y>
+      <width>121</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Current Score:</string>
+    </property>
+   </widget>
    <zorder>timerLabel</zorder>
    <zorder>scrollArea_2</zorder>
    <zorder>label</zorder>
@@ -315,7 +328,7 @@
    <zorder>label_3</zorder>
    <zorder>centerTextDisplayBox</zorder>
    <zorder>currentRamLabel</zorder>
-   <zorder>targetRamLabel</zorder>
+   <zorder>targetScoreLabel</zorder>
    <zorder>helpButton</zorder>
    <zorder>hintButton</zorder>
    <zorder>previousSlide</zorder>
@@ -324,6 +337,7 @@
    <zorder>layoutWidget</zorder>
    <zorder>startLabel</zorder>
    <zorder>startButton</zorder>
+   <zorder>CurrentScoreLabel</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
@@ -331,7 +345,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>24</height>
+     <height>17</height>
     </rect>
    </property>
   </widget>

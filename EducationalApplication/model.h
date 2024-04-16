@@ -58,7 +58,8 @@ signals:
     void enableHint();
     void sendHintText(QString text);
     void currentRamUpdated(int);
-    void targetRamUpdated(int);
+    void targetScoreUpdated(int);
+    void currentScoreUpdated(int);
 };
 
 #endif // MODEL_H

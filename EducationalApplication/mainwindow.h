@@ -38,7 +38,9 @@ private slots:
 
     void updateCurrentRam(int);
 
-    void updateTargetRam(int);
+    void updateTargetScore(int);
+
+    void updateCurrentScore(int);
 
 private:
     Ui::MainWindow *ui;

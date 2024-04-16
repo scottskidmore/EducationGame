@@ -24,7 +24,8 @@ MainWindow::MainWindow(Model *m, QWidget *parent)
     QObject::connect(this, &MainWindow::sendCommandText, m, &Model::checkUserCommand);
     QObject::connect(ui->hintButton, &QPushButton::clicked, m, &Model::sendHint);
     connect(m, &Model::currentRamUpdated, this, &MainWindow::updateCurrentRam);
-    connect(m, &Model::targetRamUpdated, this, &MainWindow::updateTargetRam);
+    connect(m, &Model::targetScoreUpdated, this, &MainWindow::updateTargetScore);
+    connect(m, &Model::currentScoreUpdated, this, &MainWindow::updateCurrentScore);
 
 }
 
@@ -107,10 +108,14 @@ void MainWindow::on_lineEdit_returnPressed()
 }
 
 void MainWindow::updateCurrentRam(int ram) {
-    ui->currentRamLabel->setText(QString("Current Ram: " + QString::number(ram)));
+    ui->currentRamLabel->setText(QString("Avalible Ram: " + QString::number(ram)));
 }
 
-void MainWindow::updateTargetRam(int ram) {
-    ui->targetRamLabel->setText(QString("Target Ram: " + QString::number(ram)));
+void MainWindow::updateTargetScore(int score) {
+    ui->targetScoreLabel->setText(QString("Target Score: " + QString::number(score)));
+}
+
+void MainWindow::updateCurrentScore(int score) {
+    ui->CurrentScoreLabel->setText(QString("Target Score: " + QString::number(score)));
 }
 
