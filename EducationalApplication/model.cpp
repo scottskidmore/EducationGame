@@ -29,7 +29,7 @@ void Model::sendCurrentPlantToStack()
 {
     emit sendPlantToStack(currentPlant);
     totalRam = totalRam - currentPlant->cost;
-    emit ramUpdated(totalRam);
+    emit currentRamUpdated(totalRam);
 }
 
 void Model::sendHint()
