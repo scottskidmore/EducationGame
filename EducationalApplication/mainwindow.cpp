@@ -127,7 +127,7 @@ void MainWindow::onUpdatedTimer(int time)
     ui->timerLabel->setText(QString("Time: " + QString::number(time)));
 }
 
-void MainWindow::onNewRound()
+void MainWindow::onNewRound(bool)
 {
     ui->startRound->setEnabled(true);
 }
