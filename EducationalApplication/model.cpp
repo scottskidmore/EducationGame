@@ -6,8 +6,7 @@ Model::Model(QObject *parent)
     presetPlants[QString("actionCorn")] = new Plant(Plants::Corn);
     presetPlants[QString("actionRose_Flower")] = new Plant(Plants::Flower);
     presetPlants[QString("actionOrange_Flower")] = new Plant(Plants::Flower);
-    totalRam = 200;
-    currentRam = totalRam;
+    currentRam = 200;
 }
 
 void Model::getPlantText()
@@ -28,8 +27,8 @@ void Model::setCurrentPlant()
 void Model::sendCurrentPlantToStack()
 {
     emit sendPlantToStack(currentPlant);
-    totalRam = totalRam - currentPlant->cost;
-    emit currentRamUpdated(totalRam);
+    //totalRam = totalRam - currentPlant->cost;
+    //emit currentRamUpdated(totalRam);
 }
 
 void Model::sendHint()
@@ -65,9 +64,9 @@ void Model::checkUserCommand(QString text)
 void Model::clearStack()
 {
     for (auto plant : stackObj.plants){
-        totalRam += plant->reward;
+        currentScore += plant->reward;
     }
-    emit currentRamUpdated(totalRam);
+    emit currentScoreUpdated(currentScore);
     stackObj.plants.clear();
 }
 
@@ -79,5 +78,7 @@ void Model::clearHeap()
 void Model::startGame()
 {
     qDebug() << "game started";
-    emit currentRamUpdated(totalRam);
+    emit currentRamUpdated(200);
+    emit targetScoreUpdated(100);
+    emit currentScoreUpdated(0);
 }

@@ -44,7 +44,7 @@ void Plant::createCorn()
 {
     cost = 10;
     onHeap = false;
-    reward = 15;
+    reward = 1;
     stackCode = "Corn c;";
     heapCode = "Corn c = new Corn();";
     imagePath = ":/Flowers/Images/wild_flower_14.png";
@@ -55,7 +55,7 @@ void Plant::createFlower()
 {
     cost = 10;
     onHeap = false;
-    reward = 15;
+    reward = 1;
     stackCode = "Flower f;";
     heapCode = "Flower f = new Flower();";
     imagePath = ":/Flowers/Images/flower_complete.png";
@@ -65,7 +65,7 @@ void Plant::createTree()
 {
     cost = 50;
     onHeap = true;
-    reward = 70;
+    reward = 1;
     stackCode = "Tree t;";
     heapCode = "Tree t = new Tree();";
     imagePath = ":/Flowers/Images/flower_complete.png"; // needs to be updated
@@ -75,7 +75,7 @@ void Plant::createPotato()
 {
     cost = 10;
     onHeap = true;
-    reward = 15;
+    reward = 1;
     stackCode = "Potato p;";
     heapCode = "Potato p = new Potato();";
     imagePath = ":/Flowers/Images/flower_complete.png"; // needs to be updated
@@ -85,7 +85,7 @@ void Plant::createGrapes()
 {
     cost = 25;
     onHeap = true;
-    reward = 40;
+    reward = 1;
     stackCode = "Grapes g;";
     heapCode = "Grapes g = new Grapes();";
     imagePath = ":/Flowers/Images/flower_complete.png"; // needs to be updated

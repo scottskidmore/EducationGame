@@ -28,7 +28,8 @@ public:
     int round;
     int roundTime;
     Plant* currentPlant=NULL;
-    int totalRam;
+    int targetScore;
+    int currentScore;
     int currentRam;
 
 private:
