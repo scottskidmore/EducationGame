@@ -44,6 +44,8 @@ private slots:
 
     void onUpdatedTimer(int);
 
+    void onNewRound(bool);
+
 private:
     Ui::MainWindow *ui;
 

@@ -27,6 +27,8 @@ MainWindow::MainWindow(Model *m, QWidget *parent)
     connect(m, &Model::targetScoreUpdated, this, &MainWindow::updateTargetScore);
     connect(m, &Model::currentScoreUpdated, this, &MainWindow::updateCurrentScore);
     connect(m, &Model::timeUpdated, this, &MainWindow::onUpdatedTimer);
+    connect(m, &Model::enableNewRound, this, &MainWindow::onNewRound);
+
 
 }
 
@@ -122,6 +124,11 @@ void MainWindow::updateCurrentScore(int score) {
 
 void MainWindow::onUpdatedTimer(int time)
 {
-    ui->timerLabel->setText(QString("Time Remaining: " + QString::number(time)));
+    ui->timerLabel->setText(QString("Time: " + QString::number(time)));
+}
+
+void MainWindow::onNewRound()
+{
+    ui->startRound->setEnabled(true);
 }
 

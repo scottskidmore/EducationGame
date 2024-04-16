@@ -8,7 +8,8 @@ Model::Model(QObject *parent)
     presetPlants[QString("actionOrange_Flower")] = new Plant(Plants::Flower);
     totalRam = 200;
     currentRam = totalRam;
-    QTimer::singleShot(1000, this, decreasingTime);
+    roundTime = 20;
+    stackCleared = false;
 }
 
 void Model::getPlantText()
@@ -81,10 +82,20 @@ void Model::startGame()
 {
     qDebug() << "game started";
     emit currentRamUpdated(totalRam);
+    QTimer *timer = new QTimer(this);
+    connect(timer, &QTimer::timeout, this, decreasingTime);
+    timer->start(1000);
 }
 
 void Model::decreasingTime()
 {
-    roundTime--;
-    emit timeUpdated((roundTime));
+    if (roundTime == 0 && stackCleared == false){
+        clearStack();
+        stackCleared = true;
+        emit enableNewRound(true);
+    }
+    else if (stackCleared == false){
+        roundTime--;
+        emit timeUpdated((roundTime));
+    }
 }

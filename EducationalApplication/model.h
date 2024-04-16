@@ -30,6 +30,7 @@ public:
     Plant* currentPlant=NULL;
     int totalRam;
     int currentRam;
+    bool stackCleared;
 
 private:
     //std::vector<Plant*> presetPlants;
@@ -63,6 +64,7 @@ signals:
     void targetScoreUpdated(int);
     void currentScoreUpdated(int);
     void timeUpdated(int);
+    void enableNewRound(bool);
 };
 
 #endif // MODEL_H

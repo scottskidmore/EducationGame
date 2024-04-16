@@ -190,13 +190,19 @@
     <property name="geometry">
      <rect>
       <x>680</x>
-      <y>20</y>
+      <y>-1</y>
       <width>91</width>
-      <height>20</height>
+      <height>41</height>
      </rect>
     </property>
     <property name="text">
      <string>Time:</string>
+    </property>
+    <property name="scaledContents">
+     <bool>true</bool>
+    </property>
+    <property name="wordWrap">
+     <bool>true</bool>
     </property>
    </widget>
    <widget class="QLabel" name="currentRamLabel">
@@ -320,6 +326,22 @@
      <string>Current Score:</string>
     </property>
    </widget>
+   <widget class="QPushButton" name="startRound">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>320</x>
+      <y>410</y>
+      <width>101</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Next Round</string>
+    </property>
+   </widget>
    <zorder>timerLabel</zorder>
    <zorder>scrollArea_2</zorder>
    <zorder>label</zorder>
@@ -338,6 +360,7 @@
    <zorder>startLabel</zorder>
    <zorder>startButton</zorder>
    <zorder>CurrentScoreLabel</zorder>
+   <zorder>startRound</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
@@ -345,7 +368,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>17</height>
+     <height>21</height>
     </rect>
    </property>
   </widget>
