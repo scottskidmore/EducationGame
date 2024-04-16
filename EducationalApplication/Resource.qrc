@@ -3,5 +3,15 @@
         <file>Images/flower_complete.png</file>
         <file>Images/rose.png</file>
         <file>Images/wild_flower_14.png</file>
+        <file>Images/corn.png</file>
+        <file>Images/flower.png</file>
+        <file>Images/potato.png</file>
+        <file>Images/tree_dead.png</file>
+        <file>Images/tree_r1.png</file>
+        <file>Images/tree_r2.png</file>
+        <file>Images/tree_r3.png</file>
+    </qresource>
+    <qresource prefix="/Background">
+        <file>Images/Background.png</file>
     </qresource>
 </RCC>
