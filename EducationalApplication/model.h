@@ -50,6 +50,8 @@ public slots:
     /// \brief sendHint - sends a hint to the mainwindow based on the currentPlant
     void sendHint();
 
+    void decreasingTime();
+
 signals:
     void sendPlantToStack(Plant*);
     void sendPlantToHeap(Plant*);

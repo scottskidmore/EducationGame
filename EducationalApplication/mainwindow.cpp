@@ -120,3 +120,8 @@ void MainWindow::updateCurrentScore(int score) {
     ui->CurrentScoreLabel->setText(QString("Target Score: " + QString::number(score)));
 }
 
+void MainWindow::onUpdatedTimer(int time)
+{
+    ui->timerLabel->setText(QString("Time Remaining: " + QString::number(time)));
+}
+

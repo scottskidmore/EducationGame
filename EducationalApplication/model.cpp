@@ -81,3 +81,9 @@ void Model::startGame()
     qDebug() << "game started";
     emit currentRamUpdated(totalRam);
 }
+
+void Model::decreasingTime()
+{
+    roundTime--;
+    emit timeUpdated((roundTime));
+}
