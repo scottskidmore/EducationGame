@@ -40,9 +40,9 @@ std::string Plant::basicInfo()
 
 void Plant::createCorn()
 {
-    cost = 0;
+    cost = 10;
     onHeap = false;
-    reward = 1;
+    reward = 15;
     stackCode = "Corn c;";
     heapCode = "Corn c = new Corn();";
     imagePath = ":/Flowers/Images/wild_flower_14.png";
@@ -51,9 +51,9 @@ void Plant::createCorn()
 
 void Plant::createFlower()
 {
-    cost = 0;
+    cost = 10;
     onHeap = false;
-    reward = 1;
+    reward = 15;
     stackCode = "Flower f;";
     heapCode = "Flower f = new Flower();";
     imagePath = ":/Flowers/Images/flower_complete.png";
@@ -61,9 +61,9 @@ void Plant::createFlower()
 
 void Plant::createTree()
 {
-    cost = 1;
+    cost = 50;
     onHeap = true;
-    reward = 3;
+    reward = 70;
     stackCode = "Tree t;";
     heapCode = "Tree t = new Tree();";
     imagePath = ":/Flowers/Images/flower_complete.png"; // needs to be updated
@@ -71,9 +71,9 @@ void Plant::createTree()
 
 void Plant::createPotato()
 {
-    cost = 1;
+    cost = 10;
     onHeap = true;
-    reward = 3;
+    reward = 15;
     stackCode = "Potato p;";
     heapCode = "Potato p = new Potato();";
     imagePath = ":/Flowers/Images/flower_complete.png"; // needs to be updated
@@ -81,9 +81,9 @@ void Plant::createPotato()
 
 void Plant::createGrapes()
 {
-    cost = 1;
+    cost = 25;
     onHeap = true;
-    reward = 3;
+    reward = 40;
     stackCode = "Grapes g;";
     heapCode = "Grapes g = new Grapes();";
     imagePath = ":/Flowers/Images/flower_complete.png"; // needs to be updated

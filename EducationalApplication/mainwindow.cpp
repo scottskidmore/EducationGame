@@ -18,12 +18,14 @@ MainWindow::MainWindow(Model *m, QWidget *parent)
     QObject::connect(m, &Model::enableHint, this, &MainWindow::enableHintButton);
     QObject::connect(m, &Model::sendPlantText, ui->centerTextDisplayBox, &QLabel::setText);
     QObject::connect(this, &MainWindow::gameStart, m, &Model::startGame);
-    QObject::connect(ui->scrollArea, &ScrollArea::clicked, m, &Model::sendCurrentPlantToStack);
+    //QObject::connect(ui->scrollArea, &ScrollArea::clicked, m, &Model::sendCurrentPlantToStack);
     QObject::connect(m, &Model::sendPlantToStack, this, &MainWindow::setStackPlant);
     QObject::connect(m, &Model::sendPlantToHeap, this, &MainWindow::setHeapPlant);
     QObject::connect(this, &MainWindow::sendCommandText, m, &Model::checkUserCommand);
     QObject::connect(ui->hintButton, &QPushButton::clicked, m, &Model::sendHint);
-    connect(m, &Model::ramUpdated, this, &MainWindow::updateRam);
+    connect(m, &Model::currentRamUpdated, this, &MainWindow::updateCurrentRam);
+    connect(m, &Model::targetRamUpdated, this, &MainWindow::updateTargetRam);
+
 }
 
 MainWindow::~MainWindow()
@@ -104,7 +106,11 @@ void MainWindow::on_lineEdit_returnPressed()
     emit sendCommandText(ui->lineEdit->text());
 }
 
-void MainWindow::updateRam(int ram) {
+void MainWindow::updateCurrentRam(int ram) {
+    ui->currentRamLabel->setText(QString("Current Ram: " + QString::number(ram)));
+}
+
+void MainWindow::updateTargetRam(int ram) {
     ui->targetRamLabel->setText(QString("Target Ram: " + QString::number(ram)));
 }
 

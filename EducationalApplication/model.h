@@ -28,11 +28,12 @@ public:
     int round;
     int roundTime;
     Plant* currentPlant=NULL;
+    int totalRam;
+    int currentRam;
 
 private:
     //std::vector<Plant*> presetPlants;
     std::map<QString, Plant*> presetPlants;
-    int totalRam;
 
 
 public slots:
@@ -56,7 +57,8 @@ signals:
     void sendPlantLocation(bool onHeap, QString plant);
     void enableHint();
     void sendHintText(QString text);
-    void ramUpdated(int);
+    void currentRamUpdated(int);
+    void targetRamUpdated(int);
 };
 
 #endif // MODEL_H

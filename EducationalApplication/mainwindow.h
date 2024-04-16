@@ -36,7 +36,9 @@ private slots:
 
     void on_lineEdit_returnPressed();
 
-    void updateRam(int);
+    void updateCurrentRam(int);
+
+    void updateTargetRam(int);
 
 private:
     Ui::MainWindow *ui;
