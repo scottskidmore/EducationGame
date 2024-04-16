@@ -8,6 +8,7 @@ Model::Model(QObject *parent)
     presetPlants[QString("actionOrange_Flower")] = new Plant(Plants::Flower);
     totalRam = 200;
     currentRam = totalRam;
+    QTimer::singleShot(1000, this, decreasingTime);
 }
 
 void Model::getPlantText()
