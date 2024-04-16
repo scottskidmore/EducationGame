@@ -28,7 +28,9 @@ std::string Plant::hintCode(){
 
 std::string Plant::basicInfo()
 {
-    return "This is a " + toString(thisPlant);
+    return "This is a " + toString(thisPlant)
+            + "\nType your code below to plant"
+            + "\nor click the hint button if\nyou are stuck";
 }
 
 
