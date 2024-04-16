@@ -60,6 +60,7 @@ signals:
     void currentRamUpdated(int);
     void targetScoreUpdated(int);
     void currentScoreUpdated(int);
+    void timeUpdated(int);
 };
 
 #endif // MODEL_H

@@ -42,6 +42,8 @@ private slots:
 
     void updateCurrentScore(int);
 
+    void onUpdatedTimer(int);
+
 private:
     Ui::MainWindow *ui;
 

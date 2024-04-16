@@ -26,6 +26,7 @@ MainWindow::MainWindow(Model *m, QWidget *parent)
     connect(m, &Model::currentRamUpdated, this, &MainWindow::updateCurrentRam);
     connect(m, &Model::targetScoreUpdated, this, &MainWindow::updateTargetScore);
     connect(m, &Model::currentScoreUpdated, this, &MainWindow::updateCurrentScore);
+    connect(m, &Model::timeUpdated, this, &MainWindow::onUpdatedTimer);
 
 }
 
