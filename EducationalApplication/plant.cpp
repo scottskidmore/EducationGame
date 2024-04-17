@@ -19,6 +19,7 @@ Plant::Plant(Plants plantType) {
             createGrapes();
             break;
     }
+    heapGrowthTrack = 0;
 }
 
 std::string Plant::hintCode(){
@@ -36,7 +37,42 @@ std::string Plant::basicInfo()
 {
     return "This is a " + toString(thisPlant)
             + "\nType your code below to plant"
-            + "\nor click the hint button if\nyou are stuck";
+           + "\nor click the hint button if\nyou are stuck";
+}
+
+void Plant::updateHeapGrowth()
+{
+    if (heapGrowthTrack < 4)
+        heapGrowthTrack++;
+    else
+        return;
+    switch (heapGrowthTrack) {
+        case 0: break;
+        case 1:
+            if (thisPlant == Plants::Tree)
+                imagePath = ":/Flowers/Images/tree_r1.png";
+            else
+                imagePath = ":/Flowers/Images/grapes_r1.png";
+            break;
+        case 2:
+            if (thisPlant == Plants::Tree)
+                imagePath = ":/Flowers/Images/tree_r2.png";
+            else
+                imagePath = ":/Flowers/Images/grapes_r2.png";
+            break;
+        case 3:
+            if (thisPlant == Plants::Tree)
+                imagePath = ":/Flowers/Images/tree_r3.png";
+            else
+                imagePath = ":/Flowers/Images/grapes_r3.png";
+            break;
+        case 4:
+            if (thisPlant == Plants::Tree)
+                imagePath = ":/Flowers/Images/tree_dead.png";
+            else
+                imagePath = ":/Flowers/Images/grapes_dead.png";
+            break;
+    }
 }
 
 

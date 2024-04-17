@@ -31,6 +31,7 @@ public:
     int targetScore;
     int currentScore;
     int currentRam;
+    int totalRam;
     bool stackCleared;
 
 private:
