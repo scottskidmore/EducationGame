@@ -8,6 +8,9 @@ Model::Model(QObject *parent)
     presetPlants[QString("actionPotato")] = new Plant(Plants::Potato);
     presetPlants[QString("actionTree")] = new Plant(Plants::Tree);
     presetPlants[QString("actionGrapes")] = new Plant(Plants::Grapes);
+
+    rounds.push_back(Round(100,100));
+
     totalRam = 200;
     currentRam = totalRam;
     roundTime = 20;
@@ -83,8 +86,8 @@ void Model::clearHeap()
 void Model::startGame()
 {
     qDebug() << "game started";
-    emit currentRamUpdated(totalRam);
-    emit targetScoreUpdated(100);
+
+    emit targetScoreUpdated(rounds.at(0).targetScore);
     emit currentScoreUpdated(0);
     QTimer *timer = new QTimer(this);
     connect(timer, &QTimer::timeout, this, decreasingTime);
