@@ -8,6 +8,7 @@ Model::Model(QObject *parent)
     presetPlants[QString("actionPotato")] = new Plant(Plants::Potato);
     presetPlants[QString("actionTree")] = new Plant(Plants::Tree);
     presetPlants[QString("actionGrapes")] = new Plant(Plants::Grapes);
+    rounds.push_back(Round(100,100));
     currentRam = 200;
 }
 
@@ -81,6 +82,6 @@ void Model::startGame()
 {
     qDebug() << "game started";
     emit currentRamUpdated(200);
-    emit targetScoreUpdated(100);
+    emit targetScoreUpdated(rounds.at(0).targetScore);
     emit currentScoreUpdated(0);
 }

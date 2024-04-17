@@ -10,6 +10,7 @@
 #include "stack.h"
 #include "qtimer.h"
 #include <QDebug>
+#include "round.h"
 
 class Model : public QObject
 {
@@ -25,12 +26,11 @@ public:
     std::vector<QString> levelInfo;
     QTimer timer;
     void startGame();
-    int round;
     int roundTime;
     Plant* currentPlant=NULL;
-    int targetScore;
     int currentScore;
     int currentRam;
+    std::vector<Round> rounds;
 
 private:
     //std::vector<Plant*> presetPlants;
