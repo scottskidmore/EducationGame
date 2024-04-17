@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "QHBoxLayout"
+#include "QMessageBox"
 
 MainWindow::MainWindow(Model *m, QWidget *parent)
     : QMainWindow(parent)
@@ -8,6 +9,7 @@ MainWindow::MainWindow(Model *m, QWidget *parent)
 {
     ui->setupUi(this);
     ui->toolBar->hide();
+    ui->lineEdit->setDisabled(true);
 
     QPalette pal;
 
@@ -35,6 +37,7 @@ MainWindow::MainWindow(Model *m, QWidget *parent)
     connect(m, &Model::currentScoreUpdated, this, &MainWindow::updateCurrentScore);
     connect(m, &Model::timeUpdated, this, &MainWindow::onUpdatedTimer);
     connect(m, &Model::enableNewRound, this, &MainWindow::onNewRound);
+    connect(m, &Model::gameOver, this, &MainWindow::onGameOver);
 
 
 }
@@ -51,6 +54,7 @@ void MainWindow::on_startButton_clicked()
     ui->previousSlide->hide();
     ui->startButton->hide();
     ui->toolBar->show();
+    ui->lineEdit->setEnabled(true);
     ui->timerLabel->setText("Time: --");
     emit gameStart();
 }
@@ -137,5 +141,12 @@ void MainWindow::onUpdatedTimer(int time)
 void MainWindow::onNewRound(bool)
 {
     ui->startRound->setEnabled(true);
+}
+
+void MainWindow::onGameOver()
+{
+    ui->startRound->setDisabled(true);
+    ui->startButton->show();
+    QMessageBox::information(this, "Game Over!", "You didn't reach the target score.");
 }
 

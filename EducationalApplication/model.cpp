@@ -96,15 +96,23 @@ void Model::startGame()
 
 void Model::decreasingTime()
 {
-    if (roundTime == 0 && stackCleared == false){
-        clearStack();
-        stackCleared = true;
-        emit enableNewRound(true);
+    if (roundTime == 0){
+        if(currentScore < targetScore) {
+            emit gameOver();
+            timer.stop();
+            roundTime = -1;
+        }
+        if (stackCleared == false)   {
+            clearStack();
+            stackCleared = true;
+            emit enableNewRound(true);
+        }
     }
     else if (stackCleared == false){
         roundTime--;
         emit timeUpdated((roundTime));
     }
+
 
 }
 

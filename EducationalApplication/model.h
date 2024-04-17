@@ -69,6 +69,7 @@ signals:
     void currentScoreUpdated(int);
     void timeUpdated(int);
     void enableNewRound(bool);
+    void gameOver();
 };
 
 #endif // MODEL_H

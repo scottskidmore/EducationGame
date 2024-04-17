@@ -46,6 +46,8 @@ private slots:
 
     void onNewRound(bool);
 
+    void onGameOver();
+
 private:
     Ui::MainWindow *ui;
 
