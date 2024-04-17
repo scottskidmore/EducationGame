@@ -55,6 +55,8 @@ public slots:
 
     void decreasingTime();
 
+    void endRound();
+
 signals:
     void sendPlantToStack(Plant*);
     void sendPlantToHeap(Plant*);

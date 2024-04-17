@@ -90,7 +90,7 @@ void Model::startGame()
     emit targetScoreUpdated(rounds.at(0).targetScore);
     emit currentScoreUpdated(0);
     QTimer *timer = new QTimer(this);
-    connect(timer, &QTimer::timeout, this, decreasingTime);
+    QObject::connect(timer, &QTimer::timeout, this, &Model::decreasingTime);
     timer->start(1000);
 }
 
@@ -106,4 +106,9 @@ void Model::decreasingTime()
         emit timeUpdated((roundTime));
     }
 
+}
+
+void Model::endRound()
+{
+    heapObj.updateHeapPlants();
 }
