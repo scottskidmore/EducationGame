@@ -345,7 +345,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>17</height>
+     <height>21</height>
     </rect>
    </property>
   </widget>
@@ -375,38 +375,40 @@
    <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
-   <addaction name="actionOrange_Flower"/>
+   <addaction name="actionFlower"/>
    <addaction name="separator"/>
-   <addaction name="actionRose_Flower"/>
+   <addaction name="actionPotato"/>
    <addaction name="separator"/>
    <addaction name="actionCorn"/>
    <addaction name="separator"/>
+   <addaction name="actionTree"/>
+   <addaction name="actionGrapes"/>
   </widget>
-  <action name="actionOrange_Flower">
+  <action name="actionFlower">
    <property name="icon">
     <iconset resource="Resource.qrc">
-     <normaloff>:/Flowers/Images/flower_complete.png</normaloff>:/Flowers/Images/flower_complete.png</iconset>
+     <normaloff>:/Flowers/Images/flower.png</normaloff>:/Flowers/Images/flower.png</iconset>
    </property>
    <property name="text">
     <string>Orange Flower</string>
    </property>
    <property name="shortcut">
-    <string>Ctrl+O</string>
+    <string>Ctrl+F</string>
    </property>
    <property name="menuRole">
     <enum>QAction::NoRole</enum>
    </property>
   </action>
-  <action name="actionRose_Flower">
+  <action name="actionPotato">
    <property name="icon">
     <iconset resource="Resource.qrc">
-     <normaloff>:/Flowers/Images/rose.png</normaloff>:/Flowers/Images/rose.png</iconset>
+     <normaloff>:/Flowers/Images/potato.png</normaloff>:/Flowers/Images/potato.png</iconset>
    </property>
    <property name="text">
     <string>Rose Flower</string>
    </property>
    <property name="shortcut">
-    <string>Ctrl+R</string>
+    <string>Ctrl+P</string>
    </property>
    <property name="menuRole">
     <enum>QAction::NoRole</enum>
@@ -415,13 +417,43 @@
   <action name="actionCorn">
    <property name="icon">
     <iconset resource="Resource.qrc">
-     <normaloff>:/Flowers/Images/wild_flower_14.png</normaloff>:/Flowers/Images/wild_flower_14.png</iconset>
+     <normaloff>:/Flowers/Images/corn.png</normaloff>:/Flowers/Images/corn.png</iconset>
    </property>
    <property name="text">
     <string>Corn</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+C</string>
+   </property>
+   <property name="menuRole">
+    <enum>QAction::NoRole</enum>
+   </property>
+  </action>
+  <action name="actionTree">
+   <property name="icon">
+    <iconset resource="Resource.qrc">
+     <normaloff>:/Flowers/Images/tree_new.png</normaloff>:/Flowers/Images/tree_new.png</iconset>
+   </property>
+   <property name="text">
+    <string>Tree</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+T</string>
+   </property>
+   <property name="menuRole">
+    <enum>QAction::NoRole</enum>
+   </property>
+  </action>
+  <action name="actionGrapes">
+   <property name="icon">
+    <iconset resource="Resource.qrc">
+     <normaloff>:/Flowers/Images/grapes_new.png</normaloff>:/Flowers/Images/grapes_new.png</iconset>
+   </property>
+   <property name="text">
+    <string>Grapes</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+G</string>
    </property>
    <property name="menuRole">
     <enum>QAction::NoRole</enum>

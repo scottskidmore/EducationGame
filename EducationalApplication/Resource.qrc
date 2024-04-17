@@ -10,6 +10,12 @@
         <file>Images/tree_r1.png</file>
         <file>Images/tree_r2.png</file>
         <file>Images/tree_r3.png</file>
+        <file>Images/tree_new.png</file>
+        <file>Images/grapes_dead.png</file>
+        <file>Images/grapes_new.png</file>
+        <file>Images/grapes_r1.png</file>
+        <file>Images/grapes_r2.png</file>
+        <file>Images/grapes_r3.png</file>
     </qresource>
     <qresource prefix="/Background">
         <file>Images/Background.png</file>

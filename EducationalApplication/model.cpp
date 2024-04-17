@@ -4,8 +4,10 @@ Model::Model(QObject *parent)
     : QObject{parent}
 {
     presetPlants[QString("actionCorn")] = new Plant(Plants::Corn);
-    presetPlants[QString("actionRose_Flower")] = new Plant(Plants::Flower);
-    presetPlants[QString("actionOrange_Flower")] = new Plant(Plants::Flower);
+    presetPlants[QString("actionFlower")] = new Plant(Plants::Flower);
+    presetPlants[QString("actionPotato")] = new Plant(Plants::Potato);
+    presetPlants[QString("actionTree")] = new Plant(Plants::Tree);
+    presetPlants[QString("actionGrapes")] = new Plant(Plants::Grapes);
     currentRam = 200;
 }
 
