@@ -9,6 +9,9 @@ class Heap
 public:
     Heap();
     std::vector<Plant*> plants;
+
+public slots:
+    void updateHeapPlants();
 };
 
 #endif // HEAP_H

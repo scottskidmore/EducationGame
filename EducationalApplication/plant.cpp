@@ -46,6 +46,8 @@ void Plant::updateHeapGrowth()
         heapGrowthTrack++;
     else
         return;
+    if (thisPlant != Plants::Tree || thisPlant != Plants::Grapes)
+        return;
     switch (heapGrowthTrack) {
         case 0: break;
         case 1:

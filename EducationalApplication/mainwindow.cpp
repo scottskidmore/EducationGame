@@ -9,6 +9,8 @@ MainWindow::MainWindow(Model *m, QWidget *parent)
     ui->setupUi(this);
     ui->toolBar->hide();
 
+    QPalette pal;
+
     QObject::connect(ui->actionPotato, &QAction::triggered, m, &Model::getPlantText);
     QObject::connect(ui->actionFlower, &QAction::triggered, m, &Model::getPlantText);
     QObject::connect(ui->actionCorn, &QAction::triggered, m, &Model::getPlantText);
