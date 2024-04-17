@@ -20,6 +20,9 @@ public:
     QString stackCode;
     QString imagePath;
 
+public slots:
+    void updateHeapGrowth();
+
 private:
     void createCorn();
     void createFlower();
