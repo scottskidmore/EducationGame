@@ -8,7 +8,10 @@ Model::Model(QObject *parent)
     presetPlants[QString("actionPotato")] = new Plant(Plants::Potato);
     presetPlants[QString("actionTree")] = new Plant(Plants::Tree);
     presetPlants[QString("actionGrapes")] = new Plant(Plants::Grapes);
-    currentRam = 200;
+    totalRam = 200;
+    currentRam = totalRam;
+    roundTime = 20;
+    stackCleared = false;
 }
 
 void Model::getPlantText()
@@ -80,7 +83,24 @@ void Model::clearHeap()
 void Model::startGame()
 {
     qDebug() << "game started";
-    emit currentRamUpdated(200);
+    emit currentRamUpdated(totalRam);
     emit targetScoreUpdated(100);
     emit currentScoreUpdated(0);
+    QTimer *timer = new QTimer(this);
+    connect(timer, &QTimer::timeout, this, decreasingTime);
+    timer->start(1000);
+}
+
+void Model::decreasingTime()
+{
+    if (roundTime == 0 && stackCleared == false){
+        clearStack();
+        stackCleared = true;
+        emit enableNewRound(true);
+    }
+    else if (stackCleared == false){
+        roundTime--;
+        emit timeUpdated((roundTime));
+    }
+
 }

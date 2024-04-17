@@ -31,6 +31,7 @@ public:
     int targetScore;
     int currentScore;
     int currentRam;
+    bool stackCleared;
 
 private:
     //std::vector<Plant*> presetPlants;
@@ -51,6 +52,8 @@ public slots:
     /// \brief sendHint - sends a hint to the mainwindow based on the currentPlant
     void sendHint();
 
+    void decreasingTime();
+
 signals:
     void sendPlantToStack(Plant*);
     void sendPlantToHeap(Plant*);
@@ -61,6 +64,8 @@ signals:
     void currentRamUpdated(int);
     void targetScoreUpdated(int);
     void currentScoreUpdated(int);
+    void timeUpdated(int);
+    void enableNewRound(bool);
 };
 
 #endif // MODEL_H
