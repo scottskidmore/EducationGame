@@ -4,8 +4,10 @@ Model::Model(QObject *parent)
     : QObject{parent}
 {
     presetPlants[QString("actionCorn")] = new Plant(Plants::Corn);
-    presetPlants[QString("actionRose_Flower")] = new Plant(Plants::Flower);
-    presetPlants[QString("actionOrange_Flower")] = new Plant(Plants::Flower);
+    presetPlants[QString("actionFlower")] = new Plant(Plants::Flower);
+    presetPlants[QString("actionPotato")] = new Plant(Plants::Potato);
+    presetPlants[QString("actionTree")] = new Plant(Plants::Tree);
+    presetPlants[QString("actionGrapes")] = new Plant(Plants::Grapes);
     totalRam = 200;
     currentRam = totalRam;
     roundTime = 20;
@@ -30,8 +32,8 @@ void Model::setCurrentPlant()
 void Model::sendCurrentPlantToStack()
 {
     emit sendPlantToStack(currentPlant);
-    totalRam = totalRam - currentPlant->cost;
-    emit currentRamUpdated(totalRam);
+    //totalRam = totalRam - currentPlant->cost;
+    //emit currentRamUpdated(totalRam);
 }
 
 void Model::sendHint()
@@ -67,9 +69,9 @@ void Model::checkUserCommand(QString text)
 void Model::clearStack()
 {
     for (auto plant : stackObj.plants){
-        totalRam += plant->reward;
+        currentScore += plant->reward;
     }
-    emit currentRamUpdated(totalRam);
+    emit currentScoreUpdated(currentScore);
     stackObj.plants.clear();
 }
 
@@ -82,6 +84,8 @@ void Model::startGame()
 {
     qDebug() << "game started";
     emit currentRamUpdated(totalRam);
+    emit targetScoreUpdated(100);
+    emit currentScoreUpdated(0);
     QTimer *timer = new QTimer(this);
     connect(timer, &QTimer::timeout, this, decreasingTime);
     timer->start(1000);
@@ -98,4 +102,5 @@ void Model::decreasingTime()
         roundTime--;
         emit timeUpdated((roundTime));
     }
+
 }

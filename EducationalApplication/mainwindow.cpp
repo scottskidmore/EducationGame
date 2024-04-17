@@ -9,12 +9,17 @@ MainWindow::MainWindow(Model *m, QWidget *parent)
     ui->setupUi(this);
     ui->toolBar->hide();
 
-    QObject::connect(ui->actionRose_Flower, &QAction::triggered, m, &Model::getPlantText);
-    QObject::connect(ui->actionOrange_Flower, &QAction::triggered, m, &Model::getPlantText);
+    QObject::connect(ui->actionPotato, &QAction::triggered, m, &Model::getPlantText);
+    QObject::connect(ui->actionFlower, &QAction::triggered, m, &Model::getPlantText);
     QObject::connect(ui->actionCorn, &QAction::triggered, m, &Model::getPlantText);
-    QObject::connect(ui->actionRose_Flower, &QAction::triggered, m, &Model::setCurrentPlant);
-    QObject::connect(ui->actionOrange_Flower, &QAction::triggered, m, &Model::setCurrentPlant);
+    QObject::connect(ui->actionPotato, &QAction::triggered, m, &Model::setCurrentPlant);
+    QObject::connect(ui->actionFlower, &QAction::triggered, m, &Model::setCurrentPlant);
     QObject::connect(ui->actionCorn, &QAction::triggered, m, &Model::setCurrentPlant);
+    QObject::connect(ui->actionTree, &QAction::triggered, m, &Model::getPlantText);
+    QObject::connect(ui->actionTree, &QAction::triggered, m, &Model::setCurrentPlant);
+    QObject::connect(ui->actionGrapes, &QAction::triggered, m, &Model::getPlantText);
+    QObject::connect(ui->actionGrapes, &QAction::triggered, m, &Model::setCurrentPlant);
+
     QObject::connect(m, &Model::enableHint, this, &MainWindow::enableHintButton);
     QObject::connect(m, &Model::sendPlantText, ui->centerTextDisplayBox, &QLabel::setText);
     QObject::connect(this, &MainWindow::gameStart, m, &Model::startGame);

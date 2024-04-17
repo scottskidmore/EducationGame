@@ -12,6 +12,12 @@ Plant::Plant(Plants plantType) {
         case Plants::Tree:
             createTree();
             break;
+        case Plants::Potato:
+            createPotato();
+            break;
+        case Plants::Grapes:
+            createGrapes();
+            break;
     }
 }
 
@@ -44,10 +50,10 @@ void Plant::createCorn()
 {
     cost = 10;
     onHeap = false;
-    reward = 15;
+    reward = 1;
     stackCode = "Corn c;";
     heapCode = "Corn c = new Corn();";
-    imagePath = ":/Flowers/Images/wild_flower_14.png";
+    imagePath = ":/Flowers/Images/corn.png";
 
 }
 
@@ -55,40 +61,40 @@ void Plant::createFlower()
 {
     cost = 10;
     onHeap = false;
-    reward = 15;
+    reward = 1;
     stackCode = "Flower f;";
     heapCode = "Flower f = new Flower();";
-    imagePath = ":/Flowers/Images/flower_complete.png";
+    imagePath = ":/Flowers/Images/flower.png";
 }
 
 void Plant::createTree()
 {
     cost = 50;
     onHeap = true;
-    reward = 70;
+    reward = 1;
     stackCode = "Tree t;";
     heapCode = "Tree t = new Tree();";
-    imagePath = ":/Flowers/Images/flower_complete.png"; // needs to be updated
+    imagePath = ":/Flowers/Images/tree_new.png"; // needs to be changed when heap grows
 }
 
 void Plant::createPotato()
 {
     cost = 10;
     onHeap = true;
-    reward = 15;
+    reward = 1;
     stackCode = "Potato p;";
     heapCode = "Potato p = new Potato();";
-    imagePath = ":/Flowers/Images/flower_complete.png"; // needs to be updated
+    imagePath = ":/Flowers/Images/potato.png";
 }
 
 void Plant::createGrapes()
 {
     cost = 25;
     onHeap = true;
-    reward = 40;
+    reward = 1;
     stackCode = "Grapes g;";
     heapCode = "Grapes g = new Grapes();";
-    imagePath = ":/Flowers/Images/flower_complete.png"; // needs to be updated
+    imagePath = ":/Flowers/Images/grapes_new.png"; // needs to be changed when heap grows
 }
 
 
