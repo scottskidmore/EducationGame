@@ -10,7 +10,7 @@ Model::Model(QObject *parent)
     presetPlants[QString("actionGrapes")] = new Plant(Plants::Grapes);
 
     rounds.push_back(Round(100,100));
-
+    targetScore = 100;
     totalRam = 200;
     currentRam = totalRam;
     roundTime = 20;
@@ -99,7 +99,6 @@ void Model::decreasingTime()
     if (roundTime == 0){
         if(currentScore < targetScore) {
             emit gameOver();
-            timer.stop();
             roundTime = -1;
         }
         if (stackCleared == false)   {

@@ -29,6 +29,7 @@ public:
     int roundTime;
     Plant* currentPlant=NULL;
     int currentScore;
+    int targetScore;
     int currentRam;
     std::vector<Round> rounds;
     int totalRam;
