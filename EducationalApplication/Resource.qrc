@@ -19,5 +19,6 @@
     </qresource>
     <qresource prefix="/Background">
         <file>Images/Background.png</file>
+        <file>Images/Dirt.png</file>
     </qresource>
 </RCC>
