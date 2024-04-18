@@ -15,6 +15,7 @@ Model::Model(QObject *parent)
     currentRam = totalRam;
     roundTime = 20;
     stackCleared = false;
+    QObject::connect(&timer, &QTimer::timeout, this, &Model::decreasingTime);
 }
 
 void Model::getPlantText()
@@ -96,26 +97,32 @@ void Model::clearHeap()
 
 void Model::startGame()
 {
+    rounds.push_back(Round(100,100));
+    targetScore = 100;
+    totalRam = 200;
+    currentRam = totalRam;
+    roundTime = 20;
+    stackCleared = false;
     qDebug() << "game started";
-
     emit targetScoreUpdated(rounds.at(0).targetScore);
     emit currentScoreUpdated(0);
-    QTimer *timer = new QTimer(this);
-    QObject::connect(timer, &QTimer::timeout, this, &Model::decreasingTime);
-    timer->start(1000);
+
+    timer.start(1000);
 }
 
 void Model::decreasingTime()
 {
     if (roundTime == 0){
-        if(currentScore < targetScore) {
-            emit gameOver();
-            roundTime = -1;
-        }
         if (stackCleared == false)   {
             clearStack();
             stackCleared = true;
             emit enableNewRound(true);
+
+        }
+        if(currentScore < targetScore) {
+            emit gameOver();
+            roundTime = -1;
+            timer.stop();
         }
     }
     else if (stackCleared == false){
