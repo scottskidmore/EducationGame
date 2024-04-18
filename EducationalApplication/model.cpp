@@ -86,7 +86,7 @@ void Model::clearHeap()
 void Model::startGame()
 {
     qDebug() << "game started";
-
+    roundTime = 20;
     emit targetScoreUpdated(rounds.at(0).targetScore);
     emit currentScoreUpdated(0);
     QTimer *timer = new QTimer(this);
@@ -97,14 +97,14 @@ void Model::startGame()
 void Model::decreasingTime()
 {
     if (roundTime == 0){
-        if(currentScore < targetScore) {
-            emit gameOver();
-            roundTime = -1;
-        }
         if (stackCleared == false)   {
             clearStack();
             stackCleared = true;
             emit enableNewRound(true);
+        }
+        if(currentScore < targetScore) {
+            emit gameOver();
+            roundTime = -1;
         }
     }
     else if (stackCleared == false){
