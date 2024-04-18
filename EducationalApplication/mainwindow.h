@@ -18,6 +18,8 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(Model*, QWidget *parent = nullptr);
     ~MainWindow();
+    std::vector<QString> slideShow;
+    int currentSlide;
 
 private slots:
     void on_startButton_clicked();

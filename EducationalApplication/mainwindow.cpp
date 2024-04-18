@@ -11,6 +11,16 @@ MainWindow::MainWindow(Model *m, QWidget *parent)
     ui->toolBar->hide();
     ui->lineEdit->setDisabled(true);
 
+    //add the slides
+    slideShow.push_back(":/Slideshow/Images/slide1.png");
+    slideShow.push_back(":/Slideshow/Images/slide2.png");
+    slideShow.push_back(":/Slideshow/Images/slide3.png");
+    slideShow.push_back(":/Slideshow/Images/slide4.png");
+    currentSlide = 0;
+
+    QPixmap pixmap(slideShow[currentSlide]);
+    ui->startLabel->setPixmap(pixmap);
+
     QPalette pal;
 
     QObject::connect(ui->actionPotato, &QAction::triggered, m, &Model::getPlantText);
@@ -63,12 +73,24 @@ void MainWindow::on_startButton_clicked()
 void MainWindow::on_previousSlide_clicked()
 {
     qDebug() << "prev slide";
+    if (currentSlide > 0)
+    {
+        currentSlide--;
+        QPixmap pixmap(slideShow[currentSlide]);
+        ui->startLabel->setPixmap(pixmap);
+    }
 }
 
 
 void MainWindow::on_nextSlide_clicked()
 {
     qDebug() << "next slide";
+    if (currentSlide < (int)slideShow.size() - 1)
+    {
+        currentSlide++;
+        QPixmap pixmap(slideShow[currentSlide]);
+        ui->startLabel->setPixmap(pixmap);
+    }
 }
 
 
@@ -130,7 +152,7 @@ void MainWindow::updateTargetScore(int score) {
 }
 
 void MainWindow::updateCurrentScore(int score) {
-    ui->CurrentScoreLabel->setText(QString("Target Score: " + QString::number(score)));
+    ui->CurrentScoreLabel->setText(QString("Current Score: " + QString::number(score)));
 }
 
 void MainWindow::onUpdatedTimer(int time)

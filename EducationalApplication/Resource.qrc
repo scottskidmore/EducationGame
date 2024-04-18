@@ -21,4 +21,10 @@
         <file>Images/Background.png</file>
         <file>Images/Dirt.png</file>
     </qresource>
+    <qresource prefix="/Slideshow">
+        <file>Images/slide1.png</file>
+        <file>Images/slide2.png</file>
+        <file>Images/slide3.png</file>
+        <file>Images/slide4.png</file>
+    </qresource>
 </RCC>
