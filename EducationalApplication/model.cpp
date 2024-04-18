@@ -14,6 +14,7 @@ Model::Model(QObject *parent)
     totalRam = 200;
     currentRam = totalRam;
     roundTime = 20;
+    currentScore = 0;
     stackCleared = false;
     QObject::connect(&timer, &QTimer::timeout, this, &Model::decreasingTime);
 }
@@ -85,6 +86,7 @@ void Model::clearStack()
 {
     for (auto plant : stackObj.plants){
         currentScore += plant->reward;
+        plant->deleteMyButton();
     }
     emit currentScoreUpdated(currentScore);
     stackObj.plants.clear();
@@ -97,7 +99,7 @@ void Model::clearHeap()
 
 void Model::startGame()
 {
-    rounds.push_back(Round(100,100));
+    rounds.push_back(Round(100,100, 200));
     targetScore = 100;
     totalRam = 200;
     currentRam = totalRam;
