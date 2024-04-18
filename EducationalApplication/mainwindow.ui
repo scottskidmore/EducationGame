@@ -309,10 +309,10 @@
     </property>
     <property name="geometry">
      <rect>
-      <x>-5</x>
-      <y>-4</y>
-      <width>821</width>
-      <height>481</height>
+      <x>0</x>
+      <y>0</y>
+      <width>801</width>
+      <height>581</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -354,6 +354,7 @@
      <string>Next Round</string>
     </property>
    </widget>
+   <zorder>CurrentScoreLabel</zorder>
    <zorder>timerLabel</zorder>
    <zorder>scrollArea_2</zorder>
    <zorder>label</zorder>
@@ -368,7 +369,6 @@
    <zorder>scrollArea</zorder>
    <zorder>startLabel</zorder>
    <zorder>startButton</zorder>
-   <zorder>CurrentScoreLabel</zorder>
    <zorder>startRound</zorder>
    <zorder>nextSlide</zorder>
    <zorder>previousSlide</zorder>
