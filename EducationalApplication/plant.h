@@ -21,6 +21,7 @@ public:
     bool onHeap;
     int cost;
     int reward;
+    int roundsOnHeap;
     QString heapCode;
     std::regex heapPattern;
     std::regex stackPattern;

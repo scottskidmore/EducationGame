@@ -131,6 +131,7 @@ void Model::startGame()
     qDebug() << "game started";
     emit targetScoreUpdated(rounds.at(0).targetScore);
     emit currentScoreUpdated(0);
+    emit currentRamUpdated(currentRam);
 
     timer.start(1000);
 }
@@ -197,4 +198,9 @@ void Model::decreasingTime()
 void Model::endRound()
 {
     heapObj.updateHeapPlants();
+    for (auto plant : stackObj.plants){
+        plant->roundsOnHeap += 1;
+    }
 }
+
+
