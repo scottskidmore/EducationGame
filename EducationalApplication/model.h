@@ -11,6 +11,7 @@
 #include "qtimer.h"
 #include <QDebug>
 #include "round.h"
+#include <regex>
 
 class Model : public QObject
 {
@@ -38,6 +39,7 @@ private:
     //std::vector<Plant*> presetPlants;
     std::map<QString, Plant*> presetPlants;
     std::vector<Round> rounds;
+    QString checkCommandName(QString);
 
 public slots:
     void getPlantText();

@@ -9,6 +9,7 @@ class Stack
 public:
     Stack();
     std::vector<Plant*> plants;
+    std::map<QString, Plant*> plantMap;
 };
 
 #endif // STACK_H

@@ -5,6 +5,7 @@
 #include <QString>
 #include <QPushButton>
 #include "qobject.h"
+#include <regex>
 
 enum class Plants;
 
@@ -12,7 +13,7 @@ class Plant : public QObject
 {
     Q_OBJECT
 public:
-    explicit Plant(Plants plantType, QObject *parent = nullptr);
+    explicit Plant(Plants plantType, QString name, QObject *parent = nullptr);
     Plants thisPlant;
     std::string hintCode();
     std::string basicInfo();
@@ -21,10 +22,14 @@ public:
     int cost;
     int reward;
     QString heapCode;
+    std::regex heapPattern;
+    std::regex stackPattern;
     QString stackCode;
     QString imagePath;
     QString deleteCode;
+    std::regex deletePattern;
     void deleteMyButton();
+    QString myName; // this is its name, its used as the key for the heap or stack
 
 public slots:
     void updateHeapGrowth();

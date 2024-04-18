@@ -1,6 +1,6 @@
 #include "plant.h"
 
-Plant::Plant(Plants plantType, QObject *parent)
+Plant::Plant(Plants plantType, QString name, QObject *parent)
     : QObject{parent}
 {
 
@@ -23,6 +23,7 @@ Plant::Plant(Plants plantType, QObject *parent)
             break;
     }
     heapGrowthTrack = 0;
+    myName = name;
 }
 
 std::string Plant::hintCode(){
@@ -117,6 +118,8 @@ void Plant::createCorn()
     stackCode = "Corn c;";
     heapCode = "Corn c = new Corn();";
     imagePath = ":/Flowers/Images/corn.png";
+    stackPattern = R"(Corn\s(.+);)";
+    heapPattern = R"(Corn\s([^=\s]+)\s*=\s*new Corn\(\);)";
 }
 
 void Plant::createFlower()
@@ -127,6 +130,8 @@ void Plant::createFlower()
     stackCode = "Flower f;";
     heapCode = "Flower f = new Flower();";
     imagePath = ":/Flowers/Images/flower.png";
+    stackPattern = R"(Flower\s(.+);)";
+    heapPattern = R"(Flower\s([^=\s]+)\s*=\s*new Flower\(\);)";
 }
 
 void Plant::createTree()
@@ -137,6 +142,8 @@ void Plant::createTree()
     stackCode = "Tree t;";
     heapCode = "Tree t = new Tree();";
     imagePath = ":/Flowers/Images/tree_new.png"; // needs to be changed when heap grows
+    stackPattern = R"(Tree\s(.+);)";
+    heapPattern = R"(Tree\s([^=\s]+)\s*=\s*new Tree\(\);)";
 }
 
 void Plant::createPotato()
@@ -147,6 +154,8 @@ void Plant::createPotato()
     stackCode = "Potato p;";
     heapCode = "Potato p = new Potato();";
     imagePath = ":/Flowers/Images/potato.png";
+    stackPattern = R"(Potato\s(.+);)";
+    heapPattern = R"(Potato\s([^=\s]+)\s*=\s*new Potato\(\);)";
 }
 
 void Plant::createGrapes()
@@ -157,6 +166,8 @@ void Plant::createGrapes()
     stackCode = "Grapes g;";
     heapCode = "Grapes g = new Grapes();";
     imagePath = ":/Flowers/Images/grapes_new.png"; // needs to be changed when heap grows
+    stackPattern = R"(Grapes\s(.+);)";
+    heapPattern = R"(Grapes\s([^=\s]+)\s*=\s*new Grapes\(\);)";
 }
 
 

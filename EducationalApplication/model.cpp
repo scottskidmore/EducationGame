@@ -3,11 +3,11 @@
 Model::Model(QObject *parent)
     : QObject{parent}
 {
-    presetPlants[QString("actionCorn")] = new Plant(Plants::Corn);
-    presetPlants[QString("actionFlower")] = new Plant(Plants::Flower);
-    presetPlants[QString("actionPotato")] = new Plant(Plants::Potato);
-    presetPlants[QString("actionTree")] = new Plant(Plants::Tree);
-    presetPlants[QString("actionGrapes")] = new Plant(Plants::Grapes);
+    presetPlants[QString("actionCorn")] = new Plant(Plants::Corn, "cornDefault");
+    presetPlants[QString("actionFlower")] = new Plant(Plants::Flower, "flowerDefault");
+    presetPlants[QString("actionPotato")] = new Plant(Plants::Potato, "potatoDefault");
+    presetPlants[QString("actionTree")] = new Plant(Plants::Tree, "treeDefault");
+    presetPlants[QString("actionGrapes")] = new Plant(Plants::Grapes, "grapesDefault");
 
     rounds.push_back(Round(100,100, 200));
     targetScore = 100;
@@ -54,28 +54,49 @@ void Model::sendHint()
 
 void Model::checkUserCommand(QString text)
 {
-    if (text == currentPlant->heapCode) {
-        Plant* p = new Plant(currentPlant->thisPlant);
+    if (currentPlant == nullptr)
+        return;
+    QString result = checkCommandName(text);
+    QStringList substrings = result.split(" ");
+    QString name = "";
+    if (substrings.count() == 2) {
+        name = substrings[1];
+        // if the name does exist on either let them know they can't use it.
+        if (heapObj.plantMap.find(name) != heapObj.plantMap.end() || stackObj.plantMap.find(name) != stackObj.plantMap.end()) {
+            emit sendPlantText(QString("You already have a plant named " + name));
+            return;
+        }
+    }
+    else
+        emit sendPlantText("\nYour code did not match this plants heap\nor stack code. Try again.\nGet a hint if you're stuck!");
+    if (substrings[0] == "H") {
+        Plant* p = new Plant(currentPlant->thisPlant, name);
         QObject::connect(p, &Plant::updateTextForDelete, this, &Model::getPlantTextForDelete);
         heapObj.plants.push_back(p);
+        heapObj.plantMap[name] = p; // add to map, we will need to get rid of list
         emit sendPlantText(QString::fromStdString(currentPlant->basicInfo()) + "\nYou planted on the heap!");
         emit sendPlantToHeap(p);
         currentRam = currentRam - p->cost;
         emit currentRamUpdated(currentRam);
-
     }
-    else if (text == currentPlant->stackCode) {
-        Plant* p = new Plant(currentPlant->thisPlant);
+    else if (substrings[0] == "S") {
+        Plant* p = new Plant(currentPlant->thisPlant, name);
         stackObj.plants.push_back(p);
+        stackObj.plantMap[name] = p; // add to map, we will need to get rid of list
         emit sendPlantText(QString::fromStdString(currentPlant->basicInfo()) + "\nYou planted on the stack!");
         emit sendPlantToStack(p);
         currentRam = currentRam - p->cost;
         emit currentRamUpdated(currentRam);
-
     }
-    else if (text == currentPlant->deleteCode) {
+    else if (substrings[0] == "D") {
         currentPlant->deleteMyButton();
-        // delete plant from heap or stack!
+        // delete plant from heap!
+        auto plant = heapObj.plantMap.find(name);
+        if (plant != heapObj.plantMap.end()) { // if the plant is found on the heap delete it
+            heapObj.plantMap.erase(name); // we may need to harvest/account for points here!
+        }
+        else
+            emit sendPlantText(QString("The plant with name: " + name + "\nDoes not exist on the heap."));
     }
     else {
         emit sendPlantText(QString::fromStdString(currentPlant->basicInfo()) + "\nYour code did not match this plants heap\nor stack code. Try again.\nGet a hint if you're stuck!");
@@ -90,11 +111,13 @@ void Model::clearStack()
     }
     emit currentScoreUpdated(currentScore);
     stackObj.plants.clear();
+    stackObj.plantMap.clear();
 }
 
 void Model::clearHeap()
 {
     heapObj.plants.clear();
+    heapObj.plantMap.clear();
 }
 
 void Model::startGame()
@@ -110,6 +133,42 @@ void Model::startGame()
     emit currentScoreUpdated(0);
 
     timer.start(1000);
+}
+
+QString Model::checkCommandName(QString command)
+{
+    std::smatch match;
+    std::string commandStr = command.toStdString();
+    std::regex validChars(R"(^[a-zA-Z_][a-zA-Z0-9_]*$)");
+    std::regex deletePattern(R"(^delete\s([a-zA-Z_][a-zA-Z0-9_]*);$)");
+
+    if (std::regex_match(commandStr, match, currentPlant->heapPattern)) {
+        // If the match is successful, extract the name (group 1)
+        std::string name = match[1].str();
+        qDebug() << "name Heap: '" << name << "'";
+        if (std::regex_match(name, validChars)) { // if the name is valid chars
+            return QString("H " + QString::fromStdString(name));
+        }
+    }
+    else if (std::regex_match(commandStr, match, currentPlant->stackPattern)) {
+        // If the match is successful, extract the name (group 1)
+        std::string name = match[1].str();
+        qDebug() << "name Stack: '" << name << "'";
+        if (std::regex_match(name, validChars)) { // if the name is valid chars
+            return QString("S " + QString::fromStdString(name));
+        }
+    }
+    else if (std::regex_match(commandStr, match, deletePattern)) {
+        // If the match is successful, extract the name, this name is already valid checked.
+        std::string name = match[1].str();
+        return QString("D " + QString::fromStdString(name));
+    }
+    else {
+        qDebug() << "invalid name";
+        return QString("I");
+    }
+    qDebug() << "invalid name";
+    return QString("I");
 }
 
 void Model::decreasingTime()
