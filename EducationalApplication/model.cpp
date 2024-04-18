@@ -97,7 +97,7 @@ void Model::clearHeap()
 
 void Model::startGame()
 {
-    rounds.push_back(Round(100,100));
+    rounds.push_back(Round(100,100, 200));
     targetScore = 100;
     totalRam = 200;
     currentRam = totalRam;
@@ -106,6 +106,7 @@ void Model::startGame()
     qDebug() << "game started";
     emit targetScoreUpdated(rounds.at(0).targetScore);
     emit currentScoreUpdated(0);
+    emit currentRamUpdated(currentRam);
 
     timer.start(1000);
 }
