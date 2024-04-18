@@ -117,6 +117,7 @@ void Plant::createCorn()
     stackCode = "Corn c;";
     heapCode = "Corn c = new Corn();";
     imagePath = ":/Flowers/Images/corn.png";
+    roundsOnHeap = 0;
 }
 
 void Plant::createFlower()
@@ -127,6 +128,7 @@ void Plant::createFlower()
     stackCode = "Flower f;";
     heapCode = "Flower f = new Flower();";
     imagePath = ":/Flowers/Images/flower.png";
+    roundsOnHeap = 0;
 }
 
 void Plant::createTree()
@@ -137,6 +139,7 @@ void Plant::createTree()
     stackCode = "Tree t;";
     heapCode = "Tree t = new Tree();";
     imagePath = ":/Flowers/Images/tree_new.png"; // needs to be changed when heap grows
+    roundsOnHeap = 0;
 }
 
 void Plant::createPotato()
@@ -147,6 +150,7 @@ void Plant::createPotato()
     stackCode = "Potato p;";
     heapCode = "Potato p = new Potato();";
     imagePath = ":/Flowers/Images/potato.png";
+    roundsOnHeap = 0;
 }
 
 void Plant::createGrapes()
@@ -157,6 +161,7 @@ void Plant::createGrapes()
     stackCode = "Grapes g;";
     heapCode = "Grapes g = new Grapes();";
     imagePath = ":/Flowers/Images/grapes_new.png"; // needs to be changed when heap grows
+    roundsOnHeap = 0;
 }
 
 

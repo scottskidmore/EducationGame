@@ -33,6 +33,7 @@ public:
     int currentRam;
     int totalRam;
     bool stackCleared;
+    void deletePlantFromHeap(Plant);
 
 private:
     //std::vector<Plant*> presetPlants;

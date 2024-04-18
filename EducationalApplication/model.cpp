@@ -139,4 +139,9 @@ void Model::decreasingTime()
 void Model::endRound()
 {
     heapObj.updateHeapPlants();
+    for (auto plant : stackObj.plants){
+        plant->roundsOnHeap += 1;
+    }
 }
+
+
