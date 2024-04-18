@@ -4,9 +4,10 @@
 class Round
 {
 public:
-    Round(int,int);
+    Round(int round,int target, int ram);
     int roundNumber;
     int targetScore;
+    int ramAmount;
 };
 
 #endif // ROUND_H

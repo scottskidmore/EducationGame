@@ -3,12 +3,16 @@
 #include <iostream>
 #include <string>
 #include <QString>
+#include <QPushButton>
+#include "qobject.h"
 
 enum class Plants;
 
-class Plant {
+class Plant : public QObject
+{
+    Q_OBJECT
 public:
-    Plant(Plants plantType);
+    explicit Plant(Plants plantType, QObject *parent = nullptr);
     Plants thisPlant;
     std::string hintCode();
     std::string basicInfo();
@@ -19,9 +23,19 @@ public:
     QString heapCode;
     QString stackCode;
     QString imagePath;
+    QString deleteCode;
+    void deleteMyButton();
 
 public slots:
     void updateHeapGrowth();
+    void myPlantClicked();
+    void myPlantHarvested();
+    void setMyButton(QPushButton*);
+
+signals:
+    void updateButtonImage(QIcon);
+    void removeThisPlantsButton();
+    void updateTextForDelete(Plant* p);
 
 private:
     void createCorn();
@@ -31,6 +45,7 @@ private:
     void createGrapes();
     std::string toString(Plants p);
     int heapGrowthTrack;
+    QPushButton* myButton;
 };
 
 enum class Plants {

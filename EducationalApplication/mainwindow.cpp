@@ -112,7 +112,12 @@ void MainWindow::setStackPlant(Plant* p)
     // clear command text since it was correct
     ui->lineEdit->setText(QString());
 
-    QPushButton *button = new QPushButton(this);
+    QPushButton* button = new QPushButton(this);
+    p->setMyButton(button);
+    QObject::connect(p, &Plant::removeThisPlantsButton, button, &QPushButton::deleteLater);
+    QObject::connect(p, &Plant::updateButtonImage, button, &QPushButton::setIcon);
+    QObject::connect(button, &QPushButton::clicked, p, &Plant::myPlantClicked);
+
     button->setMaximumSize(64, 64);
     button->setMinimumSize(64, 64);
     button->setGeometry(75, 10, 64, 64);
@@ -129,7 +134,12 @@ void MainWindow::setHeapPlant(Plant* p)
     // clear command text since it was correct
     ui->lineEdit->setText(QString());
 
-    QPushButton *button = new QPushButton(this);
+    QPushButton* button = new QPushButton(this);
+    p->setMyButton(button);
+    QObject::connect(p, &Plant::removeThisPlantsButton, button, &QPushButton::deleteLater);
+    QObject::connect(p, &Plant::updateButtonImage, button, &QPushButton::setIcon);
+    QObject::connect(button, &QPushButton::clicked, p, &Plant::myPlantClicked);
+
     button->setMaximumSize(64, 64);
     button->setMinimumSize(64, 64);
     button->setGeometry(75, 10, 64, 64);

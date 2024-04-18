@@ -9,7 +9,7 @@ Model::Model(QObject *parent)
     presetPlants[QString("actionTree")] = new Plant(Plants::Tree);
     presetPlants[QString("actionGrapes")] = new Plant(Plants::Grapes);
 
-    rounds.push_back(Round(100,100));
+    rounds.push_back(Round(100,100, 200));
     targetScore = 100;
     totalRam = 200;
     currentRam = totalRam;
@@ -24,6 +24,12 @@ void Model::getPlantText()
     //Plant* p = presetPlants.front();
     emit sendPlantText(QString::fromStdString(presetPlants[senderObject->objectName()]->basicInfo()));
     emit enableHint();
+}
+
+void Model::getPlantTextForDelete(Plant* p)
+{
+    currentPlant = p;
+    emit sendPlantText("To Delete this plant type:\n" + p->deleteCode);
 }
 
 void Model::setCurrentPlant()
@@ -48,6 +54,7 @@ void Model::checkUserCommand(QString text)
 {
     if (text == currentPlant->heapCode) {
         Plant* p = new Plant(currentPlant->thisPlant);
+        QObject::connect(p, &Plant::updateTextForDelete, this, &Model::getPlantTextForDelete);
         heapObj.plants.push_back(p);
         emit sendPlantText(QString::fromStdString(currentPlant->basicInfo()) + "\nYou planted on the heap!");
         emit sendPlantToHeap(p);
@@ -63,6 +70,10 @@ void Model::checkUserCommand(QString text)
         currentRam = currentRam - p->cost;
         emit currentRamUpdated(currentRam);
 
+    }
+    else if (text == currentPlant->deleteCode) {
+        currentPlant->deleteMyButton();
+        // delete plant from heap or stack!
     }
     else {
         emit sendPlantText(QString::fromStdString(currentPlant->basicInfo()) + "\nYour code did not match this plants heap\nor stack code. Try again.\nGet a hint if you're stuck!");

@@ -1,6 +1,9 @@
 #include "plant.h"
 
-Plant::Plant(Plants plantType) {
+Plant::Plant(Plants plantType, QObject *parent)
+    : QObject{parent}
+{
+
     thisPlant = plantType;
     switch (plantType) {
         case Plants::Corn:
@@ -40,6 +43,11 @@ std::string Plant::basicInfo()
            + "\nor click the hint button if\nyou are stuck";
 }
 
+void Plant::deleteMyButton()
+{
+    emit removeThisPlantsButton();
+}
+
 void Plant::updateHeapGrowth()
 {
     if (heapGrowthTrack < 4)
@@ -74,7 +82,24 @@ void Plant::updateHeapGrowth()
             else
                 imagePath = ":/Flowers/Images/grapes_dead.png";
             break;
+        }
+}
+
+void Plant::myPlantClicked()
+{
+    if (onHeap) {
+        emit updateTextForDelete(this);
     }
+}
+
+void Plant::myPlantHarvested()
+{
+
+}
+
+void Plant::setMyButton(QPushButton *button)
+{
+    myButton = button;
 }
 
 
@@ -92,7 +117,6 @@ void Plant::createCorn()
     stackCode = "Corn c;";
     heapCode = "Corn c = new Corn();";
     imagePath = ":/Flowers/Images/corn.png";
-
 }
 
 void Plant::createFlower()

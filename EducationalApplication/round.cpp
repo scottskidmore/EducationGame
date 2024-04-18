@@ -1,7 +1,7 @@
 #include "round.h"
 
-Round::Round(int number, int targetScore) {
+Round::Round(int number, int target, int ram) {
     roundNumber=number;
-    this->targetScore=targetScore;
-
+    targetScore=target;
+    ramAmount = ram;
 }

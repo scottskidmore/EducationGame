@@ -31,17 +31,17 @@ public:
     int currentScore;
     int targetScore;
     int currentRam;
-    std::vector<Round> rounds;
     int totalRam;
     bool stackCleared;
 
 private:
     //std::vector<Plant*> presetPlants;
     std::map<QString, Plant*> presetPlants;
-
+    std::vector<Round> rounds;
 
 public slots:
     void getPlantText();
+    void getPlantTextForDelete(Plant* p);
     void setCurrentPlant();
 
     /// \brief checkUserCommand - checks if the command entered is valid based on the current plant
