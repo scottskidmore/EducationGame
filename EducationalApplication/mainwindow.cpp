@@ -20,6 +20,7 @@ MainWindow::MainWindow(Model *m, QWidget *parent)
 
     QPixmap pixmap(slideShow[currentSlide]);
     ui->startLabel->setPixmap(pixmap);
+    ui->startLabel->setScaledContents(true);
 
     QPalette pal;
 
@@ -78,6 +79,7 @@ void MainWindow::on_previousSlide_clicked()
         currentSlide--;
         QPixmap pixmap(slideShow[currentSlide]);
         ui->startLabel->setPixmap(pixmap);
+        ui->startLabel->setScaledContents(true);
     }
 }
 
@@ -90,6 +92,7 @@ void MainWindow::on_nextSlide_clicked()
         currentSlide++;
         QPixmap pixmap(slideShow[currentSlide]);
         ui->startLabel->setPixmap(pixmap);
+        ui->startLabel->setScaledContents(true);
     }
 }
 
