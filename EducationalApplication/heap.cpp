@@ -4,8 +4,7 @@ Heap::Heap() {}
 
 void Heap::updateHeapPlants()
 {
-    for (Plant* p : plants) {
-        if (p->onHeap)
-            p->updateHeapGrowth();
+    for (auto pair : plantMap) {
+        pair.second->updateHeapGrowth();
     }
 }

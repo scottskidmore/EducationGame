@@ -21,7 +21,7 @@ public:
     bool onHeap;
     int cost;
     int reward;
-    int roundsOnHeap;
+    int heapGrowthTrack; // this tracks the heap growth, to change image and points
     QString heapCode;
     std::regex heapPattern;
     std::regex stackPattern;
@@ -50,7 +50,6 @@ private:
     void createPotato();
     void createGrapes();
     std::string toString(Plants p);
-    int heapGrowthTrack;
     QPushButton* myButton;
 };
 

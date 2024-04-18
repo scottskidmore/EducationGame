@@ -55,7 +55,7 @@ void Plant::updateHeapGrowth()
         heapGrowthTrack++;
     else
         return;
-    if (thisPlant != Plants::Tree || thisPlant != Plants::Grapes)
+    if (thisPlant != Plants::Tree && thisPlant != Plants::Grapes)
         return;
     switch (heapGrowthTrack) {
         case 0: break;
@@ -84,6 +84,7 @@ void Plant::updateHeapGrowth()
                 imagePath = ":/Flowers/Images/grapes_dead.png";
             break;
         }
+        emit updateButtonImage(QIcon(QPixmap(imagePath)));
 }
 
 void Plant::myPlantClicked()
@@ -121,7 +122,6 @@ void Plant::createCorn()
     stackPattern = R"(Corn\s(.+);)";
     heapPattern = R"(Corn\s([^=\s]+)\s*=\s*new Corn\(\);)";
 
-    roundsOnHeap = 0;
 }
 
 void Plant::createFlower()
@@ -134,8 +134,6 @@ void Plant::createFlower()
     imagePath = ":/Flowers/Images/flower.png";
     stackPattern = R"(Flower\s(.+);)";
     heapPattern = R"(Flower\s([^=\s]+)\s*=\s*new Flower\(\);)";
-
-    roundsOnHeap = 0;
 
 }
 
@@ -150,8 +148,6 @@ void Plant::createTree()
     stackPattern = R"(Tree\s(.+);)";
     heapPattern = R"(Tree\s([^=\s]+)\s*=\s*new Tree\(\);)";
 
-    roundsOnHeap = 0;
-
 }
 
 void Plant::createPotato()
@@ -165,7 +161,6 @@ void Plant::createPotato()
     stackPattern = R"(Potato\s(.+);)";
     heapPattern = R"(Potato\s([^=\s]+)\s*=\s*new Potato\(\);)";
 
-    roundsOnHeap = 0;
 }
 
 void Plant::createGrapes()
@@ -178,8 +173,6 @@ void Plant::createGrapes()
     imagePath = ":/Flowers/Images/grapes_new.png"; // needs to be changed when heap grows
     stackPattern = R"(Grapes\s(.+);)";
     heapPattern = R"(Grapes\s([^=\s]+)\s*=\s*new Grapes\(\);)";
-
-    roundsOnHeap = 0;
 
 }
 

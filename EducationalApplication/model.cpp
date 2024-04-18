@@ -178,8 +178,8 @@ void Model::decreasingTime()
         if (stackCleared == false)   {
             clearStack();
             stackCleared = true;
+            heapObj.updateHeapPlants();
             emit enableNewRound(true);
-
         }
         if(currentScore < targetScore) {
             emit gameOver();
@@ -198,9 +198,6 @@ void Model::decreasingTime()
 void Model::endRound()
 {
     heapObj.updateHeapPlants();
-    for (auto plant : stackObj.plants){
-        plant->roundsOnHeap += 1;
-    }
 }
 
 
