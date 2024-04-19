@@ -49,8 +49,8 @@ MainWindow::MainWindow(Model *m, QWidget *parent)
     connect(m, &Model::timeUpdated, this, &MainWindow::onUpdatedTimer);
     connect(m, &Model::enableNewRound, this, &MainWindow::onNewRound);
     connect(m, &Model::gameOver, this, &MainWindow::onGameOver);
-
     QObject::connect(ui->pauseButton, &QPushButton::clicked, m, &Model::pauseGame);
+    QObject::connect(ui->startRound, &QPushButton::clicked, m, &Model::nextRound);
 
 
 

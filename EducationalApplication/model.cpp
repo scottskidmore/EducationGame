@@ -1,4 +1,5 @@
 #include "model.h"
+#include <regex>
 
 Model::Model(QObject *parent)
     : QObject{parent}
@@ -10,13 +11,12 @@ Model::Model(QObject *parent)
     presetPlants[QString("actionGrapes")] = new Plant(Plants::Grapes, "grapesDefault");
 
     rounds.push_back(Round(100,100, 200));
-    targetScore = 100;
-    totalRam = 200;
-    currentRam = totalRam;
-    roundTime = 20;
+
     currentScore = 0;
     stackCleared = false;
     gamePaused = false;
+
+    // Connect model's game timer to the decreasingTime slot;
     QObject::connect(&timer, &QTimer::timeout, this, &Model::decreasingTime);
 }
 
@@ -140,14 +140,15 @@ void Model::clearHeap()
 
 void Model::startGame()
 {
-    rounds.push_back(Round(100,100, 200));
-    targetScore = 100;
+    targetScore = 5;
     totalRam = 200;
     currentRam = totalRam;
+    round = 0;
+    rounds.push_back(Round(round, targetScore, totalRam));
     roundTime = 20;
     stackCleared = false;
     qDebug() << "game started";
-    emit targetScoreUpdated(rounds.at(0).targetScore);
+    emit targetScoreUpdated(targetScore);
     emit currentScoreUpdated(0);
     emit currentRamUpdated(currentRam);
 
@@ -193,19 +194,19 @@ QString Model::checkCommandName(QString command)
 void Model::decreasingTime()
 {
     if (roundTime == 0){
-        if (stackCleared == false)   {
+        if (stackCleared == false)   {      // Clear stack and update heap plants when timer raeches 0
             clearStack();
             stackCleared = true;
             heapObj.updateHeapPlants();
             emit enableNewRound(true);
         }
-        // if(currentScore < targetScore) {
-        //     emit gameOver();
-        //     roundTime = -1;
-        //     timer.stop();
-        // }
+        if(currentScore < targetScore) {    // End the game becuase the player didn't reach the target score
+            emit gameOver();
+            roundTime = -1;
+            timer.stop();
+        }
     }
-    else if (stackCleared == false){
+    else if (stackCleared == false){        // Decrement timer countdown
         roundTime--;
         emit timeUpdated((roundTime));
     }
@@ -216,6 +217,23 @@ void Model::decreasingTime()
 void Model::endRound()
 {
     heapObj.updateHeapPlants();
+}
+
+void Model::nextRound()
+{
+    round += 1;
+    totalRam += 50;
+    currentRam = totalRam;
+    targetScore += 5;
+    round = 0;
+    rounds.push_back(Round(round, targetScore, totalRam));
+    roundTime += 10;
+    stackCleared = false;
+    qDebug() << "round started";
+    emit targetScoreUpdated(targetScore);
+    emit currentScoreUpdated(0);
+    emit currentRamUpdated(currentRam);
+
 }
 
 void Model::pauseGame()

@@ -11,7 +11,6 @@
 #include "qtimer.h"
 #include <QDebug>
 #include "round.h"
-#include <regex>
 
 class Model : public QObject
 {
@@ -22,11 +21,8 @@ public:
     //std::vector<Plant*> heapPlants;
     Heap heapObj;
     Stack stackObj;
-    void clearStack();
-    void clearHeap();
     std::vector<QString> levelInfo;
     QTimer timer;
-    void startGame();
     int roundTime;
     Plant* currentPlant=NULL;
     int currentScore;
@@ -34,8 +30,17 @@ public:
     int currentRam;
     int totalRam;
     bool stackCleared;
-    void deletePlantFromHeap(Plant);
     bool gamePaused;
+    int round;
+
+    // public methods
+    ///
+    /// \brief clearStack Initializes game parameters: targetScore, totalRam, currentRam, and roundTime. Then starts the game.
+    ///
+    void clearStack();
+    void clearHeap();
+    void startGame();
+    void deletePlantFromHeap(Plant);
 
 private:
     //std::vector<Plant*> presetPlants;
@@ -61,6 +66,8 @@ public slots:
     void decreasingTime();
 
     void endRound();
+
+    void nextRound();
 
     void pauseGame();
 
