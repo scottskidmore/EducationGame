@@ -16,6 +16,7 @@ Model::Model(QObject *parent)
     roundTime = 20;
     currentScore = 0;
     stackCleared = false;
+    gamePaused = false;
     QObject::connect(&timer, &QTimer::timeout, this, &Model::decreasingTime);
 }
 
@@ -215,6 +216,22 @@ void Model::decreasingTime()
 void Model::endRound()
 {
     heapObj.updateHeapPlants();
+}
+
+void Model::pauseGame()
+{
+    if (!gamePaused)
+    {
+        gamePaused = true;
+        qDebug() << "game paused";
+        timer.stop();
+    }
+    else
+    {
+        gamePaused = false;
+        qDebug() << "game resumed";
+        timer.start();
+    }
 }
 
 

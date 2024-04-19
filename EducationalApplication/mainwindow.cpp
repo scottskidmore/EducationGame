@@ -50,6 +50,9 @@ MainWindow::MainWindow(Model *m, QWidget *parent)
     connect(m, &Model::enableNewRound, this, &MainWindow::onNewRound);
     connect(m, &Model::gameOver, this, &MainWindow::onGameOver);
 
+    QObject::connect(ui->pauseButton, &QPushButton::clicked, m, &Model::pauseGame);
+
+
 
 }
 
@@ -183,5 +186,18 @@ void MainWindow::onGameOver()
     ui->startRound->setDisabled(true);
     ui->startButton->show();
     QMessageBox::information(this, "Game Over!", "You didn't reach the target score.");
+}
+
+
+void MainWindow::on_pauseButton_clicked()
+{
+    if (ui->pauseButton->text() == "Pause")
+    {
+        ui->pauseButton->setText("Resume");
+    }
+    else
+    {
+        ui->pauseButton->setText("Pause");
+    }
 }
 

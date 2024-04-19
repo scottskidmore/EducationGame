@@ -35,6 +35,7 @@ public:
     int totalRam;
     bool stackCleared;
     void deletePlantFromHeap(Plant);
+    bool gamePaused;
 
 private:
     //std::vector<Plant*> presetPlants;
@@ -60,6 +61,8 @@ public slots:
     void decreasingTime();
 
     void endRound();
+
+    void pauseGame();
 
 signals:
     void sendPlantToStack(Plant*);

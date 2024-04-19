@@ -354,6 +354,19 @@
      <string>Next Round</string>
     </property>
    </widget>
+   <widget class="QPushButton" name="pauseButton">
+    <property name="geometry">
+     <rect>
+      <x>690</x>
+      <y>100</y>
+      <width>100</width>
+      <height>32</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Pause</string>
+    </property>
+   </widget>
    <zorder>CurrentScoreLabel</zorder>
    <zorder>timerLabel</zorder>
    <zorder>scrollArea_2</zorder>
@@ -367,9 +380,10 @@
    <zorder>helpButton</zorder>
    <zorder>hintButton</zorder>
    <zorder>scrollArea</zorder>
+   <zorder>startRound</zorder>
+   <zorder>pauseButton</zorder>
    <zorder>startLabel</zorder>
    <zorder>startButton</zorder>
-   <zorder>startRound</zorder>
    <zorder>nextSlide</zorder>
    <zorder>previousSlide</zorder>
   </widget>

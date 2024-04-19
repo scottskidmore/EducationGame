@@ -50,6 +50,8 @@ private slots:
 
     void onGameOver();
 
+    void on_pauseButton_clicked();
+
 private:
     Ui::MainWindow *ui;
 
