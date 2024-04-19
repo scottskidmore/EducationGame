@@ -61,6 +61,8 @@ void Model::checkUserCommand(QString text)
     QString name = "";
     if (substrings.count() == 2) {
         name = substrings[1];
+    }
+    if(substrings.count() == 2 && substrings[0] != "D"){
         // if the name does exist on either let them know they can't use it.
         if (heapObj.plantMap.find(name) != heapObj.plantMap.end() || stackObj.plantMap.find(name) != stackObj.plantMap.end()) {
             emit sendPlantText(QString("You already have a plant named " + name));
@@ -71,6 +73,7 @@ void Model::checkUserCommand(QString text)
         emit sendPlantText("\nYour code did not match this plants heap\nor stack code. Try again.\nGet a hint if you're stuck!");
     if (substrings[0] == "H") {
         Plant* p = new Plant(currentPlant->thisPlant, name);
+        p->onHeap=true;
         QObject::connect(p, &Plant::updateTextForDelete, this, &Model::getPlantTextForDelete);
         heapObj.plants.push_back(p);
         heapObj.plantMap[name] = p; // add to map, we will need to get rid of list
@@ -89,10 +92,10 @@ void Model::checkUserCommand(QString text)
         emit currentRamUpdated(currentRam);
     }
     else if (substrings[0] == "D") {
-        currentPlant->deleteMyButton();
         // delete plant from heap!
         auto plant = heapObj.plantMap.find(name);
         if (plant != heapObj.plantMap.end()) { // if the plant is found on the heap delete it
+             currentPlant->deleteMyButton();
             if (heapObj.plantMap[name]->heapGrowthTrack == 1){ // handles calculating score bassed on
                 currentScore += heapObj.plantMap[name]->reward; // number of rounds the plant was on the heap
             }
@@ -195,11 +198,11 @@ void Model::decreasingTime()
             heapObj.updateHeapPlants();
             emit enableNewRound(true);
         }
-        if(currentScore < targetScore) {
-            emit gameOver();
-            roundTime = -1;
-            timer.stop();
-        }
+        // if(currentScore < targetScore) {
+        //     emit gameOver();
+        //     roundTime = -1;
+        //     timer.stop();
+        // }
     }
     else if (stackCleared == false){
         roundTime--;
