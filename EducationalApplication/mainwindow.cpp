@@ -194,10 +194,12 @@ void MainWindow::on_pauseButton_clicked()
     if (ui->pauseButton->text() == "Pause")
     {
         ui->pauseButton->setText("Resume");
+        ui->lineEdit->setEnabled(false);
     }
     else
     {
         ui->pauseButton->setText("Pause");
+        ui->lineEdit->setEnabled(true);
     }
 }
 

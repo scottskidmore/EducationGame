@@ -383,9 +383,9 @@
    <zorder>startRound</zorder>
    <zorder>pauseButton</zorder>
    <zorder>startLabel</zorder>
-   <zorder>startButton</zorder>
-   <zorder>nextSlide</zorder>
    <zorder>previousSlide</zorder>
+   <zorder>nextSlide</zorder>
+   <zorder>startButton</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
