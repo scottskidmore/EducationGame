@@ -141,7 +141,7 @@ void Model::clearHeap()
 void Model::startGame()
 {
     targetScore = 5;
-    totalRam = 200;
+    totalRam = 150;
     currentRam = totalRam;
     round = 0;
     rounds.push_back(Round(round, targetScore, totalRam));
@@ -225,9 +225,9 @@ void Model::nextRound()
     totalRam += 50;
     currentRam = totalRam;
     targetScore += 5;
-    round = 0;
+    round += 1;
     rounds.push_back(Round(round, targetScore, totalRam));
-    roundTime += 10;
+    roundTime = 10 + (round * 10);
     stackCleared = false;
     qDebug() << "round started";
     emit targetScoreUpdated(targetScore);

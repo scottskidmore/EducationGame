@@ -67,6 +67,9 @@ public slots:
 
     void endRound();
 
+    ///
+    /// \brief nextRound Starts the next round with more time, more ram, and a higher target score.
+    ///
     void nextRound();
 
     void pauseGame();
