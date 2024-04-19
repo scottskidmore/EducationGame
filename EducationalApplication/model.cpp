@@ -93,7 +93,21 @@ void Model::checkUserCommand(QString text)
         // delete plant from heap!
         auto plant = heapObj.plantMap.find(name);
         if (plant != heapObj.plantMap.end()) { // if the plant is found on the heap delete it
-            heapObj.plantMap.erase(name); // we may need to harvest/account for points here!
+            if (heapObj.plantMap[name]->heapGrowthTrack == 1){ // handles calculating score bassed on
+                currentScore += heapObj.plantMap[name]->reward; // number of rounds the plant was on the heap
+            }
+            else if (heapObj.plantMap[name]->heapGrowthTrack == 2){
+                currentScore += heapObj.plantMap[name]->reward * 2;
+            }
+            else if (heapObj.plantMap[name]->heapGrowthTrack == 3){
+                currentScore += heapObj.plantMap[name]->reward * 3;
+            }
+
+            currentRam += heapObj.plantMap[name]->cost;
+            heapObj.plantMap.erase(name);
+
+            emit currentScoreUpdated(currentScore);
+            emit currentRamUpdated(currentRam);
         }
         else
             emit sendPlantText(QString("The plant with name: " + name + "\nDoes not exist on the heap."));
