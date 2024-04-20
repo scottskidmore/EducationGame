@@ -41,12 +41,13 @@ public:
     void clearHeap();
     void startGame();
     void deletePlantFromHeap(Plant);
+    void levels();
 
 private:
     //std::vector<Plant*> presetPlants;
     std::map<QString, Plant*> presetPlants;
     std::vector<Round> rounds;
-    QString checkCommandName(QString);
+    QString checkCommandName(QString);\
 
 public slots:
     void getPlantText();

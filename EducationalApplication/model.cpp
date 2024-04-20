@@ -123,7 +123,7 @@ void Model::checkUserCommand(QString text)
 
 void Model::clearStack()
 {
-    for (auto plant : stackObj.plants){
+    for(auto plant : stackObj.plants){
         currentScore += plant->reward;
         plant->deleteMyButton();
     }
@@ -134,18 +134,22 @@ void Model::clearStack()
 
 void Model::clearHeap()
 {
+    for (auto plant : heapObj.plants){ //added to make sure the bottons/icons are
+        plant->deleteMyButton();      // deleted along with the map
+    }
     heapObj.plants.clear();
     heapObj.plantMap.clear();
 }
 
 void Model::startGame()
 {
+    clearHeap(); // make sure heap is cleared on game restart
     targetScore = 5;
     totalRam = 150;
     currentRam = totalRam;
     round = 0;
     rounds.push_back(Round(round, targetScore, totalRam));
-    roundTime = 20;
+    roundTime = 50;
     stackCleared = false;
     qDebug() << "game started";
     emit targetScoreUpdated(targetScore);
@@ -195,6 +199,9 @@ void Model::decreasingTime()
 {
     if (roundTime == 0){
         if (stackCleared == false)   {      // Clear stack and update heap plants when timer raeches 0
+            for (auto plant : stackObj.plants){
+                currentRam += plant->cost;
+            }
             clearStack();
             stackCleared = true;
             heapObj.updateHeapPlants();
@@ -222,10 +229,8 @@ void Model::endRound()
 void Model::nextRound()
 {
     round += 1;
-    totalRam += 50;
-    currentRam = totalRam;
     targetScore += 5;
-    round += 1;
+    currentRam += 50;
     rounds.push_back(Round(round, targetScore, totalRam));
     roundTime = 10 + (round * 10);
     stackCleared = false;
