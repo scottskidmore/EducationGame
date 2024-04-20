@@ -50,6 +50,8 @@ private slots:
 
     void onGameOver();
 
+    void onRoundOver(int, int, int);
+
     void on_pauseButton_clicked();
 
 private:

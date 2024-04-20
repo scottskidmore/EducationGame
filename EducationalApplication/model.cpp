@@ -10,7 +10,7 @@ Model::Model(QObject *parent)
     presetPlants[QString("actionTree")] = new Plant(Plants::Tree, "treeDefault");
     presetPlants[QString("actionGrapes")] = new Plant(Plants::Grapes, "grapesDefault");
 
-    rounds.push_back(Round(100,100, 200));
+    rounds.push_back(Level(100,100, 200));
 
     currentScore = 0;
     stackCleared = false;
@@ -148,14 +148,14 @@ void Model::startGame()
     totalRam = 150;
     currentRam = totalRam;
     round = 0;
-    rounds.push_back(Round(round, targetScore, totalRam));
-    roundTime = 50;
+    rounds.push_back(Level(round, targetScore, totalRam));
+    roundTime = 10;
+    currentTime = roundTime;
     stackCleared = false;
     qDebug() << "game started";
     emit targetScoreUpdated(targetScore);
     emit currentScoreUpdated(0);
     emit currentRamUpdated(currentRam);
-
     timer.start(1000);
 }
 
@@ -197,7 +197,7 @@ QString Model::checkCommandName(QString command)
 
 void Model::decreasingTime()
 {
-    if (roundTime == 0){
+    if (currentTime == 0){
         if (stackCleared == false)   {      // Clear stack and update heap plants when timer raeches 0
             for (auto plant : stackObj.plants){
                 currentRam += plant->cost;
@@ -205,17 +205,18 @@ void Model::decreasingTime()
             clearStack();
             stackCleared = true;
             heapObj.updateHeapPlants();
-            emit enableNewRound(true);
+            emit roundOver(round, currentScore, targetScore);
+           // emit enableNewRound(true);
         }
-        if(currentScore < targetScore) {    // End the game becuase the player didn't reach the target score
+        if((round > 1) && (round % 5 == 0) && currentScore < targetScore) {    // End the game becuase the player didn't reach the target score
             emit gameOver();
-            roundTime = -1;
+            currentTime = -1;
             timer.stop();
         }
     }
     else if (stackCleared == false){        // Decrement timer countdown
-        roundTime--;
-        emit timeUpdated((roundTime));
+        currentTime--;
+        emit timeUpdated((currentTime));
     }
 
 
@@ -228,17 +229,24 @@ void Model::endRound()
 
 void Model::nextRound()
 {
+    if(round > 1 && (round % 5 == 0)){
+        nextLevel();
+    }
     round += 1;
+    currentTime = roundTime;
+    stackCleared = false;
+    emit enableNewRound(false);
+    qDebug() << "round started";
+}
+
+void Model::nextLevel(){
     targetScore += 5;
     currentRam += 50;
-    rounds.push_back(Round(round, targetScore, totalRam));
-    roundTime = 10 + (round * 10);
-    stackCleared = false;
-    qDebug() << "round started";
+    roundTime += 10;
+    rounds.push_back(Level(round, targetScore, totalRam));
     emit targetScoreUpdated(targetScore);
     emit currentScoreUpdated(0);
     emit currentRamUpdated(currentRam);
-
 }
 
 void Model::pauseGame()

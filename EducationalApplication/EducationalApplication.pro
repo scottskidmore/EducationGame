@@ -57,11 +57,11 @@ SOURCES += \
     Box2D/Rope/b2Rope.cpp \
     Box2D/flower.cpp \
     heap.cpp \
+    level.cpp \
     main.cpp \
     mainwindow.cpp \
     model.cpp \
     plant.cpp \
-    round.cpp \
     scrollarea.cpp \
     stack.cpp
 
@@ -115,10 +115,10 @@ HEADERS += \
     Box2D/Rope/b2Rope.h \
     Box2D/flower.h \
     heap.h \
+    level.h \
     mainwindow.h \
     model.h \
     plant.h \
-    round.h \
     scrollarea.h \
     stack.h
 

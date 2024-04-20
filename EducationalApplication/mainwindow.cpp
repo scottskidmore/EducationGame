@@ -49,6 +49,7 @@ MainWindow::MainWindow(Model *m, QWidget *parent)
     connect(m, &Model::timeUpdated, this, &MainWindow::onUpdatedTimer);
     connect(m, &Model::enableNewRound, this, &MainWindow::onNewRound);
     connect(m, &Model::gameOver, this, &MainWindow::onGameOver);
+    connect(m, &Model::roundOver, this, &MainWindow::onRoundOver);
     QObject::connect(ui->pauseButton, &QPushButton::clicked, m, &Model::pauseGame);
     QObject::connect(ui->startRound, &QPushButton::clicked, m, &Model::nextRound);
 
@@ -186,6 +187,15 @@ void MainWindow::onGameOver()
     ui->startRound->setDisabled(true);
     ui->startButton->show();
     QMessageBox::information(this, "Game Over!", "You didn't reach the target score.");
+}
+
+void MainWindow::onRoundOver(int round, int currentScore, int targetScore){
+    QMessageBox::information(this, "Round: " + QString::number(round % 5),
+                                   "Nice work! Keep going to ensure you reach the "
+                                   "target score by the end of round 5."
+                                   "\nCurrent Score: " + QString::number(currentScore) +
+                                   "\nTarget Score: " + QString::number(targetScore));
+    ui->startRound->setEnabled(true);
 }
 
 

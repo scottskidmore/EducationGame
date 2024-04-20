@@ -10,7 +10,7 @@
 #include "stack.h"
 #include "qtimer.h"
 #include <QDebug>
-#include "round.h"
+#include "level.h"
 
 class Model : public QObject
 {
@@ -23,11 +23,12 @@ public:
     Stack stackObj;
     std::vector<QString> levelInfo;
     QTimer timer;
-    int roundTime;
+    int currentTime;
     Plant* currentPlant=NULL;
     int currentScore;
     int targetScore;
     int currentRam;
+    int roundTime;
     int totalRam;
     bool stackCleared;
     bool gamePaused;
@@ -35,19 +36,19 @@ public:
 
     // public methods
     ///
-    /// \brief clearStack Initializes game parameters: targetScore, totalRam, currentRam, and roundTime. Then starts the game.
+    /// \brief clearStack Initializes game parameters: targetScore, totalRam, currentRam, and currentTime. Then starts the game.
     ///
     void clearStack();
     void clearHeap();
     void startGame();
     void deletePlantFromHeap(Plant);
-    void levels();
 
 private:
     //std::vector<Plant*> presetPlants;
     std::map<QString, Plant*> presetPlants;
-    std::vector<Round> rounds;
-    QString checkCommandName(QString);\
+    std::vector<Level> rounds;
+    QString checkCommandName(QString);
+    void nextLevel();
 
 public slots:
     void getPlantText();
@@ -88,6 +89,7 @@ signals:
     void timeUpdated(int);
     void enableNewRound(bool);
     void gameOver();
+    void roundOver(int, int, int);// round, current score, target score
 };
 
 #endif // MODEL_H
