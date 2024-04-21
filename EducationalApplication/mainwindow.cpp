@@ -182,29 +182,40 @@ void MainWindow::onUpdatedTimer(int time)
 
 void MainWindow::onNewRound(bool FT)
 {
+    ui->lineEdit->setEnabled(true);
     ui->startRound->setEnabled(FT);
     ui->startRound->hide();
+
 }
 
 void MainWindow::onGameOver()
 {
     ui->startRound->setDisabled(true);
+    ui->startRound->hide();
+    ui->lineEdit->clear();
+    ui->lineEdit->setDisabled(true);
     ui->startButton->show();
     QMessageBox::information(this, "Game Over!", "You didn't reach the target score.");
 }
 
 void MainWindow::onRoundOver(int round, int currentScore, int targetScore){
+    ui->lineEdit->clear();
+    ui->lineEdit->setDisabled(true);
+    ui->startRound->setEnabled(true);
+    ui->startRound->show();
     QMessageBox::information(this, "Level: " + QString::number(((round - (round % 5)) / 5) + 1) +
                                    " Round: " + QString::number((round % 5) + 1),
                                    "Nice work! Keep going to ensure you reach the "
                                    "target score by the end of round 5."
                                    "\nCurrent Score: " + QString::number(currentScore) +
                                    "\nTarget Score: " + QString::number(targetScore));
-    ui->startRound->setEnabled(true);
-    ui->startRound->show();
 }
 
 void MainWindow::onLevelCompleted(int level, int score){
+    ui->lineEdit->clear();
+    ui->lineEdit->setDisabled(true);
+    ui->startRound->setEnabled(true);
+    ui->startRound->show();
     if(level == 1){
         QMessageBox::information(this, "Level: " + QString::number(2) +
                                    " Round: " + QString::number(0), "CONGRATULATIONS!!!"
@@ -226,9 +237,6 @@ void MainWindow::onLevelCompleted(int level, int score){
                                   "\nWith a score of " + QString::number(score) +
                                   "\nYou are now an SENIOR FARMER");
     }
-
-    ui->startRound->setEnabled(true);
-    ui->startRound->show();
 }
 
 void MainWindow::onGameCompleted(){
