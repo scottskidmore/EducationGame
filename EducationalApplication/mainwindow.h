@@ -52,6 +52,10 @@ private slots:
 
     void onRoundOver(int, int, int);
 
+    void onLevelCompleted(int, int);
+
+    void onGameCompleted();
+
     void on_pauseButton_clicked();
 
 private:

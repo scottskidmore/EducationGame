@@ -50,6 +50,8 @@ MainWindow::MainWindow(Model *m, QWidget *parent)
     connect(m, &Model::enableNewRound, this, &MainWindow::onNewRound);
     connect(m, &Model::gameOver, this, &MainWindow::onGameOver);
     connect(m, &Model::roundOver, this, &MainWindow::onRoundOver);
+    connect(m, &Model::levelCompleted, this, &MainWindow::onLevelCompleted);
+    connect(m, &Model::gameCompleted, this, &MainWindow::onGameCompleted);
     QObject::connect(ui->pauseButton, &QPushButton::clicked, m, &Model::pauseGame);
     QObject::connect(ui->startRound, &QPushButton::clicked, m, &Model::nextRound);
 
@@ -68,6 +70,7 @@ void MainWindow::on_startButton_clicked()
     ui->nextSlide->hide();
     ui->previousSlide->hide();
     ui->startButton->hide();
+    ui->startRound->hide();
     ui->toolBar->show();
     ui->lineEdit->setEnabled(true);
     ui->timerLabel->setText("Time: --");
@@ -177,9 +180,10 @@ void MainWindow::onUpdatedTimer(int time)
     ui->timerLabel->setText(QString("Time: " + QString::number(time)));
 }
 
-void MainWindow::onNewRound(bool)
+void MainWindow::onNewRound(bool FT)
 {
-    ui->startRound->setEnabled(true);
+    ui->startRound->setEnabled(FT);
+    ui->startRound->hide();
 }
 
 void MainWindow::onGameOver()
@@ -190,14 +194,49 @@ void MainWindow::onGameOver()
 }
 
 void MainWindow::onRoundOver(int round, int currentScore, int targetScore){
-    QMessageBox::information(this, "Round: " + QString::number(round % 5),
+    QMessageBox::information(this, "Level: " + QString::number(((round - (round % 5)) / 5) + 1) +
+                                   " Round: " + QString::number((round % 5) + 1),
                                    "Nice work! Keep going to ensure you reach the "
                                    "target score by the end of round 5."
                                    "\nCurrent Score: " + QString::number(currentScore) +
                                    "\nTarget Score: " + QString::number(targetScore));
     ui->startRound->setEnabled(true);
+    ui->startRound->show();
 }
 
+void MainWindow::onLevelCompleted(int level, int score){
+    if(level == 1){
+        QMessageBox::information(this, "Level: " + QString::number(2) +
+                                   " Round: " + QString::number(0), "CONGRATULATIONS!!!"
+                                   "\nYou have completed level " + QString::number(level) +
+                                   "\nWith a score of " + QString::number(score) +
+                                   "\nYou are now an FARMING INTERN");
+    }
+    else if(level == 2){
+        QMessageBox::information(this, "Level: " + QString::number(3) +
+                                   " Round: " + QString::number(0), "CONGRATULATIONS!!!"
+                                   "\nYou have completed level " + QString::number(level) +
+                                   "\nWith a score of " + QString::number(score) +
+                                   "\nYou are now an JUNIOR FARMER");
+    }
+    else if (level == 3){
+        QMessageBox::information(this,"Level: " + QString::number(4) +
+                                  " Round: " + QString::number(0), "CONGRATULATIONS!!!"
+                                  "\nYou have completed level " + QString::number(level) +
+                                  "\nWith a score of " + QString::number(score) +
+                                  "\nYou are now an SENIOR FARMER");
+    }
+
+    ui->startRound->setEnabled(true);
+    ui->startRound->show();
+}
+
+void MainWindow::onGameCompleted(){
+    QMessageBox::information(this,"GAME COMPLETED", "CONGRATULATIONS!!!"
+                                 "\nYou have completed level the entire game"
+                                 "\nYou now really know your memory allocation"
+                                 "\nYou are now off to startup your own farm");
+}
 
 void MainWindow::on_pauseButton_clicked()
 {
@@ -205,6 +244,7 @@ void MainWindow::on_pauseButton_clicked()
     {
         ui->pauseButton->setText("Resume");
         ui->lineEdit->setEnabled(false);
+        ui->startRound->setDisabled(true);
     }
     else
     {

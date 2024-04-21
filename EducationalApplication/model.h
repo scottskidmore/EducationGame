@@ -90,6 +90,8 @@ signals:
     void enableNewRound(bool);
     void gameOver();
     void roundOver(int, int, int);// round, current score, target score
+    void levelCompleted(int, int); // level, current score
+    void gameCompleted();
 };
 
 #endif // MODEL_H

@@ -205,10 +205,19 @@ void Model::decreasingTime()
             clearStack();
             stackCleared = true;
             heapObj.updateHeapPlants();
-            emit roundOver(round, currentScore, targetScore);
-           // emit enableNewRound(true);
+            if ((round > 0) && (round % 5 == 0) && currentScore >= targetScore){
+                if((((round - (round % 5)) / 5)) == 4){
+                    emit gameCompleted();
+                }
+                else {
+                    emit levelCompleted((((round - (round % 5)) / 5)), currentScore);
+                }
+            }
+            else{
+                 emit roundOver(round, currentScore, targetScore);
+            }
         }
-        if((round > 1) && (round % 5 == 0) && currentScore < targetScore) {    // End the game becuase the player didn't reach the target score
+        if((round > 0 ) && (round % 5 == 0) && currentScore < targetScore) {    // End the game becuase the player didn't reach the target score
             emit gameOver();
             currentTime = -1;
             timer.stop();
@@ -218,8 +227,6 @@ void Model::decreasingTime()
         currentTime--;
         emit timeUpdated((currentTime));
     }
-
-
 }
 
 void Model::endRound()
@@ -229,7 +236,7 @@ void Model::endRound()
 
 void Model::nextRound()
 {
-    if(round > 1 && (round % 5 == 0)){
+    if((round > 0) && (round % 5 == 0)){
         nextLevel();
     }
     round += 1;

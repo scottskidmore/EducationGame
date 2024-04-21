@@ -14,7 +14,7 @@
    <string>MainWindow</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="Resource.qrc">
+   <iconset>
     <normaloff>:/Background/Images/Background.png</normaloff>:/Background/Images/Background.png</iconset>
   </property>
   <widget class="QWidget" name="centralwidget">
@@ -393,7 +393,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>24</height>
+     <height>17</height>
     </rect>
    </property>
   </widget>
@@ -528,7 +528,7 @@
   </widget>
   <action name="actionFlower">
    <property name="icon">
-    <iconset resource="Resource.qrc">
+    <iconset>
      <normaloff>:/Flowers/Images/flower.png</normaloff>:/Flowers/Images/flower.png</iconset>
    </property>
    <property name="text">
@@ -543,7 +543,7 @@
   </action>
   <action name="actionPotato">
    <property name="icon">
-    <iconset resource="Resource.qrc">
+    <iconset>
      <normaloff>:/Flowers/Images/potato.png</normaloff>:/Flowers/Images/potato.png</iconset>
    </property>
    <property name="text">
@@ -558,7 +558,7 @@
   </action>
   <action name="actionCorn">
    <property name="icon">
-    <iconset resource="Resource.qrc">
+    <iconset>
      <normaloff>:/Flowers/Images/corn.png</normaloff>:/Flowers/Images/corn.png</iconset>
    </property>
    <property name="text">
@@ -573,7 +573,7 @@
   </action>
   <action name="actionTree">
    <property name="icon">
-    <iconset resource="Resource.qrc">
+    <iconset>
      <normaloff>:/Flowers/Images/tree_new.png</normaloff>:/Flowers/Images/tree_new.png</iconset>
    </property>
    <property name="text">
@@ -588,7 +588,7 @@
   </action>
   <action name="actionGrapes">
    <property name="icon">
-    <iconset resource="Resource.qrc">
+    <iconset>
      <normaloff>:/Flowers/Images/grapes_new.png</normaloff>:/Flowers/Images/grapes_new.png</iconset>
    </property>
    <property name="text">
@@ -610,8 +610,6 @@
    <container>1</container>
   </customwidget>
  </customwidgets>
- <resources>
-  <include location="Resource.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>
