@@ -98,6 +98,7 @@ signals:
     void gameCompleted();
     void dropPlants();
     void addPhysicsPlant(PhysicsPlant*);
+    void roundUpdate(int);
 };
 
 #endif // MODEL_H

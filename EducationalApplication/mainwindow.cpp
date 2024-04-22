@@ -46,6 +46,7 @@ MainWindow::MainWindow(Model *m, QWidget *parent)
     connect(m, &Model::currentRamUpdated, this, &MainWindow::updateCurrentRam);
     connect(m, &Model::targetScoreUpdated, this, &MainWindow::updateTargetScore);
     connect(m, &Model::currentScoreUpdated, this, &MainWindow::updateCurrentScore);
+    connect(m, &Model::roundUpdate, this, &MainWindow::updateRound);
     connect(m, &Model::timeUpdated, this, &MainWindow::onUpdatedTimer);
     connect(m, &Model::enableNewRound, this, &MainWindow::onNewRound);
     connect(m, &Model::gameOver, this, &MainWindow::onGameOver);
@@ -173,6 +174,10 @@ void MainWindow::updateTargetScore(int score) {
 
 void MainWindow::updateCurrentScore(int score) {
     ui->CurrentScoreLabel->setText(QString("Current Score: " + QString::number(score)));
+}
+
+void MainWindow::updateRound(int round) {
+    ui->RoundLabel->setText(QString("Round: " + QString::number(round))+"/5");
 }
 
 void MainWindow::onUpdatedTimer(int time)

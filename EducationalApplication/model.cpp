@@ -178,6 +178,7 @@ void Model::startGame()
     emit targetScoreUpdated(targetScore);
     emit currentScoreUpdated(0);
     emit currentRamUpdated(currentRam);
+    emit roundUpdate(0);
     timer.start(1000);
 }
 
@@ -265,6 +266,7 @@ void Model::nextRound()
     currentTime = roundTime;
     stackCleared = false;
     emit enableNewRound(false);
+     emit roundUpdate(round);
     qDebug() << "round started";
 }
 
@@ -272,9 +274,11 @@ void Model::nextLevel(){
     targetScore += 5;
     currentRam += 50;
     roundTime += 10;
+    round=0;
     rounds.push_back(Level(round, targetScore, totalRam));
     emit targetScoreUpdated(targetScore);
     emit currentScoreUpdated(0);
+    emit roundUpdate(0);
     emit currentRamUpdated(currentRam);
 }
 

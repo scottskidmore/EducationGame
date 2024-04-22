@@ -14,7 +14,7 @@
    <string>MainWindow</string>
   </property>
   <property name="windowIcon">
-   <iconset>
+   <iconset resource="Resource.qrc">
     <normaloff>:/Background/Images/Background.png</normaloff>:/Background/Images/Background.png</iconset>
   </property>
   <widget class="QWidget" name="centralwidget">
@@ -358,7 +358,7 @@
     <property name="geometry">
      <rect>
       <x>690</x>
-      <y>100</y>
+      <y>120</y>
       <width>100</width>
       <height>32</height>
      </rect>
@@ -367,6 +367,23 @@
      <string>Pause</string>
     </property>
    </widget>
+   <widget class="QLabel" name="RoundLabel">
+    <property name="geometry">
+     <rect>
+      <x>680</x>
+      <y>100</y>
+      <width>121</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="autoFillBackground">
+     <bool>true</bool>
+    </property>
+    <property name="text">
+     <string>Round:</string>
+    </property>
+   </widget>
+   <zorder>startLabel</zorder>
    <zorder>CurrentScoreLabel</zorder>
    <zorder>timerLabel</zorder>
    <zorder>scrollArea_2</zorder>
@@ -382,10 +399,10 @@
    <zorder>scrollArea</zorder>
    <zorder>startRound</zorder>
    <zorder>pauseButton</zorder>
-   <zorder>startLabel</zorder>
    <zorder>previousSlide</zorder>
    <zorder>nextSlide</zorder>
    <zorder>startButton</zorder>
+   <zorder>RoundLabel</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
@@ -528,7 +545,7 @@
   </widget>
   <action name="actionFlower">
    <property name="icon">
-    <iconset>
+    <iconset resource="Resource.qrc">
      <normaloff>:/Flowers/Images/flower.png</normaloff>:/Flowers/Images/flower.png</iconset>
    </property>
    <property name="text">
@@ -543,7 +560,7 @@
   </action>
   <action name="actionPotato">
    <property name="icon">
-    <iconset>
+    <iconset resource="Resource.qrc">
      <normaloff>:/Flowers/Images/potato.png</normaloff>:/Flowers/Images/potato.png</iconset>
    </property>
    <property name="text">
@@ -558,7 +575,7 @@
   </action>
   <action name="actionCorn">
    <property name="icon">
-    <iconset>
+    <iconset resource="Resource.qrc">
      <normaloff>:/Flowers/Images/corn.png</normaloff>:/Flowers/Images/corn.png</iconset>
    </property>
    <property name="text">
@@ -573,7 +590,7 @@
   </action>
   <action name="actionTree">
    <property name="icon">
-    <iconset>
+    <iconset resource="Resource.qrc">
      <normaloff>:/Flowers/Images/tree_new.png</normaloff>:/Flowers/Images/tree_new.png</iconset>
    </property>
    <property name="text">
@@ -588,7 +605,7 @@
   </action>
   <action name="actionGrapes">
    <property name="icon">
-    <iconset>
+    <iconset resource="Resource.qrc">
      <normaloff>:/Flowers/Images/grapes_new.png</normaloff>:/Flowers/Images/grapes_new.png</iconset>
    </property>
    <property name="text">
@@ -610,6 +627,8 @@
    <container>1</container>
   </customwidget>
  </customwidgets>
- <resources/>
+ <resources>
+  <include location="Resource.qrc"/>
+ </resources>
  <connections/>
 </ui>

@@ -45,6 +45,8 @@ private slots:
 
     void updateCurrentScore(int);
 
+    void updateRound(int);
+
     void onUpdatedTimer(int);
 
     void onNewRound(bool);
