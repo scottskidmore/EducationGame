@@ -3,7 +3,8 @@
 Plant::Plant(Plants plantType, QString name, QObject *parent)
     : QObject{parent}
 {
-
+    myName = name;
+    deleteCode = "delete " + myName + ";";
     thisPlant = plantType;
     switch (plantType) {
         case Plants::Corn:
@@ -23,7 +24,6 @@ Plant::Plant(Plants plantType, QString name, QObject *parent)
             break;
     }
     heapGrowthTrack = 0;
-    myName = name;
 }
 
 std::string Plant::hintCode(){
@@ -116,7 +116,6 @@ void Plant::createCorn()
     cost = 10;
     onHeap = false;
     reward = 1;
-    deleteCode = "delete c;";
     stackCode = "Corn c;";
     heapCode = "Corn c = new Corn();";
     imagePath = ":/Flowers/Images/corn.png";
@@ -130,7 +129,6 @@ void Plant::createFlower()
     cost = 10;
     onHeap = false;
     reward = 1;
-    deleteCode = "delete f;";
     stackCode = "Flower f;";
     heapCode = "Flower f = new Flower();";
     imagePath = ":/Flowers/Images/flower.png";
@@ -144,7 +142,6 @@ void Plant::createTree()
     cost = 50;
     onHeap = true;
     reward = 1;
-    deleteCode = "delete t;";
     stackCode = "Tree t;";
     heapCode = "Tree t = new Tree();";
     imagePath = ":/Flowers/Images/tree_new.png"; // needs to be changed when heap grows
@@ -158,7 +155,6 @@ void Plant::createPotato()
     cost = 10;
     onHeap = true;
     reward = 1;
-    deleteCode = "delete p;";
     stackCode = "Potato p;";
     heapCode = "Potato p = new Potato();";
     imagePath = ":/Flowers/Images/potato.png";
@@ -172,7 +168,6 @@ void Plant::createGrapes()
     cost = 25;
     onHeap = true;
     reward = 1;
-    deleteCode = "delete g;";
     stackCode = "Grapes g;";
     heapCode = "Grapes g = new Grapes();";
     imagePath = ":/Flowers/Images/grapes_new.png"; // needs to be changed when heap grows
