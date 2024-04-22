@@ -11,6 +11,7 @@
 #include "qtimer.h"
 #include <QDebug>
 #include "level.h"
+#include "physicsplant.h"
 
 class Model : public QObject
 {
@@ -23,6 +24,7 @@ public:
     Stack stackObj;
     std::vector<QString> levelInfo;
     QTimer timer;
+    QTimer worldSimTimer;
     int currentTime;
     Plant* currentPlant=NULL;
     int currentScore;
@@ -76,6 +78,8 @@ public slots:
 
     void pauseGame();
 
+    void updateWorld();
+
 signals:
     void sendPlantToStack(Plant*);
     void sendPlantToHeap(Plant*);
@@ -92,6 +96,8 @@ signals:
     void roundOver(int, int, int);// round, current score, target score
     void levelCompleted(int, int); // level, current score
     void gameCompleted();
+    void dropPlants();
+    void addPhysicsPlant(PhysicsPlant*);
 };
 
 #endif // MODEL_H

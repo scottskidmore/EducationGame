@@ -31,6 +31,7 @@ public:
     std::regex deletePattern;
     void deleteMyButton();
     QString myName; // this is its name, its used as the key for the heap or stack
+    QPushButton* myButton;
 
 public slots:
     void updateHeapGrowth();
@@ -50,7 +51,7 @@ private:
     void createPotato();
     void createGrapes();
     std::string toString(Plants p);
-    QPushButton* myButton;
+
 };
 
 enum class Plants {

@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include "model.h"
 #include <QDebug>
+#include "physicsplant.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -57,6 +58,8 @@ private slots:
     void onGameCompleted();
 
     void on_pauseButton_clicked();
+
+    void receivePhysicsPlant(PhysicsPlant*);
 
 private:
     Ui::MainWindow *ui;

@@ -61,6 +61,7 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     model.cpp \
+    physicsplant.cpp \
     plant.cpp \
     scrollarea.cpp \
     stack.cpp
@@ -118,6 +119,7 @@ HEADERS += \
     level.h \
     mainwindow.h \
     model.h \
+    physicsplant.h \
     plant.h \
     scrollarea.h \
     stack.h

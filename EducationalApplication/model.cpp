@@ -123,10 +123,32 @@ void Model::checkUserCommand(QString text)
 
 void Model::clearStack()
 {
+    b2Vec2 gravity(0.0f, -10.0f);
+    b2World world(gravity);
+    b2BodyDef groundBodyDef;
+    groundBodyDef.position.Set(0.0f, -10.0f);
+    b2Body* groundBody = world.CreateBody(&groundBodyDef);
+    b2PolygonShape groundBox;
+    groundBox.SetAsBox(50.0f, 10.0f);
+    groundBody->CreateFixture(&groundBox, 0.0f);
+
     for(auto plant : stackObj.plants){
         currentScore += plant->reward;
+        //get plant position, create a Box2D plant object and connect it to dropPlants
+        QPoint plantPos = plant->myButton->pos();
+        qDebug() << plantPos;
+
+        PhysicsPlant* p = new PhysicsPlant(&world, plant->imagePath, plantPos);
+        connect(this, dropPlants, p, &PhysicsPlant::updateSimulation);
+        emit addPhysicsPlant(p);
+        //emit dropPlants;
         plant->deleteMyButton();
     }
+    // for (int i = 0; i < 10; i++){
+    //     world.Step(1.0f / 60.0f, 6, 2);
+    //     emit dropPlants();
+    // }
+
     emit currentScoreUpdated(currentScore);
     stackObj.plants.clear();
     stackObj.plantMap.clear();
@@ -271,5 +293,11 @@ void Model::pauseGame()
         timer.start();
     }
 }
+
+void Model::updateWorld()
+{
+
+}
+
 
 

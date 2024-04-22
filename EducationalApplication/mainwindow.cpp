@@ -54,7 +54,7 @@ MainWindow::MainWindow(Model *m, QWidget *parent)
     connect(m, &Model::gameCompleted, this, &MainWindow::onGameCompleted);
     QObject::connect(ui->pauseButton, &QPushButton::clicked, m, &Model::pauseGame);
     QObject::connect(ui->startRound, &QPushButton::clicked, m, &Model::nextRound);
-
+    connect(m, &Model::addPhysicsPlant, this, &MainWindow::receivePhysicsPlant);
 
 
 }
@@ -259,5 +259,15 @@ void MainWindow::on_pauseButton_clicked()
         ui->pauseButton->setText("Pause");
         ui->lineEdit->setEnabled(true);
     }
+}
+
+void MainWindow::receivePhysicsPlant(PhysicsPlant *p)
+{
+    qDebug() << p->geometry();
+    p->setParent(ui->centralwidget);
+    p->raise();
+    p->setVisible(true);
+    this->update();
+    qDebug() << ui->centralwidget->children().toList();
 }
 
