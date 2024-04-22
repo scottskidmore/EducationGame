@@ -35,6 +35,7 @@ public:
     bool stackCleared;
     bool gamePaused;
     int round;
+    int level;
 
     // public methods
     ///
