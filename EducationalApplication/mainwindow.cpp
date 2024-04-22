@@ -190,7 +190,7 @@ void MainWindow::onNewRound(bool FT)
     ui->lineEdit->setEnabled(true);
     ui->startRound->setEnabled(FT);
     ui->startRound->hide();
-
+    ui->pauseButton->setEnabled(true);
 }
 
 void MainWindow::onGameOver()
@@ -208,6 +208,7 @@ void MainWindow::onRoundOver(int round, int currentScore, int targetScore){
     ui->lineEdit->setDisabled(true);
     ui->startRound->setEnabled(true);
     ui->startRound->show();
+    ui->pauseButton->setDisabled(true);
     QMessageBox::information(this, "Level: " + QString::number(((round - (round % 5)) / 5) + 1) +
                                    " Round: " + QString::number((round % 5) + 1),
                                    "Nice work! Keep going to ensure you reach the "
@@ -221,6 +222,7 @@ void MainWindow::onLevelCompleted(int level, int score){
     ui->lineEdit->setDisabled(true);
     ui->startRound->setEnabled(true);
     ui->startRound->show();
+    ui->pauseButton->setDisabled(true);
     if(level == 1){
         QMessageBox::information(this, "Level: " + QString::number(2) +
                                    " Round: " + QString::number(0), "CONGRATULATIONS!!!"

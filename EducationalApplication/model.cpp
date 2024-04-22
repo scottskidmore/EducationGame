@@ -169,7 +169,7 @@ void Model::startGame()
     targetScore = 5;
     totalRam = 150;
     currentRam = totalRam;
-    round = 0;
+    round = 1;
     rounds.push_back(Level(round, targetScore, totalRam));
     roundTime = 10;
     currentTime = roundTime;
