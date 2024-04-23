@@ -123,7 +123,7 @@ void MainWindow::setStackPlant(Plant* p)
 
     QPushButton* button = new QPushButton(this);
     button->setAutoFillBackground(true);
-    //button->setStyleSheet();
+    button->setStyleSheet("background-color: black;");
     p->setMyButton(button);
     QObject::connect(p, &Plant::removeThisPlantsButton, button, &QPushButton::deleteLater);
     QObject::connect(p, &Plant::updateButtonImage, button, &QPushButton::setIcon);
@@ -144,8 +144,8 @@ void MainWindow::setHeapPlant(Plant* p)
 {
     // clear command text since it was correct
     ui->lineEdit->setText(QString());
-
     QPushButton* button = new QPushButton(this);
+    button->setStyleSheet("background-color: black;");
     button->setAutoFillBackground(true);
     p->setMyButton(button);
     QObject::connect(p, &Plant::removeThisPlantsButton, button, &QPushButton::deleteLater);
@@ -279,11 +279,10 @@ void MainWindow::on_pauseButton_clicked()
 
 void MainWindow::receivePhysicsPlant(PhysicsPlant *p)
 {
-    qDebug() << p->geometry();
     p->setParent(ui->centralwidget);
     p->raise();
     p->setVisible(true);
     this->update();
-    qDebug() << ui->centralwidget->children().toList();
+    //qDebug() << ui->centralwidget->children().toList();
 }
 

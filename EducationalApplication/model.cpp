@@ -97,7 +97,7 @@ void Model::checkUserCommand(QString text)
         // delete plant from heap!
         auto plant = heapObj.plantMap.find(name);
         if (plant != heapObj.plantMap.end()) { // if the plant is found on the heap delete it
-             currentPlant->deleteMyButton();
+            plant->second->deleteMyButton();
             if (heapObj.plantMap[name]->heapGrowthTrack == 1){ // handles calculating score bassed on
                 currentScore += heapObj.plantMap[name]->reward; // number of rounds the plant was on the heap
             }
@@ -110,9 +110,11 @@ void Model::checkUserCommand(QString text)
 
             currentRam += heapObj.plantMap[name]->cost;
             heapObj.plantMap.erase(name);
+            emit sendPlantText(QString("The plant with name: " + name + "\nWas deleted"));
 
             emit currentScoreUpdated(currentScore);
             emit currentRamUpdated(currentRam);
+            return;
         }
         else
             emit sendPlantText(QString("The plant with name: " + name + "\nDoes not exist on the heap."));
@@ -133,6 +135,7 @@ void Model::clearStack()
     groundBox.SetAsBox(50.0f, 10.0f);
     groundBody->CreateFixture(&groundBox, 0.0f);
 
+    // adding the physics plants and getting scores.
     for(auto plant : stackObj.plants){
         currentScore += plant->reward;
         //get plant position, create a Box2D plant object and connect it to dropPlants
