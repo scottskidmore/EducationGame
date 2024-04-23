@@ -242,7 +242,7 @@ void Model::decreasingTime()
                 }
             }
             else{
-                 emit roundOver(round, currentScore, targetScore);
+                 emit roundOver(round - 1, currentScore, targetScore);
             }
         }
         if((round > 0 ) && (round % 5 == 0) && currentScore < targetScore) {    // End the game becuase the player didn't reach the target score
