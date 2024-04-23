@@ -94,6 +94,12 @@ void MainWindow::on_startButton_clicked()
     ui->toolBar->show();
     ui->lineEdit->setEnabled(true);
     ui->timerLabel->setText("Time: --");
+    ui->actionCorn->setDisabled(true);
+    ui->actionGrapes->setDisabled(true);
+    ui->actionPotato->setDisabled(true);
+    ui->actionCorn->setVisible(false);
+    ui->actionGrapes->setVisible(false);
+    ui->actionPotato->setVisible(false);
     emit gameStart();
 }
 
@@ -230,6 +236,16 @@ void MainWindow::onRoundOver(int round, int currentScore, int targetScore){
     ui->startRound->setEnabled(true);
     ui->startRound->show();
     ui->pauseButton->setDisabled(true);
+    if(((((round - (round % 5)) / 5) + 1) == 1) && ((round % 5) + 1 == 1)){
+        ui->actionCorn->setVisible(true);
+        ui->actionPotato->setVisible(true);
+        ui->actionCorn->setEnabled(true);
+        ui->actionPotato->setEnabled(true);
+        }
+    else if(((((round - (round % 5)) / 5) + 1) == 1) && ((round % 5) + 1 == 2)){
+        ui->actionGrapes->setVisible(true);
+        ui->actionGrapes->setEnabled(true);
+    }
     QMessageBox::information(this, "Level: " + QString::number(((round - (round % 5)) / 5) + 1) +
                                    " Round: " + QString::number((round % 5) + 1),
                                    "Nice work! Keep going to ensure you reach the "
