@@ -10,7 +10,7 @@ Model::Model(QObject *parent)
     presetPlants[QString("actionTree")] = new Plant(Plants::Tree, "treeDefault");
     presetPlants[QString("actionGrapes")] = new Plant(Plants::Grapes, "grapesDefault");
 
-    rounds.push_back(Level(100,100, 200));
+    rounds.push_back(Level(100, 100, 200));
 
     currentScore = 0;
     stackCleared = false;
@@ -170,6 +170,7 @@ void Model::startGame()
     totalRam = 150;
     currentRam = totalRam;
     round = 1;
+    level = 1;
     rounds.push_back(Level(round, targetScore, totalRam));
     roundTime = 10;
     currentTime = roundTime;
@@ -233,7 +234,8 @@ void Model::decreasingTime()
                     emit gameCompleted();
                 }
                 else {
-                    emit levelCompleted((((round - (round % 5)) / 5)), currentScore);
+                    emit levelCompleted(level, currentScore);
+                    level++;
                 }
             }
             else{
@@ -277,13 +279,13 @@ void Model::nextRound()
 }
 
 void Model::nextLevel(){
-
     for (auto physPlant : physicsPlants) {
         physPlant->deleteLater();
     }
     physicsPlants.clear();
     worldSimTimer.stop();
 
+    level++;
     targetScore += 5;
     currentRam += 50;
     roundTime += 10;
