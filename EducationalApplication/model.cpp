@@ -288,6 +288,10 @@ void Model::nextLevel(){
     physicsPlants.clear();
     worldSimTimer.stop();
 
+    for (auto plant : heapObj.plants){
+        plant->heapGrowthTrack = 4;
+    }
+
     level++;
     targetScore += 5;
     currentRam += 50;
