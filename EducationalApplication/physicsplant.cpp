@@ -23,10 +23,6 @@ PhysicsPlant::PhysicsPlant(b2World* world, const QString& imagePath, QPoint pos,
     // Load the image
     image.load(imagePath);
     this->setGeometry(pos.x() + 190, pos.y() + 60, 64, 64);
-    // Timer to update the simulation and the widget
-    //QTimer* timer = new QTimer(this);
-    //connect(timer, &QTimer::timeout, this, &PhysicsPlant::updateSimulation);
-    //timer->start(16); // Roughly 60 FPS
 }
 
 void PhysicsPlant::paintEvent(QPaintEvent* event) {
@@ -41,8 +37,6 @@ void PhysicsPlant::updateSimulation() {
     // Get the Box2D body's position
     b2Vec2 position = body->GetPosition();
     // Convert the Box2D position to pixel coordinates and move the widget
-    qDebug() << "update sim";
-    qDebug() << this->pos();
     move(position.x, position.y);
 
     // Redraw the widget

@@ -19,7 +19,6 @@ private:
     QString imagePath;
     QPoint realPos;
 
-
 protected:
     void paintEvent(QPaintEvent* event);
 

@@ -137,15 +137,12 @@ void Model::clearStack()
         currentScore += plant->reward;
         //get plant position, create a Box2D plant object and connect it to dropPlants
         QPoint plantPos = plant->myButton->pos();
-        qDebug() << plantPos;
 
         PhysicsPlant* p = new PhysicsPlant(world, plant->imagePath, plantPos);
         QObject::connect(this, &Model::dropPlants, p, &PhysicsPlant::updateSimulation);
         physicsPlants.push_back(p);
         emit addPhysicsPlant(p);
-        //emit dropPlants;
         plant->deleteMyButton();
-        //p->move(plantPos);
 
     }
 
