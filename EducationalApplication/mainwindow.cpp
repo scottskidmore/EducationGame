@@ -122,8 +122,8 @@ void MainWindow::setStackPlant(Plant* p)
     ui->lineEdit->setText(QString());
 
     QPushButton* button = new QPushButton(this);
+    button->setStyleSheet("QPushButton { background-color: white; }");
     button->setAutoFillBackground(true);
-    button->setStyleSheet("background-color: black;");
     p->setMyButton(button);
     QObject::connect(p, &Plant::removeThisPlantsButton, button, &QPushButton::deleteLater);
     QObject::connect(p, &Plant::updateButtonImage, button, &QPushButton::setIcon);
@@ -132,11 +132,8 @@ void MainWindow::setStackPlant(Plant* p)
     button->setMaximumSize(64, 64);
     button->setMinimumSize(64, 64);
     button->setGeometry(75, 10, 64, 64);
-    QPixmap pixmap(p->imagePath);
-    QIcon ButtonIcon(pixmap);
-    button->setIcon(ButtonIcon);
-    button->setIconSize(pixmap.rect().size());
-    button->setIconSize( QSize( button->size().width(),button->size().height()));
+    button->setIcon(QIcon(p->imagePath));
+    button->setIconSize(QSize(64, 64));
     ui->stackLayout->addWidget(button);
 }
 
