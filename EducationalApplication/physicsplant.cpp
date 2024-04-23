@@ -5,8 +5,9 @@ PhysicsPlant::PhysicsPlant(b2World* world, const QString& imagePath, QPoint pos,
 {
     b2BodyDef bodyDef;
     bodyDef.type = b2_dynamicBody;
-    bodyDef.position.Set(pos.x(), pos.y()); // Initial position
+    bodyDef.position.Set(pos.x() +190, pos.y() +60); // Initial position
     body = world->CreateBody(&bodyDef);
+    this->realPos = pos;
 
     // Define the shape and fixture
     b2PolygonShape shape;
@@ -21,16 +22,16 @@ PhysicsPlant::PhysicsPlant(b2World* world, const QString& imagePath, QPoint pos,
 
     // Load the image
     image.load(imagePath);
-    this->setGeometry(pos.x(), pos.y(), 1028, 1028);
+    this->setGeometry(pos.x() + 190, pos.y() + 60, 64, 64);
     // Timer to update the simulation and the widget
-    QTimer* timer = new QTimer(this);
-    connect(timer, &QTimer::timeout, this, &PhysicsPlant::updateSimulation);
-    timer->start(16); // Roughly 60 FPS
+    //QTimer* timer = new QTimer(this);
+    //connect(timer, &QTimer::timeout, this, &PhysicsPlant::updateSimulation);
+    //timer->start(16); // Roughly 60 FPS
 }
 
 void PhysicsPlant::paintEvent(QPaintEvent* event) {
     QPainter painter(this);
-    painter.drawPixmap(this->pos().x() +190, this->pos().y() + 60, image);
+    painter.drawPixmap(0, 0, 64, 64, image);
 }
 
 void PhysicsPlant::updateSimulation() {
@@ -40,8 +41,9 @@ void PhysicsPlant::updateSimulation() {
     // Get the Box2D body's position
     b2Vec2 position = body->GetPosition();
     // Convert the Box2D position to pixel coordinates and move the widget
-
-    move(position.x * 100, position.y * 100);
+    qDebug() << "update sim";
+    qDebug() << this->pos();
+    move(position.x, position.y);
 
     // Redraw the widget
     update();

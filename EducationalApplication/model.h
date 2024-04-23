@@ -51,6 +51,8 @@ private:
     std::vector<Level> rounds;
     QString checkCommandName(QString);
     void nextLevel();
+    b2World* world;
+    std::vector<PhysicsPlant*> physicsPlants;
 
 public slots:
     void getPlantText();

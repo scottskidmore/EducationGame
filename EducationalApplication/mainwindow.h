@@ -71,5 +71,6 @@ signals:
 
     /// \brief sendCommandText - sends the text to the model that the user entered.
     void sendCommandText(QString);
+    void messageBoxClosed();
 };
 #endif // MAINWINDOW_H

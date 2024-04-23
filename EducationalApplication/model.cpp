@@ -18,6 +18,7 @@ Model::Model(QObject *parent)
 
     // Connect model's game timer to the decreasingTime slot;
     QObject::connect(&timer, &QTimer::timeout, this, &Model::decreasingTime);
+    connect(&worldSimTimer, &QTimer::timeout, this, &Model::updateWorld);
 }
 
 void Model::getPlantText()
@@ -123,11 +124,11 @@ void Model::checkUserCommand(QString text)
 
 void Model::clearStack()
 {
-    b2Vec2 gravity(0.0f, -10.0f);
-    b2World world(gravity);
+    b2Vec2 gravity(0.0f, 25.0f);
+    this->world = new b2World(gravity);
     b2BodyDef groundBodyDef;
     groundBodyDef.position.Set(0.0f, -10.0f);
-    b2Body* groundBody = world.CreateBody(&groundBodyDef);
+    b2Body* groundBody = world->CreateBody(&groundBodyDef);
     b2PolygonShape groundBox;
     groundBox.SetAsBox(50.0f, 10.0f);
     groundBody->CreateFixture(&groundBox, 0.0f);
@@ -138,16 +139,15 @@ void Model::clearStack()
         QPoint plantPos = plant->myButton->pos();
         qDebug() << plantPos;
 
-        PhysicsPlant* p = new PhysicsPlant(&world, plant->imagePath, plantPos);
-        connect(this, dropPlants, p, &PhysicsPlant::updateSimulation);
+        PhysicsPlant* p = new PhysicsPlant(world, plant->imagePath, plantPos);
+        QObject::connect(this, &Model::dropPlants, p, &PhysicsPlant::updateSimulation);
+        physicsPlants.push_back(p);
         emit addPhysicsPlant(p);
         //emit dropPlants;
         plant->deleteMyButton();
+        //p->move(plantPos);
+
     }
-    // for (int i = 0; i < 10; i++){
-    //     world.Step(1.0f / 60.0f, 6, 2);
-    //     emit dropPlants();
-    // }
 
     emit currentScoreUpdated(currentScore);
     stackObj.plants.clear();
@@ -259,6 +259,12 @@ void Model::endRound()
 
 void Model::nextRound()
 {
+    for (auto physPlant : physicsPlants) {
+        physPlant->deleteLater();
+    }
+    physicsPlants.clear();
+    worldSimTimer.stop();
+
     if((round > 0) && (round % 5 == 0)){
         nextLevel();
     }
@@ -266,14 +272,22 @@ void Model::nextRound()
     currentTime = roundTime;
     stackCleared = false;
     emit enableNewRound(false);
-     emit roundUpdate(round);
+    emit roundUpdate(round);
     qDebug() << "round started";
 }
 
 void Model::nextLevel(){
+
+    for (auto physPlant : physicsPlants) {
+        physPlant->deleteLater();
+    }
+    physicsPlants.clear();
+    worldSimTimer.stop();
+
     targetScore += 5;
     currentRam += 50;
     roundTime += 10;
+    currentScore = 0;
     round=0;
     rounds.push_back(Level(round, targetScore, totalRam));
     emit targetScoreUpdated(targetScore);
@@ -300,7 +314,12 @@ void Model::pauseGame()
 
 void Model::updateWorld()
 {
+    world->Step(1.0f / 60.0f, 6, 2);
+    emit dropPlants();
 
+    if (!worldSimTimer.isActive()) {
+        worldSimTimer.start(16);
+    }
 }
 
 

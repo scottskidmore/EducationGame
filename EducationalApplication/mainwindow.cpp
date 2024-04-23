@@ -56,6 +56,7 @@ MainWindow::MainWindow(Model *m, QWidget *parent)
     QObject::connect(ui->pauseButton, &QPushButton::clicked, m, &Model::pauseGame);
     QObject::connect(ui->startRound, &QPushButton::clicked, m, &Model::nextRound);
     connect(m, &Model::addPhysicsPlant, this, &MainWindow::receivePhysicsPlant);
+    QObject::connect(this, &MainWindow::messageBoxClosed, m, &Model::updateWorld);
 
 
 }
@@ -121,6 +122,8 @@ void MainWindow::setStackPlant(Plant* p)
     ui->lineEdit->setText(QString());
 
     QPushButton* button = new QPushButton(this);
+    button->setAutoFillBackground(true);
+    //button->setStyleSheet();
     p->setMyButton(button);
     QObject::connect(p, &Plant::removeThisPlantsButton, button, &QPushButton::deleteLater);
     QObject::connect(p, &Plant::updateButtonImage, button, &QPushButton::setIcon);
@@ -143,6 +146,7 @@ void MainWindow::setHeapPlant(Plant* p)
     ui->lineEdit->setText(QString());
 
     QPushButton* button = new QPushButton(this);
+    button->setAutoFillBackground(true);
     p->setMyButton(button);
     QObject::connect(p, &Plant::removeThisPlantsButton, button, &QPushButton::deleteLater);
     QObject::connect(p, &Plant::updateButtonImage, button, &QPushButton::setIcon);
@@ -187,6 +191,7 @@ void MainWindow::onUpdatedTimer(int time)
 
 void MainWindow::onNewRound(bool FT)
 {
+
     ui->lineEdit->setEnabled(true);
     ui->startRound->setEnabled(FT);
     ui->startRound->hide();
@@ -204,6 +209,7 @@ void MainWindow::onGameOver()
 }
 
 void MainWindow::onRoundOver(int round, int currentScore, int targetScore){
+    update();
     ui->lineEdit->clear();
     ui->lineEdit->setDisabled(true);
     ui->startRound->setEnabled(true);
@@ -215,6 +221,8 @@ void MainWindow::onRoundOver(int round, int currentScore, int targetScore){
                                    "target score by the end of round 5."
                                    "\nCurrent Score: " + QString::number(currentScore) +
                                    "\nTarget Score: " + QString::number(targetScore));
+    qDebug() << "message box ok";
+    emit messageBoxClosed();
 }
 
 void MainWindow::onLevelCompleted(int level, int score){
@@ -244,6 +252,7 @@ void MainWindow::onLevelCompleted(int level, int score){
                                   "\nWith a score of " + QString::number(score) +
                                   "\nYou are now an SENIOR FARMER");
     }
+    emit messageBoxClosed();
 }
 
 void MainWindow::onGameCompleted(){

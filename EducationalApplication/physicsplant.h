@@ -17,6 +17,7 @@ private:
     b2Body* body;
     QPixmap image;
     QString imagePath;
+    QPoint realPos;
 
 
 protected:
