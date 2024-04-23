@@ -10,11 +10,19 @@ MainWindow::MainWindow(Model *m, QWidget *parent)
     ui->setupUi(this);
     ui->toolBar->hide();
     ui->lineEdit->setDisabled(true);
-    //ui->tutorialLabel1->hide();
     tutorialBoxes.push_back(ui->tutorialLabel1);
     tutorialBoxes.push_back(ui->tutorialLabel2);
-    tutorialBoxes[0]->hide();
-    tutorialBoxes[1]->hide();
+    tutorialBoxes.push_back(ui->tutorialLabel3);
+    tutorialBoxes.push_back(ui->tutorialLabel4);
+    tutorialBoxes.push_back(ui->tutorialLabel5);
+    tutorialBoxes.push_back(ui->tutorialLabel6);
+    tutorialBoxes.push_back(ui->tutorialLabel7);
+    tutorialBoxes.push_back(ui->tutorialLabel8);
+
+    for (int i = 0; i < (int)tutorialBoxes.size(); i++)
+    {
+        tutorialBoxes[i]->hide();
+    }
     tutorialComplete = false;
     tutorialCounter = 0;
 
@@ -286,7 +294,7 @@ void MainWindow::on_pauseButton_clicked()
             tutorialBoxes[tutorialCounter]->hide();
             tutorialCounter++;
         }
-        if (tutorialCounter == 2)
+        if (tutorialCounter == 8)
         {
             tutorialComplete = true;
         }

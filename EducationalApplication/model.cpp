@@ -279,6 +279,7 @@ void Model::nextRound()
     emit enableNewRound(false);
     emit roundUpdate(round);
     qDebug() << "round started";
+    startTutorial();
 }
 
 void Model::nextLevel(){
@@ -322,7 +323,7 @@ void Model::pauseGame()
         {
             startTutorial();
         }
-        if (tutorialCounter == 2)
+        if (tutorialCounter == 8)
         {
             tutorialComplete = true;
         }
@@ -349,6 +350,48 @@ void Model::startTutorial()
         tutorialCounter++;
     }
     else if (!tutorialComplete && round == 1 && tutorialCounter == 1)
+    {
+        emit modelPause();
+        pauseGame();
+        emit displayTutorial(tutorialCounter);
+        tutorialCounter++;
+    }
+    else if (!tutorialComplete && round == 1 && tutorialCounter == 2)
+    {
+        emit modelPause();
+        pauseGame();
+        emit displayTutorial(tutorialCounter);
+        tutorialCounter++;
+    }
+    else if (!tutorialComplete && round == 1 && tutorialCounter == 3)
+    {
+        emit modelPause();
+        pauseGame();
+        emit displayTutorial(tutorialCounter);
+        tutorialCounter++;
+    }
+    else if (!tutorialComplete && round == 2 && tutorialCounter == 4)
+    {
+        emit modelPause();
+        pauseGame();
+        emit displayTutorial(tutorialCounter);
+        tutorialCounter++;
+    }
+    else if (!tutorialComplete && round == 2 && tutorialCounter == 5)
+    {
+        emit modelPause();
+        pauseGame();
+        emit displayTutorial(tutorialCounter);
+        tutorialCounter++;
+    }
+    else if (!tutorialComplete && round == 2 && tutorialCounter == 6)
+    {
+        emit modelPause();
+        pauseGame();
+        emit displayTutorial(tutorialCounter);
+        tutorialCounter++;
+    }
+    else if (!tutorialComplete && round == 2 && tutorialCounter == 7)
     {
         emit modelPause();
         pauseGame();
