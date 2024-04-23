@@ -10,6 +10,14 @@ MainWindow::MainWindow(Model *m, QWidget *parent)
     ui->setupUi(this);
     ui->toolBar->hide();
     ui->lineEdit->setDisabled(true);
+    //ui->tutorialLabel1->hide();
+    tutorialBoxes.push_back(ui->tutorialLabel1);
+    tutorialBoxes.push_back(ui->tutorialLabel2);
+    tutorialBoxes[0]->hide();
+    tutorialBoxes[1]->hide();
+    tutorialComplete = false;
+    tutorialCounter = 0;
+
 
     //add the slides
     slideShow.push_back(":/Slideshow/Images/slide1.png");
@@ -57,6 +65,8 @@ MainWindow::MainWindow(Model *m, QWidget *parent)
     QObject::connect(ui->startRound, &QPushButton::clicked, m, &Model::nextRound);
     connect(m, &Model::addPhysicsPlant, this, &MainWindow::receivePhysicsPlant);
     QObject::connect(this, &MainWindow::messageBoxClosed, m, &Model::updateWorld);
+    QObject::connect(m, &Model::modelPause, this, &MainWindow::on_pauseButton_clicked);
+    QObject::connect(m, &Model::displayTutorial, this, &MainWindow::displayTutorialBox);
 
 
 }
@@ -271,6 +281,15 @@ void MainWindow::on_pauseButton_clicked()
     {
         ui->pauseButton->setText("Pause");
         ui->lineEdit->setEnabled(true);
+        if (!tutorialComplete)
+        {
+            tutorialBoxes[tutorialCounter]->hide();
+            tutorialCounter++;
+        }
+        if (tutorialCounter == 2)
+        {
+            tutorialComplete = true;
+        }
     }
 }
 
@@ -281,5 +300,11 @@ void MainWindow::receivePhysicsPlant(PhysicsPlant *p)
     p->setVisible(true);
     this->update();
     //qDebug() << ui->centralwidget->children().toList();
+}
+
+void MainWindow::displayTutorialBox(int tutorialNum)
+{
+    //ui->tutorialLabel1->show();
+    tutorialBoxes[tutorialNum]->show();
 }
 

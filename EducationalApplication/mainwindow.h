@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include "QtWidgets/qlabel.h"
 #include "model.h"
 #include <QDebug>
 #include "physicsplant.h"
@@ -20,7 +21,10 @@ public:
     MainWindow(Model*, QWidget *parent = nullptr);
     ~MainWindow();
     std::vector<QString> slideShow;
+    std::vector<QLabel*> tutorialBoxes;
     int currentSlide;
+    bool tutorialComplete;
+    int tutorialCounter;
 
 private slots:
     void on_startButton_clicked();
@@ -62,6 +66,8 @@ private slots:
     void on_pauseButton_clicked();
 
     void receivePhysicsPlant(PhysicsPlant*);
+
+    void displayTutorialBox(int);
 
 private:
     Ui::MainWindow *ui;

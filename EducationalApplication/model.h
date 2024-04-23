@@ -36,6 +36,8 @@ public:
     bool gamePaused;
     int round;
     int level;
+    bool tutorialComplete;
+    int tutorialCounter;
 
     // public methods
     ///
@@ -45,6 +47,7 @@ public:
     void clearHeap();
     void startGame();
     void deletePlantFromHeap(Plant);
+    void startTutorial();
 
 private:
     //std::vector<Plant*> presetPlants;
@@ -102,6 +105,8 @@ signals:
     void dropPlants();
     void addPhysicsPlant(PhysicsPlant*);
     void roundUpdate(int);
+    void modelPause();
+    void displayTutorial(int);
 };
 
 #endif // MODEL_H

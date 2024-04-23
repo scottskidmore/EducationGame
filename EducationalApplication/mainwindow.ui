@@ -383,6 +383,32 @@
      <string>Round:</string>
     </property>
    </widget>
+   <widget class="QLabel" name="tutorialLabel1">
+    <property name="geometry">
+     <rect>
+      <x>310</x>
+      <y>50</y>
+      <width>221</width>
+      <height>261</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Welcome to the &lt;/p&gt;&lt;p&gt;memory farming game. &lt;/p&gt;&lt;p&gt;A series of text &lt;/p&gt;&lt;p&gt;boxes will pop up in &lt;/p&gt;&lt;p&gt;the next few rounds to &lt;/p&gt;&lt;p&gt;provide you some information.&lt;/p&gt;&lt;p&gt;Click the resume button on the right&lt;/p&gt;&lt;p&gt;to make the text boxes dissapear and&lt;/p&gt;&lt;p&gt;proceed with the game.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="tutorialLabel2">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>330</y>
+      <width>191</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Below are a selection of plants.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+   </widget>
    <zorder>startLabel</zorder>
    <zorder>CurrentScoreLabel</zorder>
    <zorder>timerLabel</zorder>
@@ -403,6 +429,8 @@
    <zorder>nextSlide</zorder>
    <zorder>startButton</zorder>
    <zorder>RoundLabel</zorder>
+   <zorder>tutorialLabel1</zorder>
+   <zorder>tutorialLabel2</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
@@ -410,7 +438,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>17</height>
+     <height>24</height>
     </rect>
    </property>
   </widget>

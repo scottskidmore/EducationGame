@@ -15,6 +15,8 @@ Model::Model(QObject *parent)
     currentScore = 0;
     stackCleared = false;
     gamePaused = false;
+    tutorialComplete = false;
+    tutorialCounter = 0;
 
     // Connect model's game timer to the decreasingTime slot;
     QObject::connect(&timer, &QTimer::timeout, this, &Model::decreasingTime);
@@ -181,6 +183,7 @@ void Model::startGame()
     emit currentRamUpdated(currentRam);
     emit roundUpdate(0);
     timer.start(1000);
+    startTutorial();
 }
 
 QString Model::checkCommandName(QString command)
@@ -311,6 +314,14 @@ void Model::pauseGame()
         gamePaused = false;
         qDebug() << "game resumed";
         timer.start();
+        if (!tutorialComplete)
+        {
+            startTutorial();
+        }
+        if (tutorialCounter == 2)
+        {
+            tutorialComplete = true;
+        }
     }
 }
 
@@ -321,6 +332,24 @@ void Model::updateWorld()
 
     if (!worldSimTimer.isActive()) {
         worldSimTimer.start(16);
+    }
+}
+
+void Model::startTutorial()
+{
+    if (!tutorialComplete && round == 1 && tutorialCounter == 0)
+    {
+        emit modelPause();
+        pauseGame();
+        emit displayTutorial(tutorialCounter);
+        tutorialCounter++;
+    }
+    else if (!tutorialComplete && round == 1 && tutorialCounter == 1)
+    {
+        emit modelPause();
+        pauseGame();
+        emit displayTutorial(tutorialCounter);
+        tutorialCounter++;
     }
 }
 
