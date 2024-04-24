@@ -1,11 +1,3 @@
-/*
-Authors:    Scott Skidmore, Patrick Schlegel, Tanner Rowlett, Paolo Diotaiuti, Drew Humphrey, Adam Bentley.
-Course:     CS 3505, University of Utah, School of Computing
-Date:       23 April 2024
-Assignment: Educational App
-            Header file for the Plants class. Plants stores information on the various plant types in the game.
-*/
-
 #ifndef PLANT_H
 #define PLANT_H
 #include <string>
@@ -14,6 +6,13 @@ Assignment: Educational App
 #include "qobject.h"
 #include <regex>
 
+/*
+Authors:    Scott Skidmore, Patrick Schlegel, Tanner Rowlett, Paolo Diotaiuti, Drew Humphrey, Adam Bentley.
+Course:     CS 3505, University of Utah, School of Computing
+Date:       23 April 2024
+Assignment: Educational App
+            Header file for the Plants class. Plants stores information on the various plant types in the game.
+*/
 enum class Plants;
 
 class Plant : public QObject
@@ -108,7 +107,6 @@ private:
     std::string toString(Plants p);
 
 };
-
 ///
 /// \brief The Plants enum contains all possible plant types
 ///

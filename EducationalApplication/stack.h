@@ -1,3 +1,9 @@
+#ifndef STACK_H
+#define STACK_H
+
+#include <vector>
+#include "plant.h"
+
 /*
 Authors:    Scott Skidmore, Patrick Schlegel, Tanner Rowlett, Paolo Diotaiuti, Drew Humphrey, Adam Bentley.
 Course:     CS 3505, University of Utah, School of Computing
@@ -7,14 +13,6 @@ Assignment: Educational App
 
 Citations:
 */
-#ifndef STACK_H
-#define STACK_H
-
-#include <vector>
-#include "plant.h"
-///
-/// \brief Stack - manages collections of Plant pointers
-///
 class Stack
 {
 public:

@@ -3,6 +3,16 @@
 #include "QHBoxLayout"
 #include "QMessageBox"
 
+/*
+Authors:    Scott Skidmore, Patrick Schlegel, Tanner Rowlett, Poalo Diotaiuti, Drew Humphrey, Adam Bentley.
+Course:     CS 3505, University of Utah, School of Computing
+Date:       23 April 2024
+Assignment: Educational App
+            Implementation file for the MainWindow class. The MainWindow is the view in the MV structure.
+            It handles the displaying and controlling of all UI elements. It has slots and signals
+            to handle user inputs, and connections with the model class.
+Citations:
+*/
 MainWindow::MainWindow(Model *m, QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)

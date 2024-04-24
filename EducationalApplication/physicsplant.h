@@ -6,6 +6,15 @@
 #include <QPixmap>
 #include <QTimer>
 #include "Box2D/box2d.h"
+
+/*
+Authors:    Scott Skidmore, Patrick Schlegel, Tanner Rowlett, Paolo Diotaiuti, Drew Humphrey, Adam Bentley.
+Course:     CS 3505, University of Utah, School of Computing
+Date:       23 April 2024
+Assignment: Educational App
+            Header file for the PhysicsPlant class. The PhysicsPlant class handles the box2d animations
+            for the plants being removed from the stack.
+*/
 class PhysicsPlant : public QWidget
 {
     Q_OBJECT

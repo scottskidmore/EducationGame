@@ -1,5 +1,12 @@
 #include "plant.h"
 
+/*
+Authors:    Scott Skidmore, Patrick Schlegel, Tanner Rowlett, Paolo Diotaiuti, Drew Humphrey, Adam Bentley.
+Course:     CS 3505, University of Utah, School of Computing
+Date:       23 April 2024
+Assignment: Educational App
+            Implementation file for the Plants class. Plants stores information on the various plant types in the game.
+*/
 Plant::Plant(Plants plantType, QString name, QObject *parent)
     : QObject{parent}
 {

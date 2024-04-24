@@ -13,6 +13,16 @@
 #include "level.h"
 #include "physicsplant.h"
 
+/*
+Authors:    Scott Skidmore, Patrick Schlegel, Tanner Rowlett, Poalo Diotaiuti, Drew Humphrey, Adam Bentley.
+Course:     CS 3505, University of Utah, School of Computing
+Date:       23 April 2024
+Assignment: Educational App
+            Header file for the Model class. The Model is the Model in the MV structure.
+            It handles the underlying logic of the game. It interacts with other classes
+            to initiate gamplay, plant plants, and progression.
+Citations:
+*/
 class Model : public QObject
 {
     Q_OBJECT
