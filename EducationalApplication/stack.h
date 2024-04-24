@@ -1,10 +1,20 @@
+/*
+Authors:    Scott Skidmore, Patrick Schlegel, Tanner Rowlett, Paolo Diotaiuti, Drew Humphrey, Adam Bentley.
+Course:     CS 3505, University of Utah, School of Computing
+Date:       23 April 2024
+Assignment: Educational App
+            Header file for the Stack class. The Stack stores plants.
+
+Citations:
+*/
 #ifndef STACK_H
 #define STACK_H
 
 #include <vector>
 #include "plant.h"
-
+///
 /// \brief Stack - manages collections of Plant pointers
+///
 class Stack
 {
 public:

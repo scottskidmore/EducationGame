@@ -197,7 +197,7 @@ void MainWindow::on_lineEdit_returnPressed()
 }
 
 void MainWindow::updateCurrentRam(int ram) {
-    ui->currentRamLabel->setText(QString("Avalible Ram: " + QString::number(ram)));
+    ui->currentRamLabel->setText(QString("Available RAM: " + QString::number(ram)));
 }
 
 void MainWindow::updateTargetScore(int score) {
@@ -301,9 +301,9 @@ void MainWindow::onLevelCompleted(int level, int score){
 
 void MainWindow::onGameCompleted(){
     QMessageBox::information(this,"GAME COMPLETED", "CONGRATULATIONS!!!"
-                                 "\nYou have completed level the entire game"
-                                 "\nYou now really know your memory allocation"
-                                 "\nYou are now off to startup your own farm");
+                                 "\nYou have completed all levels"
+                                 "\nYou really know your memory allocation"
+                                 "\nYou are now ready to startup your own farm");
 }
 
 void MainWindow::on_pauseButton_clicked()
