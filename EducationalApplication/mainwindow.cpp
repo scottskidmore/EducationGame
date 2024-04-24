@@ -20,6 +20,7 @@ MainWindow::MainWindow(Model *m, QWidget *parent)
     ui->setupUi(this);
     ui->toolBar->hide();
     ui->lineEdit->setDisabled(true);
+    // add all the tutorial text boxes
     tutorialBoxes.push_back(ui->tutorialLabel1);
     tutorialBoxes.push_back(ui->tutorialLabel2);
     tutorialBoxes.push_back(ui->tutorialLabel3);
@@ -29,7 +30,7 @@ MainWindow::MainWindow(Model *m, QWidget *parent)
     tutorialBoxes.push_back(ui->tutorialLabel7);
     tutorialBoxes.push_back(ui->tutorialLabel8);
 
-    for (int i = 0; i < (int)tutorialBoxes.size(); i++)
+    for (int i = 0; i < (int)tutorialBoxes.size(); i++) // hide all the tutorial text boxes
     {
         tutorialBoxes[i]->hide();
     }
@@ -37,7 +38,7 @@ MainWindow::MainWindow(Model *m, QWidget *parent)
     tutorialCounter = 0;
 
 
-    //add the slides
+    // add the slides
     slideShow.push_back(":/Slideshow/Images/titleSlide.png");
     slideShow.push_back(":/Slideshow/Images/stackSlide.png");
     slideShow.push_back(":/Slideshow/Images/heapSlide.png");
@@ -56,6 +57,7 @@ MainWindow::MainWindow(Model *m, QWidget *parent)
 
     QPalette pal;
 
+    // connections
     QObject::connect(ui->actionPotato, &QAction::triggered, m, &Model::getPlantText);
     QObject::connect(ui->actionFlower, &QAction::triggered, m, &Model::getPlantText);
     QObject::connect(ui->actionCorn, &QAction::triggered, m, &Model::getPlantText);
@@ -70,7 +72,6 @@ MainWindow::MainWindow(Model *m, QWidget *parent)
     QObject::connect(m, &Model::enableHint, this, &MainWindow::enableHintButton);
     QObject::connect(m, &Model::sendPlantText, ui->centerTextDisplayBox, &QLabel::setText);
     QObject::connect(this, &MainWindow::gameStart, m, &Model::startGame);
-    //QObject::connect(ui->scrollArea, &ScrollArea::clicked, m, &Model::sendCurrentPlantToStack);
     QObject::connect(m, &Model::sendPlantToStack, this, &MainWindow::setStackPlant);
     QObject::connect(m, &Model::sendPlantToHeap, this, &MainWindow::setHeapPlant);
     QObject::connect(this, &MainWindow::sendCommandText, m, &Model::checkUserCommand);
@@ -92,8 +93,6 @@ MainWindow::MainWindow(Model *m, QWidget *parent)
     QObject::connect(m, &Model::modelPause, this, &MainWindow::on_pauseButton_clicked);
     QObject::connect(m, &Model::displayTutorial, this, &MainWindow::displayTutorialBox);
     QObject::connect(m, &Model::disablePlantButton, this, &MainWindow::disablePlantButton);
-
-
 }
 
 MainWindow::~MainWindow()
@@ -230,7 +229,6 @@ void MainWindow::onUpdatedTimer(int time)
 
 void MainWindow::onNewRound(bool FT)
 {
-
     ui->lineEdit->setEnabled(true);
     ui->startRound->setEnabled(FT);
     ui->startRound->hide();
@@ -239,7 +237,8 @@ void MainWindow::onNewRound(bool FT)
 
 void MainWindow::onGameOver()
 {
-    for (QAction* act : ui->toolBar->actions()) {
+    for (QAction* act : ui->toolBar->actions())
+    {
         act->setEnabled(true);
     }
     ui->startRound->setDisabled(true);
@@ -250,20 +249,23 @@ void MainWindow::onGameOver()
     QMessageBox::information(this, "Game Over!", "You didn't reach the target score.");
 }
 
-void MainWindow::onRoundOver(int round, int currentScore, int targetScore){
+void MainWindow::onRoundOver(int round, int currentScore, int targetScore)
+{
     update();
     ui->lineEdit->clear();
     ui->lineEdit->setDisabled(true);
     ui->startRound->setEnabled(true);
     ui->startRound->show();
     ui->pauseButton->setDisabled(true);
-    if(((((round - (round % 5)) / 5) + 1) == 1) && ((round % 5) + 1 == 1)){
+    if (((((round - (round % 5)) / 5) + 1) == 1) && ((round % 5) + 1 == 1))
+    {
         ui->actionCorn->setVisible(true);
         ui->actionPotato->setVisible(true);
         ui->actionCorn->setEnabled(true);
         ui->actionPotato->setEnabled(true);
         }
-    else if(((((round - (round % 5)) / 5) + 1) == 1) && ((round % 5) + 1 == 2)){
+    else if (((((round - (round % 5)) / 5) + 1) == 1) && ((round % 5) + 1 == 2))
+    {
         ui->actionGrapes->setVisible(true);
         ui->actionGrapes->setEnabled(true);
     }
@@ -277,8 +279,10 @@ void MainWindow::onRoundOver(int round, int currentScore, int targetScore){
     emit messageBoxClosed();
 }
 
-void MainWindow::onLevelCompleted(int level, int score){
-    for (QAction* act : ui->toolBar->actions()) {
+void MainWindow::onLevelCompleted(int level, int score)
+{
+    for (QAction* act : ui->toolBar->actions())
+    {
         act->setEnabled(true);
     }
     ui->lineEdit->clear();
@@ -286,21 +290,24 @@ void MainWindow::onLevelCompleted(int level, int score){
     ui->startRound->setEnabled(true);
     ui->startRound->show();
     ui->pauseButton->setDisabled(true);
-    if(level == 1){
+    if (level == 1)
+    {
         QMessageBox::information(this, "Level: " + QString::number(2) +
                                    " Round: " + QString::number(0), "CONGRATULATIONS!!!"
                                    "\nYou have completed level " + QString::number(level) +
                                    "\nWith a score of " + QString::number(score) +
                                    "\nYou are now an FARMING INTERN");
     }
-    else if(level == 2){
+    else if(level == 2)
+    {
         QMessageBox::information(this, "Level: " + QString::number(3) +
                                    " Round: " + QString::number(0), "CONGRATULATIONS!!!"
                                    "\nYou have completed level " + QString::number(level) +
                                    "\nWith a score of " + QString::number(score) +
                                    "\nYou are now an JUNIOR FARMER");
     }
-    else if (level == 3){
+    else if (level == 3)
+    {
         QMessageBox::information(this,"Level: " + QString::number(4) +
                                   " Round: " + QString::number(0), "CONGRATULATIONS!!!"
                                   "\nYou have completed level " + QString::number(level) +
@@ -310,7 +317,8 @@ void MainWindow::onLevelCompleted(int level, int score){
     emit messageBoxClosed();
 }
 
-void MainWindow::onGameCompleted(){
+void MainWindow::onGameCompleted()
+{
     QMessageBox::information(this,"GAME COMPLETED", "CONGRATULATIONS!!!"
                                  "\nYou have completed all levels"
                                  "\nYou really know your memory allocation"
@@ -347,20 +355,20 @@ void MainWindow::receivePhysicsPlant(PhysicsPlant *p)
     p->raise();
     p->setVisible(true);
     this->update();
-    //qDebug() << ui->centralwidget->children().toList();
 }
 
 void MainWindow::displayTutorialBox(int tutorialNum)
 {
-    //ui->tutorialLabel1->show();
     tutorialBoxes[tutorialNum]->show();
 }
 
 void MainWindow::disablePlantButton(QString name)
 {
     QList<QAction*> actions = ui->toolBar->actions();
-    for (QAction* act : actions) {
-        if (act->objectName() == name) {
+    for (QAction* act : actions)
+    {
+        if (act->objectName() == name)
+        {
             act->setEnabled(false);
         }
     }

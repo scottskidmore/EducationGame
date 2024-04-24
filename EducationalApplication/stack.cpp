@@ -9,5 +9,4 @@ Assignment: Educational App
 
 Citations:
 */
-/// \brief Constructr for the stack
 Stack::Stack() {}

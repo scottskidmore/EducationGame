@@ -13,7 +13,8 @@ Plant::Plant(Plants plantType, QString name, QObject *parent)
     myName = name;
     deleteCode = "delete " + myName + ";";
     thisPlant = plantType;
-    switch (plantType) {
+    switch (plantType)
+    {
         case Plants::Corn:
             createCorn();
             break;
@@ -33,10 +34,13 @@ Plant::Plant(Plants plantType, QString name, QObject *parent)
     heapGrowthTrack = 0;
 }
 
-std::string Plant::hintCode(){
+std::string Plant::hintCode()
+{
     std::string heapOrStack = "stack";
     if (onHeap)
+    {
         heapOrStack = "heap";
+    }
     std::string code = "This plant's type is " + toString(thisPlant)
                        + "\nIt should be planted on the " + heapOrStack
                        + "\nThe stack code should look like " + stackCode.toStdString()
@@ -59,36 +63,59 @@ void Plant::deleteMyButton()
 void Plant::updateHeapGrowth()
 {
     if (heapGrowthTrack < 4)
+    {
         heapGrowthTrack++;
+    }
     else
+    {
         return;
+    }
     if (thisPlant != Plants::Tree && thisPlant != Plants::Grapes)  // Only update plant growth for grapes and trees
+    {
         return;
-    switch (heapGrowthTrack) {      // The switch handles different levels of plant growth
+    }
+    switch (heapGrowthTrack)      // The switch handles different levels of plant growth
+    {
         case 0: break;
         case 1:
             if (thisPlant == Plants::Tree)
+            {
                 imagePath = ":/Flowers/Images/tree_r1.png";
+            }
             else
+            {
                 imagePath = ":/Flowers/Images/grapes_r1.png";
+            }
             break;
         case 2:
             if (thisPlant == Plants::Tree)
+            {
                 imagePath = ":/Flowers/Images/tree_r2.png";
+            }
             else
+            {
                 imagePath = ":/Flowers/Images/grapes_r2.png";
+            }
             break;
         case 3:
             if (thisPlant == Plants::Tree)
+            {
                 imagePath = ":/Flowers/Images/tree_r3.png";
+            }
             else
+            {
                 imagePath = ":/Flowers/Images/grapes_r3.png";
+            }
             break;
         case 4:
             if (thisPlant == Plants::Tree)
+            {
                 imagePath = ":/Flowers/Images/tree_dead.png";
+            }
             else
+            {
                 imagePath = ":/Flowers/Images/grapes_dead.png";
+            }
             break;
         }
         emit updateButtonImage(QIcon(QPixmap(imagePath)));
@@ -96,7 +123,8 @@ void Plant::updateHeapGrowth()
 
 void Plant::myPlantClicked()
 {
-    if (onHeap) {
+    if (onHeap)
+    {
         emit updateTextForDelete(this);
     }
 }

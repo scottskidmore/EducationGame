@@ -404,7 +404,8 @@ void Model::updateWorld()
     world->Step(1.0f / 60.0f, 6, 2);
     emit dropPlants();
 
-    if (!worldSimTimer.isActive()) {
+    if (!worldSimTimer.isActive())
+    {
         worldSimTimer.start(16);
     }
 }

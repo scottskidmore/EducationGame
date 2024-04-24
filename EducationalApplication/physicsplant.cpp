@@ -32,12 +32,14 @@ PhysicsPlant::PhysicsPlant(b2World* world, const QString& imagePath, QPoint pos,
     this->setGeometry(pos.x() + 190, pos.y() + 60, 64, 64); // setting up geometry to be 64x64 to match icon size.
 }
 
-void PhysicsPlant::paintEvent(QPaintEvent* event) {
+void PhysicsPlant::paintEvent(QPaintEvent* event)
+{
     QPainter painter(this);
     painter.drawPixmap(0, 0, 64, 64, image);
 }
 
-void PhysicsPlant::updateSimulation() {
+void PhysicsPlant::updateSimulation()
+{
     // Get the Box2D body's position
     b2Vec2 position = body->GetPosition();
     // Convert the Box2D position to pixel coordinates and move the widget
