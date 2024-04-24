@@ -10,7 +10,7 @@ Model::Model(QObject *parent)
     presetPlants[QString("actionTree")] = new Plant(Plants::Tree, "treeDefault");
     presetPlants[QString("actionGrapes")] = new Plant(Plants::Grapes, "grapesDefault");
 
-    rounds.push_back(Level(100, 100, 200));
+    rounds.push_back(Level(100, 100, 100));
 
     currentScore = 0;
     stackCleared = false;
@@ -47,8 +47,8 @@ void Model::setCurrentPlant()
 void Model::sendCurrentPlantToStack()
 {
     emit sendPlantToStack(currentPlant);
-    //totalRam = totalRam - currentPlant->cost;
-    //emit currentRamUpdated(totalRam);
+    // currentRam = currentRam - p->cost;
+    // emit currentRamUpdated(currentRam);
 }
 
 void Model::sendHint()
@@ -77,23 +77,31 @@ void Model::checkUserCommand(QString text)
         emit sendPlantText("\nYour code did not match this plants heap\nor stack code. Try again.\nGet a hint if you're stuck!");
     if (substrings[0] == "H") {
         Plant* p = new Plant(currentPlant->thisPlant, name);
-        p->onHeap=true;
-        QObject::connect(p, &Plant::updateTextForDelete, this, &Model::getPlantTextForDelete);
-        heapObj.plants.push_back(p);
-        heapObj.plantMap[name] = p; // add to map, we will need to get rid of list
-        emit sendPlantText(QString::fromStdString(currentPlant->basicInfo()) + "\nYou planted on the heap!");
-        emit sendPlantToHeap(p);
-        currentRam = currentRam - p->cost;
-        emit currentRamUpdated(currentRam);
+        if (currentRam-p->heapCost<0){
+            emit sendPlantText("\nYou are out of memory watch your ram!\nWait until the round restarts or \nharvest some of your heap plants.");
+        }else{
+            p->onHeap=true;
+            QObject::connect(p, &Plant::updateTextForDelete, this, &Model::getPlantTextForDelete);
+            heapObj.plants.push_back(p);
+            heapObj.plantMap[name] = p; // add to map, we will need to get rid of list
+            emit sendPlantText(QString::fromStdString(currentPlant->basicInfo()) + "\nYou planted on the heap!");
+            emit sendPlantToHeap(p);
+            currentRam = currentRam - p->heapCost;
+            emit currentRamUpdated(currentRam);
+        }
     }
     else if (substrings[0] == "S") {
         Plant* p = new Plant(currentPlant->thisPlant, name);
-        stackObj.plants.push_back(p);
-        stackObj.plantMap[name] = p; // add to map, we will need to get rid of list
-        emit sendPlantText(QString::fromStdString(currentPlant->basicInfo()) + "\nYou planted on the stack!");
-        emit sendPlantToStack(p);
-        currentRam = currentRam - p->cost;
-        emit currentRamUpdated(currentRam);
+        if (currentRam-p->stackCost<0){
+            emit sendPlantText("\nYou are out of memory watch your ram!\nWait until the round restarts or \nharvest some of your heap plants.");
+        }else{
+            stackObj.plants.push_back(p);
+            stackObj.plantMap[name] = p; // add to map, we will need to get rid of list
+            emit sendPlantText(QString::fromStdString(currentPlant->basicInfo()) + "\nYou planted on the stack!");
+            emit sendPlantToStack(p);
+            currentRam = currentRam - p->stackCost;
+            emit currentRamUpdated(currentRam);
+        }
     }
     else if (substrings[0] == "D") {
         // delete plant from heap!
@@ -110,7 +118,7 @@ void Model::checkUserCommand(QString text)
                 currentScore += heapObj.plantMap[name]->reward * 3;
             }
 
-            currentRam += heapObj.plantMap[name]->cost;
+            currentRam += heapObj.plantMap[name]->heapCost;
             heapObj.plantMap.erase(name);
             emit sendPlantText(QString("The plant with name: " + name + "\nWas deleted"));
 
@@ -169,7 +177,7 @@ void Model::startGame()
 {
     clearHeap(); // make sure heap is cleared on game restart
     targetScore = 5;
-    totalRam = 150;
+    totalRam = 50;
     currentRam = totalRam;
     round = 1;
     level = 1;
@@ -227,7 +235,7 @@ void Model::decreasingTime()
     if (currentTime == 0){
         if (stackCleared == false)   {      // Clear stack and update heap plants when timer raeches 0
             for (auto plant : stackObj.plants){
-                currentRam += plant->cost;
+                currentRam += plant->stackCost;
             }
             clearStack();
             stackCleared = true;
@@ -264,6 +272,7 @@ void Model::endRound()
 
 void Model::nextRound()
 {
+    emit currentRamUpdated(currentRam);
     for (auto physPlant : physicsPlants) {
         physPlant->deleteLater();
     }

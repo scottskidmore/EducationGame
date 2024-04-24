@@ -113,7 +113,8 @@ void Plant::setMyButton(QPushButton *button)
 
 void Plant::createCorn()
 {
-    cost = 10;
+    stackCost = 10;
+    heapCost = 30;
     onHeap = false;
     reward = 1;
     stackCode = "Corn c;";
@@ -126,7 +127,8 @@ void Plant::createCorn()
 
 void Plant::createFlower()
 {
-    cost = 10;
+    stackCost = 10;
+    heapCost = 30;
     onHeap = false;
     reward = 1;
     stackCode = "Flower f;";
@@ -139,7 +141,8 @@ void Plant::createFlower()
 
 void Plant::createTree()
 {
-    cost = 50;
+    stackCost = 30;
+    heapCost = 30;
     onHeap = true;
     reward = 1;
     stackCode = "Tree t;";
@@ -152,7 +155,8 @@ void Plant::createTree()
 
 void Plant::createPotato()
 {
-    cost = 10;
+    stackCost = 10;
+    heapCost = 30;
     onHeap = true;
     reward = 1;
     stackCode = "Potato p;";
@@ -165,7 +169,8 @@ void Plant::createPotato()
 
 void Plant::createGrapes()
 {
-    cost = 25;
+    stackCost = 30;
+    heapCost = 30;
     onHeap = true;
     reward = 1;
     stackCode = "Grapes g;";
