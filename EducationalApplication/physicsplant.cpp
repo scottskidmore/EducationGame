@@ -5,9 +5,8 @@ PhysicsPlant::PhysicsPlant(b2World* world, const QString& imagePath, QPoint pos,
 {
     b2BodyDef bodyDef;
     bodyDef.type = b2_dynamicBody;
-    bodyDef.position.Set(pos.x() +190, pos.y() +60); // Initial position
+    bodyDef.position.Set(pos.x() +190, pos.y() +60); // Initial position inside physics world, needs to be changed because the position is relative to the stack layout location.
     body = world->CreateBody(&bodyDef);
-    this->realPos = pos;
 
     // Define the shape and fixture
     b2PolygonShape shape;
@@ -22,7 +21,7 @@ PhysicsPlant::PhysicsPlant(b2World* world, const QString& imagePath, QPoint pos,
 
     // Load the image
     image.load(imagePath);
-    this->setGeometry(pos.x() + 190, pos.y() + 60, 64, 64);
+    this->setGeometry(pos.x() + 190, pos.y() + 60, 64, 64); // setting up geometry to be 64x64 to match icon size.
 }
 
 void PhysicsPlant::paintEvent(QPaintEvent* event) {
@@ -31,9 +30,6 @@ void PhysicsPlant::paintEvent(QPaintEvent* event) {
 }
 
 void PhysicsPlant::updateSimulation() {
-    // Step the physics simulation
-    //world->Step(1.0f / 60.0f, 6, 2);
-
     // Get the Box2D body's position
     b2Vec2 position = body->GetPosition();
     // Convert the Box2D position to pixel coordinates and move the widget

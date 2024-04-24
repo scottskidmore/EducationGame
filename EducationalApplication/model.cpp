@@ -1,5 +1,4 @@
 #include "model.h"
-#include <regex>
 
 Model::Model(QObject *parent)
     : QObject{parent}
@@ -32,8 +31,6 @@ Model::Model(QObject *parent)
 void Model::getPlantText()
 {
     QObject *senderObject = QObject::sender();
-    //int size = 10;
-    //Plant* p = presetPlants.front();
     emit sendPlantText(QString::fromStdString(presetPlants[senderObject->objectName()]->basicInfo()));
     emit enableHint();
 }
@@ -49,13 +46,6 @@ void Model::setCurrentPlant()
     QObject *senderObject = QObject::sender();
     currentPlantToolbarName = senderObject->objectName();
     currentPlant=presetPlants[senderObject->objectName()];
-}
-
-void Model::sendCurrentPlantToStack()
-{
-    emit sendPlantToStack(currentPlant);
-    // currentRam = currentRam - p->cost;
-    // emit currentRamUpdated(currentRam);
 }
 
 void Model::sendHint()
@@ -287,11 +277,6 @@ void Model::decreasingTime()
         currentTime--;
         emit timeUpdated((currentTime));
     }
-}
-
-void Model::endRound()
-{
-    heapObj.updateHeapPlants();
 }
 
 void Model::nextRound()
