@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Memory Farm</string>
   </property>
   <property name="windowIcon">
    <iconset resource="Resource.qrc">
@@ -90,7 +90,7 @@
     <property name="geometry">
      <rect>
       <x>200</x>
-      <y>20</y>
+      <y>25</y>
       <width>81</width>
       <height>21</height>
      </rect>
@@ -109,7 +109,7 @@
     <property name="geometry">
      <rect>
       <x>560</x>
-      <y>30</y>
+      <y>25</y>
       <width>81</width>
       <height>21</height>
      </rect>
@@ -389,7 +389,7 @@
       <x>310</x>
       <y>50</y>
       <width>221</width>
-      <height>261</height>
+      <height>291</height>
      </rect>
     </property>
     <property name="styleSheet">
