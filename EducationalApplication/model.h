@@ -57,6 +57,13 @@ private:
     void nextLevel();
     b2World* world;
     std::vector<PhysicsPlant*> physicsPlants;
+    int flowerCount;
+    int cornCount;
+    int potatoCount;
+    int treeCount;
+    int grapesCount;
+    QString currentPlantToolbarName;
+    bool checkPlantInventory(Plants);
 
 public slots:
     void getPlantText();
@@ -107,6 +114,7 @@ signals:
     void roundUpdate(int);
     void modelPause();
     void displayTutorial(int);
+    void disablePlantButton(QString); // The QString is the toolbar action name
 };
 
 #endif // MODEL_H

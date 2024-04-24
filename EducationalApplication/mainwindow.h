@@ -69,6 +69,8 @@ private slots:
 
     void displayTutorialBox(int);
 
+    void disablePlantButton(QString);
+
 private:
     Ui::MainWindow *ui;
 

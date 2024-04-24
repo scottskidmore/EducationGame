@@ -81,6 +81,7 @@ MainWindow::MainWindow(Model *m, QWidget *parent)
     QObject::connect(this, &MainWindow::messageBoxClosed, m, &Model::updateWorld);
     QObject::connect(m, &Model::modelPause, this, &MainWindow::on_pauseButton_clicked);
     QObject::connect(m, &Model::displayTutorial, this, &MainWindow::displayTutorialBox);
+    QObject::connect(m, &Model::disablePlantButton, this, &MainWindow::disablePlantButton);
 
 
 }
@@ -227,6 +228,9 @@ void MainWindow::onNewRound(bool FT)
 
 void MainWindow::onGameOver()
 {
+    for (QAction* act : ui->toolBar->actions()) {
+        act->setEnabled(true);
+    }
     ui->startRound->setDisabled(true);
     ui->startRound->hide();
     ui->lineEdit->clear();
@@ -263,6 +267,9 @@ void MainWindow::onRoundOver(int round, int currentScore, int targetScore){
 }
 
 void MainWindow::onLevelCompleted(int level, int score){
+    for (QAction* act : ui->toolBar->actions()) {
+        act->setEnabled(true);
+    }
     ui->lineEdit->clear();
     ui->lineEdit->setDisabled(true);
     ui->startRound->setEnabled(true);
@@ -336,5 +343,15 @@ void MainWindow::displayTutorialBox(int tutorialNum)
 {
     //ui->tutorialLabel1->show();
     tutorialBoxes[tutorialNum]->show();
+}
+
+void MainWindow::disablePlantButton(QString name)
+{
+    QList<QAction*> actions = ui->toolBar->actions();
+    for (QAction* act : actions) {
+        if (act->objectName() == name) {
+            act->setEnabled(false);
+        }
+    }
 }
 

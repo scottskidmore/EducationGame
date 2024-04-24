@@ -10,7 +10,13 @@ Model::Model(QObject *parent)
     presetPlants[QString("actionTree")] = new Plant(Plants::Tree, "treeDefault");
     presetPlants[QString("actionGrapes")] = new Plant(Plants::Grapes, "grapesDefault");
 
-    rounds.push_back(Level(100, 100, 200));
+    rounds.push_back(Level(100, 100, 200, 2, 2));
+
+    flowerCount = 0;
+    cornCount = 0;
+    potatoCount = 0;
+    treeCount = 0;
+    grapesCount = 0;
 
     currentScore = 0;
     stackCleared = false;
@@ -41,6 +47,7 @@ void Model::getPlantTextForDelete(Plant* p)
 void Model::setCurrentPlant()
 {
     QObject *senderObject = QObject::sender();
+    currentPlantToolbarName = senderObject->objectName();
     currentPlant=presetPlants[senderObject->objectName()];
 }
 
@@ -76,6 +83,10 @@ void Model::checkUserCommand(QString text)
     else
         emit sendPlantText("\nYour code did not match this plants heap\nor stack code. Try again.\nGet a hint if you're stuck!");
     if (substrings[0] == "H") {
+        if (checkPlantInventory(currentPlant->thisPlant)) { // if true tell the user they've reached the limit and turn off button
+            emit sendPlantText("You've reached the limit of that plant for the current level.\nTry planting a different type of plant");
+            return;
+        }
         Plant* p = new Plant(currentPlant->thisPlant, name);
         p->onHeap=true;
         QObject::connect(p, &Plant::updateTextForDelete, this, &Model::getPlantTextForDelete);
@@ -87,6 +98,10 @@ void Model::checkUserCommand(QString text)
         emit currentRamUpdated(currentRam);
     }
     else if (substrings[0] == "S") {
+        if (checkPlantInventory(currentPlant->thisPlant)) { // if true tell the user they've reached the limit and turn off button
+            emit sendPlantText("You've reached the limit of that plant for the current level.\nTry planting a different type of plant");
+            return;
+        }
         Plant* p = new Plant(currentPlant->thisPlant, name);
         stackObj.plants.push_back(p);
         stackObj.plantMap[name] = p; // add to map, we will need to get rid of list
@@ -167,13 +182,19 @@ void Model::clearHeap()
 
 void Model::startGame()
 {
+    flowerCount = 0;
+    cornCount = 0;
+    potatoCount = 0;
+    treeCount = 0;
+    grapesCount = 0;
+    currentScore = 0;
     clearHeap(); // make sure heap is cleared on game restart
     targetScore = 5;
     totalRam = 150;
     currentRam = totalRam;
     round = 1;
     level = 1;
-    rounds.push_back(Level(round, targetScore, totalRam));
+    rounds.push_back(Level(round, targetScore, totalRam, 2, 2));
     roundTime = 10;
     currentTime = roundTime;
     stackCleared = false;
@@ -246,6 +267,7 @@ void Model::decreasingTime()
             }
         }
         if((round > 0 ) && (round % 5 == 0) && currentScore < targetScore) {    // End the game becuase the player didn't reach the target score
+
             emit gameOver();
             currentTime = -1;
             timer.stop();
@@ -293,17 +315,55 @@ void Model::nextLevel(){
         plant->heapGrowthTrack = 4;
     }
 
+    flowerCount = 0;
+    cornCount = 0;
+    potatoCount = 0;
+    treeCount = 0;
+    grapesCount = 0;
+
     level++;
     targetScore += 5;
     currentRam += 50;
     roundTime += 10;
     currentScore = 0;
     round=0;
-    rounds.push_back(Level(round, targetScore, totalRam));
+    rounds.push_back(Level(round, targetScore, totalRam, level, level));
     emit targetScoreUpdated(targetScore);
     emit currentScoreUpdated(0);
     emit roundUpdate(0);
     emit currentRamUpdated(currentRam);
+}
+
+bool Model::checkPlantInventory(Plants pType)
+{
+    // will return true if that plant type will be at the limit after this add
+    switch (pType) {
+    case Plants::Corn:
+        if (cornCount++ + 1 == rounds.front().individualStackPlantLimit) {
+            emit disablePlantButton(currentPlantToolbarName);
+        }
+        return cornCount > rounds.front().individualStackPlantLimit;
+    case Plants::Flower:
+        if (flowerCount++ + 1 == rounds.front().individualStackPlantLimit) {
+            emit disablePlantButton(currentPlantToolbarName);
+        }
+        return flowerCount > rounds.front().individualStackPlantLimit;
+    case Plants::Tree:
+        if (treeCount++ + 1 == rounds.front().individualHeapPlantLimit) {
+            emit disablePlantButton(currentPlantToolbarName);
+        }
+        return treeCount > rounds.front().individualHeapPlantLimit;
+    case Plants::Potato:
+        if (potatoCount++ + 1 == rounds.front().individualStackPlantLimit) {
+            emit disablePlantButton(currentPlantToolbarName);
+        }
+        return potatoCount > rounds.front().individualStackPlantLimit;
+    case Plants::Grapes:
+        if (grapesCount++ + 1 == rounds.front().individualHeapPlantLimit) {
+            emit disablePlantButton(currentPlantToolbarName);
+        }
+        return grapesCount > rounds.front().individualHeapPlantLimit;
+    }
 }
 
 void Model::pauseGame()
