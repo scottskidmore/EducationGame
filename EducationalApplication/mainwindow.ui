@@ -176,7 +176,7 @@
     <property name="geometry">
      <rect>
       <x>320</x>
-      <y>370</y>
+      <y>500</y>
       <width>100</width>
       <height>32</height>
      </rect>
@@ -195,7 +195,7 @@
     <property name="geometry">
      <rect>
       <x>690</x>
-      <y>210</y>
+      <y>500</y>
       <width>100</width>
       <height>32</height>
      </rect>
@@ -208,7 +208,7 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>210</y>
+      <y>500</y>
       <width>100</width>
       <height>32</height>
      </rect>
@@ -511,7 +511,6 @@
      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When you are ready to continue round 2,&lt;/p&gt;&lt;p&gt;click the resume button on the right.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
    </widget>
-   <zorder>startLabel</zorder>
    <zorder>CurrentScoreLabel</zorder>
    <zorder>timerLabel</zorder>
    <zorder>scrollArea_2</zorder>
@@ -527,9 +526,6 @@
    <zorder>scrollArea</zorder>
    <zorder>startRound</zorder>
    <zorder>pauseButton</zorder>
-   <zorder>previousSlide</zorder>
-   <zorder>nextSlide</zorder>
-   <zorder>startButton</zorder>
    <zorder>RoundLabel</zorder>
    <zorder>tutorialLabel1</zorder>
    <zorder>tutorialLabel2</zorder>
@@ -539,6 +535,10 @@
    <zorder>tutorialLabel7</zorder>
    <zorder>tutorialLabel8</zorder>
    <zorder>tutorialLabel5</zorder>
+   <zorder>startLabel</zorder>
+   <zorder>startButton</zorder>
+   <zorder>nextSlide</zorder>
+   <zorder>previousSlide</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
@@ -546,7 +546,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>24</height>
+     <height>21</height>
     </rect>
    </property>
   </widget>

@@ -19,7 +19,8 @@ public:
     std::string basicInfo();
     std::string displayName();
     bool onHeap;
-    int cost;
+    int heapCost;
+    int stackCost;
     int reward;
     int heapGrowthTrack; // this tracks the heap growth, to change image and points
     QString heapCode;
