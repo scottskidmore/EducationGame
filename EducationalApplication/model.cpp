@@ -98,10 +98,10 @@ void Model::checkUserCommand(QString text)
             return;
         }
         Plant* p = new Plant(currentPlant->thisPlant, name);
-        if (currentRam-p->stackCost<0){
+        if (currentRam-p->stackCost<0) {
             emit sendPlantText("\nYou are out of memory, watch your ram!\nWait until the round restarts or \nharvest some of your heap plants.");
             delete p;
-        }else{
+        }else {
             stackObj.plants.push_back(p);
             stackObj.plantMap[name] = p; // add to map, we will need to get rid of list
             emit sendPlantText(QString::fromStdString(currentPlant->basicInfo()) + "\nYou planted on the stack!");
@@ -173,8 +173,8 @@ void Model::clearStack()
 
 void Model::clearHeap()
 {
-    for (auto plant : heapObj.plants){ //added to make sure the bottons/icons are
-        plant->deleteMyButton();      // deleted along with the map
+    for (auto plant : heapObj.plants){  //added to make sure the bottons/icons are
+        plant->deleteMyButton();        // deleted along with the map
     }
     heapObj.plants.clear();
     heapObj.plantMap.clear();
@@ -188,7 +188,7 @@ void Model::startGame()
     treeCount = 0;
     grapesCount = 0;
     currentScore = 0;
-    clearHeap(); // make sure heap is cleared on game restart
+    clearHeap();    // make sure heap is cleared on game restart
     targetScore = 5;
     totalRam = 50;
     currentRam = totalRam;
@@ -245,35 +245,35 @@ QString Model::checkCommandName(QString command)
 
 void Model::decreasingTime()
 {
-    if (currentTime == 0){
-        if (stackCleared == false)   {      // Clear stack and update heap plants when timer raeches 0
-            for (auto plant : stackObj.plants){
+    if (currentTime == 0) {
+        if (stackCleared == false) {      // Clear stack and update heap plants when round ends
+            for (auto plant : stackObj.plants) {
                 currentRam += plant->stackCost;
             }
             clearStack();
             stackCleared = true;
             heapObj.updateHeapPlants();
-            if ((round > 0) && (round % 5 == 0) && currentScore >= targetScore){
-                if((((round - (round % 5)) / 5)) == 4){
+
+            if ((round > 0) && (round % 5 == 0) && currentScore >= targetScore) {   // Target score is reached
+                if((((round - (round % 5)) / 5)) == 4) {    // Last round of last level is finished
                     emit gameCompleted();
                 }
-                else {
+                else {   // End the level
                     emit levelCompleted(level, currentScore);
                     level++;
                 }
             }
-            else{
-                 emit roundOver(round - 1, currentScore, targetScore);
+            else{   // Level continues but round ends
+                emit roundOver(round - 1, currentScore, targetScore);
             }
         }
         if((round > 0 ) && (round % 5 == 0) && currentScore < targetScore) {    // End the game becuase the player didn't reach the target score
-
             emit gameOver();
             currentTime = -1;
             timer.stop();
         }
     }
-    else if (stackCleared == false){        // Decrement timer countdown
+    else if (stackCleared == false){    // Decrement timer countdown
         currentTime--;
         emit timeUpdated((currentTime));
     }
@@ -360,6 +360,7 @@ bool Model::checkPlantInventory(Plants pType)
         }
         return grapesCount > rounds.front().individualHeapPlantLimit;
     }
+    return false;
 }
 
 void Model::pauseGame()
@@ -375,10 +376,12 @@ void Model::pauseGame()
         gamePaused = false;
         qDebug() << "game resumed";
         timer.start();
+
         if (!tutorialComplete)
         {
             startTutorial();
         }
+
         if (tutorialCounter == 8)
         {
             tutorialComplete = true;
