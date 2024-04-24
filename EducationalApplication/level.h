@@ -21,6 +21,9 @@ public:
     /// \param heapLimit Specifies the plant limit in the heap.
     ///
     Level(int round,int target, int ram, int stackLimit, int heapLimit);
+    ///
+    /// \brief roundNumber
+    ///
     int roundNumber;
     ///
     /// \brief targetScore
@@ -30,8 +33,13 @@ public:
     /// \brief ramAmount
     ///
     int ramAmount;
-
+    ///
+    /// \brief individualStackPlantLimit - limit amount of stack plants
+    ///
     int individualStackPlantLimit;
+    ///
+    /// \brief individualHeapPlantLimit - limit amoiunt of heap plants
+    ///
     int individualHeapPlantLimit;
 };
 

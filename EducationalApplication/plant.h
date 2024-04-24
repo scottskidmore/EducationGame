@@ -26,20 +26,65 @@ public:
     /// \param parent
     ///
     explicit Plant(Plants plantType, QString name, QObject *parent = nullptr);
+    ///
+    /// \brief thisPlant - current plant
+    ///
     Plants thisPlant;
+    ///
+    /// \brief onHeap - tracks if plant is on heap
+    ///
     bool onHeap;
+    ///
+    /// \brief heapCost - ram cost for heap
+    ///
     int heapCost;
+    ///
+    /// \brief stackCost - ram cost for stack
+    ///
     int stackCost;
+    ///
+    /// \brief reward - point reward when harvested
+    ///
     int reward;
-    int heapGrowthTrack;    // this tracks the heap growth, to change image and points
+    ///
+    /// \brief heapGrowthTrack - this tracks the heap growth, to change image and points
+    ///
+    int heapGrowthTrack;
+    ///
+    /// \brief heapCode - syntax to plant on heap
+    ///
     QString heapCode;
+    ///
+    /// \brief stackCode - syntax to plant on stack
+    ///
     QString stackCode;
+    ///
+    /// \brief imagePath - path to the UI image
+    ///
     QString imagePath;
+    ///
+    /// \brief deleteCode - syntax to delete from heap
+    ///
     QString deleteCode;
-    QString myName;         // this is the plant's name, its used as the key for the heap or stack
+    ///
+    /// \brief myName - this is the plant's name, its used as the key for the heap or stack
+    ///
+    QString myName;
+    ///
+    /// \brief myButton - pointer to this plants buttn
+    ///
     QPushButton* myButton;
+    ///
+    /// \brief heapPattern - pattern for heap syntax
+    ///
     std::regex heapPattern;
+    ///
+    /// \brief stackPattern - pattern for stack syntax
+    ///
     std::regex stackPattern;
+    ///
+    /// \brief deletePattern - pattern for delete syntax
+    ///
     std::regex deletePattern;
     ///
     /// \brief hintCode Has different hint codes for the different plant types and
@@ -74,8 +119,18 @@ public slots:
     void setMyButton(QPushButton*);
 
 signals:
+    ///
+    /// \brief updateButtonImage
+    ///
     void updateButtonImage(QIcon);
+    ///
+    /// \brief removeThisPlantsButton
+    ///
     void removeThisPlantsButton();
+    ///
+    /// \brief updateTextForDelete
+    /// \param p
+    ///
     void updateTextForDelete(Plant* p);
 
 private:

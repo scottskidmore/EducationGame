@@ -19,7 +19,13 @@ public:
     /// \brief Heap - constructor
     ///
     Heap();
-    std::vector<Plant*> plants;      // Collection of plants on the heap
+    ///
+    /// \brief plants - stores pointers to all plants on the heap
+    ///
+    std::vector<Plant*> plants;
+    ///
+    /// \brief plantMap - map of plants on the heap
+    ///
     std::map<QString, Plant*> plantMap;
 
 public slots:
@@ -29,5 +35,4 @@ public slots:
     ///
     void updateHeapPlants();
 };
-
 #endif // HEAP_H
