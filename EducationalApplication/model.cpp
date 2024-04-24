@@ -81,7 +81,7 @@ void Model::checkUserCommand(QString text)
         }
     }
     else
-        emit sendPlantText("\nYour code did not match this plants heap\nor stack code. Try again.\nGet a hint if you're stuck!");
+        emit sendPlantText("\nYour code did not match this plant's heap\nor stack code. Try again.\nGet a hint if you're stuck!");
     if (substrings[0] == "H") {
         if (checkPlantInventory(currentPlant->thisPlant)) { // if true tell the user they've reached the limit and turn off button
             emit sendPlantText("You've reached the limit of that plant\nfor the current level.\nTry planting a different type of plant.");
@@ -89,7 +89,7 @@ void Model::checkUserCommand(QString text)
         }
         Plant* p = new Plant(currentPlant->thisPlant, name);
         if (currentRam-p->heapCost<0){
-            emit sendPlantText("\nYou are out of memory watch your ram!\nWait until the round restarts or \nharvest some of your heap plants.");
+            emit sendPlantText("\nYou are out of memory, watch your ram!\nWait until the round restarts or \nharvest some of your heap plants.");
             delete p;
         }else{
             p->onHeap=true;
@@ -109,7 +109,7 @@ void Model::checkUserCommand(QString text)
         }
         Plant* p = new Plant(currentPlant->thisPlant, name);
         if (currentRam-p->stackCost<0){
-            emit sendPlantText("\nYou are out of memory watch your ram!\nWait until the round restarts or \nharvest some of your heap plants.");
+            emit sendPlantText("\nYou are out of memory, watch your ram!\nWait until the round restarts or \nharvest some of your heap plants.");
             delete p;
         }else{
             stackObj.plants.push_back(p);
@@ -137,17 +137,17 @@ void Model::checkUserCommand(QString text)
 
             currentRam += heapObj.plantMap[name]->heapCost;
             heapObj.plantMap.erase(name);
-            emit sendPlantText(QString("The plant with name: " + name + "\nWas deleted"));
+            emit sendPlantText(QString("The plant with name: " + name + "\nwas deleted"));
 
             emit currentScoreUpdated(currentScore);
             emit currentRamUpdated(currentRam);
             return;
         }
         else
-            emit sendPlantText(QString("The plant with name: " + name + "\nDoes not exist on the heap."));
+            emit sendPlantText(QString("The plant with name: " + name + "\ndoes not exist on the heap."));
     }
     else {
-        emit sendPlantText(QString::fromStdString(currentPlant->basicInfo()) + "\nYour code did not match this plants heap\nor stack code. Try again.\nGet a hint if you're stuck!");
+        emit sendPlantText(QString::fromStdString(currentPlant->basicInfo()) + "\nYour code did not match this plant's heap\nor stack code. Try again.\nGet a hint if you're stuck!");
     }
 }
 

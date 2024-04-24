@@ -30,7 +30,7 @@ std::string Plant::hintCode(){
     std::string heapOrStack = "stack";
     if (onHeap)
         heapOrStack = "heap";
-    std::string code = "This is a " + toString(thisPlant)
+    std::string code = "This plant's type is " + toString(thisPlant)
                        + "\nIt should be planted on the " + heapOrStack
                        + "\nThe stack code should look like " + stackCode.toStdString()
                        + "\nThe heap code should look like\n   " + heapCode.toStdString();
@@ -39,7 +39,7 @@ std::string Plant::hintCode(){
 
 std::string Plant::basicInfo()
 {
-    return "This is a " + toString(thisPlant)
+    return "This plant's type is " + toString(thisPlant)
             + "\nType your code below to plant"
            + "\nor click the hint button if\nyou are stuck";
 }
