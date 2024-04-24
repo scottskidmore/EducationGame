@@ -153,7 +153,8 @@ void MainWindow::setStackPlant(Plant* p)
     ui->lineEdit->setText(QString());
 
     QPushButton* button = new QPushButton(this);
-    button->setStyleSheet("QPushButton { background-color: white; }");
+    button->setObjectName(p->myName);
+    button->setStyleSheet("#" + p->myName + " {background-color: white; }");
     button->setAutoFillBackground(true);
     p->setMyButton(button);
     QObject::connect(p, &Plant::removeThisPlantsButton, button, &QPushButton::deleteLater);
@@ -173,7 +174,7 @@ void MainWindow::setHeapPlant(Plant* p)
     // clear command text since it was correct
     ui->lineEdit->setText(QString());
     QPushButton* button = new QPushButton(this);
-    button->setStyleSheet("background-color: black;");
+    button->setStyleSheet("background-color: white;");
     button->setAutoFillBackground(true);
     p->setMyButton(button);
     QObject::connect(p, &Plant::removeThisPlantsButton, button, &QPushButton::deleteLater);
