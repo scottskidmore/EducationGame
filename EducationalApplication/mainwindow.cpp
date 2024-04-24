@@ -28,10 +28,16 @@ MainWindow::MainWindow(Model *m, QWidget *parent)
 
 
     //add the slides
-    slideShow.push_back(":/Slideshow/Images/slide1.png");
-    slideShow.push_back(":/Slideshow/Images/slide2.png");
-    slideShow.push_back(":/Slideshow/Images/slide3.png");
-    slideShow.push_back(":/Slideshow/Images/slide4.png");
+    slideShow.push_back(":/Slideshow/Images/titleSlide.png");
+    slideShow.push_back(":/Slideshow/Images/stackSlide.png");
+    slideShow.push_back(":/Slideshow/Images/heapSlide.png");
+    slideShow.push_back(":/Slideshow/Images/inputSlide.png");
+    slideShow.push_back(":/Slideshow/Images/infoSlide.png");
+    slideShow.push_back(":/Slideshow/Images/flowerSlide.png");
+    slideShow.push_back(":/Slideshow/Images/potatoSlide.png");
+    slideShow.push_back(":/Slideshow/Images/cornSlide.png");
+    slideShow.push_back(":/Slideshow/Images/treeSlide.png");
+    slideShow.push_back(":/Slideshow/Images/grapesSlide.png");
     currentSlide = 0;
 
     QPixmap pixmap(slideShow[currentSlide]);

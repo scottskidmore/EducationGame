@@ -26,5 +26,15 @@
         <file>Images/slide2.png</file>
         <file>Images/slide3.png</file>
         <file>Images/slide4.png</file>
+        <file>Images/stackSlide.png</file>
+        <file>Images/heapSlide.png</file>
+        <file>Images/inputSlide.png</file>
+        <file>Images/infoSlide.png</file>
+        <file>Images/flowerSlide.png</file>
+        <file>Images/potatoSlide.png</file>
+        <file>Images/cornSlide.png</file>
+        <file>Images/treeSlide.png</file>
+        <file>Images/grapesSlide.png</file>
+        <file>Images/titleSlide.png</file>
     </qresource>
 </RCC>
