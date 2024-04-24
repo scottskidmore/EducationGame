@@ -55,9 +55,9 @@ void Plant::updateHeapGrowth()
         heapGrowthTrack++;
     else
         return;
-    if (thisPlant != Plants::Tree && thisPlant != Plants::Grapes)
+    if (thisPlant != Plants::Tree && thisPlant != Plants::Grapes)  // Only update plant growth for grapes and trees
         return;
-    switch (heapGrowthTrack) {
+    switch (heapGrowthTrack) {      // The switch handles different levels of plant growth
         case 0: break;
         case 1:
             if (thisPlant == Plants::Tree)
@@ -94,22 +94,10 @@ void Plant::myPlantClicked()
     }
 }
 
-void Plant::myPlantHarvested()
-{
-
-}
-
 void Plant::setMyButton(QPushButton *button)
 {
     myButton = button;
 }
-
-
-
-// std::string Plant::displayName()
-// {
-
-// }
 
 void Plant::createCorn()
 {
