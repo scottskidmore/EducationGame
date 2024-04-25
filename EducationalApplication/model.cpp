@@ -229,7 +229,7 @@ void Model::startGame()
     round = 1;
     level = 1;
     rounds.push_back(Level(round, targetScore, totalRam, 2, 2));
-    roundTime = 10;
+    roundTime = 25;
     currentTime = roundTime;
     stackCleared = false;
     qDebug() << "game started";
