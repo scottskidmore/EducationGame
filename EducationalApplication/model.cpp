@@ -66,32 +66,44 @@ void Model::sendHint()
 void Model::checkUserCommand(QString text)
 {
     if (currentPlant == nullptr)
+    {
         return;
+    }
     QString result = checkCommandName(text);
     QStringList substrings = result.split(" ");
     QString name = "";
-    if (substrings.count() == 2) {
+    if (substrings.count() == 2)
+    {
         name = substrings[1];
     }
-    if(substrings.count() == 2 && substrings[0] != "D"){
+    if (substrings.count() == 2 && substrings[0] != "D")
+    {
         // if the name does exist on either let them know they can't use it.
-        if (heapObj.plantMap.find(name) != heapObj.plantMap.end() || stackObj.plantMap.find(name) != stackObj.plantMap.end()) {
+        if (heapObj.plantMap.find(name) != heapObj.plantMap.end() || stackObj.plantMap.find(name) != stackObj.plantMap.end())
+        {
             emit sendPlantText(QString("You already have a plant named " + name));
             return;
         }
     }
     else
+    {
         emit sendPlantText("\nYour code did not match this plant's heap\nor stack code. Try again.\nGet a hint if you're stuck!");
-    if (substrings[0] == "H") {
-        if (checkPlantInventory(currentPlant->thisPlant)) { // if true tell the user they've reached the limit and turn off button
+    }
+    if (substrings[0] == "H")
+    {
+        if (checkPlantInventory(currentPlant->thisPlant)) // if true tell the user they've reached the limit and turn off button
+        {
             emit sendPlantText("You've reached the limit of that plant\nfor the current level.\nTry planting a different type of plant.");
             return;
         }
         Plant* p = new Plant(currentPlant->thisPlant, name);
-        if (currentRam-p->heapCost<0){
+        if (currentRam-p->heapCost<0)
+        {
             emit sendPlantText("\nYou are out of memory, watch your ram!\nWait until the round restarts or \nharvest some of your heap plants.");
             delete p;
-        }else{
+        }
+        else
+        {
             p->onHeap=true;
             QObject::connect(p, &Plant::updateTextForDelete, this, &Model::getPlantTextForDelete);
             heapObj.plants.push_back(p);
@@ -103,15 +115,19 @@ void Model::checkUserCommand(QString text)
         }
     }
     else if (substrings[0] == "S") {
-        if (checkPlantInventory(currentPlant->thisPlant)) { // if true tell the user they've reached the limit and turn off button
+        if (checkPlantInventory(currentPlant->thisPlant)) // if true tell the user they've reached the limit and turn off button
+        {
             emit sendPlantText("You've reached the limit of that plant\nfor the current level.\nTry planting a different type of plant.");
             return;
         }
         Plant* p = new Plant(currentPlant->thisPlant, name);
-        if (currentRam-p->stackCost<0) {
+        if (currentRam-p->stackCost<0)
+        {
             emit sendPlantText("\nYou are out of memory, watch your ram!\nWait until the round restarts or \nharvest some of your heap plants.");
             delete p;
-        }else {
+        }
+        else
+        {
             stackObj.plants.push_back(p);
             stackObj.plantMap[name] = p; // add to map, we will need to get rid of list
             emit sendPlantText(QString::fromStdString(currentPlant->basicInfo()) + "\nYou planted on the stack!");
@@ -120,18 +136,23 @@ void Model::checkUserCommand(QString text)
             emit currentRamUpdated(currentRam);
         }
     }
-    else if (substrings[0] == "D") {
+    else if (substrings[0] == "D")
+    {
         // delete plant from heap!
         auto plant = heapObj.plantMap.find(name);
-        if (plant != heapObj.plantMap.end()) { // if the plant is found on the heap delete it
+        if (plant != heapObj.plantMap.end()) // if the plant is found on the heap delete it
+        {
             plant->second->deleteMyButton();
-            if (heapObj.plantMap[name]->heapGrowthTrack == 1){ // handles calculating score bassed on
+            if (heapObj.plantMap[name]->heapGrowthTrack == 1) // handles calculating score bassed on
+            {
                 currentScore += heapObj.plantMap[name]->reward; // number of rounds the plant was on the heap
             }
-            else if (heapObj.plantMap[name]->heapGrowthTrack == 2){
+            else if (heapObj.plantMap[name]->heapGrowthTrack == 2)
+            {
                 currentScore += heapObj.plantMap[name]->reward * 2;
             }
-            else if (heapObj.plantMap[name]->heapGrowthTrack == 3){
+            else if (heapObj.plantMap[name]->heapGrowthTrack == 3)
+            {
                 currentScore += heapObj.plantMap[name]->reward * 3;
             }
 
@@ -144,9 +165,12 @@ void Model::checkUserCommand(QString text)
             return;
         }
         else
+        {
             emit sendPlantText(QString("The plant with name: " + name + "\ndoes not exist on the heap."));
+        }
     }
-    else {
+    else
+    {
         emit sendPlantText(QString::fromStdString(currentPlant->basicInfo()) + "\nYour code did not match this plant's heap\nor stack code. Try again.\nGet a hint if you're stuck!");
     }
 }
@@ -163,7 +187,8 @@ void Model::clearStack()
     groundBody->CreateFixture(&groundBox, 0.0f);
 
     // adding the physics plants and getting scores.
-    for(auto plant : stackObj.plants){
+    for (auto plant : stackObj.plants)
+    {
         currentScore += plant->reward;
         //get plant position, create a Box2D plant object and connect it to dropPlants
         QPoint plantPos = plant->myButton->pos();
@@ -173,9 +198,7 @@ void Model::clearStack()
         physicsPlants.push_back(p);
         emit addPhysicsPlant(p);
         plant->deleteMyButton();
-
     }
-
     emit currentScoreUpdated(currentScore);
     stackObj.plants.clear();
     stackObj.plantMap.clear();
@@ -183,8 +206,9 @@ void Model::clearStack()
 
 void Model::clearHeap()
 {
-    for (auto plant : heapObj.plants){  //added to make sure the bottons/icons are
-        plant->deleteMyButton();        // deleted along with the map
+    for (auto plant : heapObj.plants) //added to make sure the bottons, icons are deleted along with the map
+    {
+        plant->deleteMyButton();
     }
     heapObj.plants.clear();
     heapObj.plantMap.clear();
@@ -224,28 +248,34 @@ QString Model::checkCommandName(QString command)
     std::regex validChars(R"(^[a-zA-Z_][a-zA-Z0-9_]*$)");
     std::regex deletePattern(R"(^delete\s([a-zA-Z_][a-zA-Z0-9_]*);$)");
 
-    if (std::regex_match(commandStr, match, currentPlant->heapPattern)) {
+    if (std::regex_match(commandStr, match, currentPlant->heapPattern))
+    {
         // If the match is successful, extract the name (group 1)
         std::string name = match[1].str();
         qDebug() << "name Heap: '" << name << "'";
-        if (std::regex_match(name, validChars)) { // if the name is valid chars
+        if (std::regex_match(name, validChars)) // if the name is valid chars
+        {
             return QString("H " + QString::fromStdString(name));
         }
     }
-    else if (std::regex_match(commandStr, match, currentPlant->stackPattern)) {
+    else if (std::regex_match(commandStr, match, currentPlant->stackPattern))
+    {
         // If the match is successful, extract the name (group 1)
         std::string name = match[1].str();
         qDebug() << "name Stack: '" << name << "'";
-        if (std::regex_match(name, validChars)) { // if the name is valid chars
+        if (std::regex_match(name, validChars)) // if the name is valid chars
+        {
             return QString("S " + QString::fromStdString(name));
         }
     }
-    else if (std::regex_match(commandStr, match, deletePattern)) {
+    else if (std::regex_match(commandStr, match, deletePattern))
+    {
         // If the match is successful, extract the name, this name is already valid checked.
         std::string name = match[1].str();
         return QString("D " + QString::fromStdString(name));
     }
-    else {
+    else
+    {
         qDebug() << "invalid name";
         return QString("I");
     }
@@ -255,35 +285,44 @@ QString Model::checkCommandName(QString command)
 
 void Model::decreasingTime()
 {
-    if (currentTime == 0) {
-        if (stackCleared == false) {      // Clear stack and update heap plants when round ends
-            for (auto plant : stackObj.plants) {
+    if (currentTime == 0)
+    {
+        if (stackCleared == false)      // Clear stack and update heap plants when round ends
+        {
+            for (auto plant : stackObj.plants)
+            {
                 currentRam += plant->stackCost;
             }
             clearStack();
             stackCleared = true;
             heapObj.updateHeapPlants();
 
-            if ((round > 0) && (round % 5 == 0) && currentScore >= targetScore) {   // Target score is reached
-                if((((round - (round % 5)) / 5)) == 4) {    // Last round of last level is finished
+            if ((round > 0) && (round % 5 == 0) && currentScore >= targetScore)   // Target score is reached
+            {
+                if((((round - (round % 5)) / 5)) == 4)    // Last round of last level is finished
+                {
                     emit gameCompleted();
                 }
-                else {   // End the level
+                else   // End the level
+                {
                     emit levelCompleted(level, currentScore);
                     level++;
                 }
             }
-            else{   // Level continues but round ends
+            else   // Level continues but round ends
+            {
                 emit roundOver(round - 1, currentScore, targetScore);
             }
         }
-        if((round > 0 ) && (round % 5 == 0) && currentScore < targetScore) {    // End the game becuase the player didn't reach the target score
+        if ((round > 0 ) && (round % 5 == 0) && currentScore < targetScore)    // End the game becuase the player didn't reach the target score
+        {
             emit gameOver();
             currentTime = -1;
             timer.stop();
         }
     }
-    else if (stackCleared == false){    // Decrement timer countdown
+    else if (stackCleared == false)    // Decrement timer countdown
+    {
         currentTime--;
         emit timeUpdated((currentTime));
     }
@@ -292,13 +331,15 @@ void Model::decreasingTime()
 void Model::nextRound()
 {
     emit currentRamUpdated(currentRam);
-    for (auto physPlant : physicsPlants) {
+    for (auto physPlant : physicsPlants)
+    {
         physPlant->deleteLater();
     }
     physicsPlants.clear();
     worldSimTimer.stop();
 
-    if((round > 0) && (round % 5 == 0)){
+    if ((round > 0) && (round % 5 == 0))
+    {
         nextLevel();
     }
     round += 1;
@@ -310,14 +351,17 @@ void Model::nextRound()
     startTutorial();
 }
 
-void Model::nextLevel(){
-    for (auto physPlant : physicsPlants) {
+void Model::nextLevel()
+{
+    for (auto physPlant : physicsPlants)
+    {
         physPlant->deleteLater();
     }
     physicsPlants.clear();
     worldSimTimer.stop();
 
-    for (auto plant : heapObj.plants){
+    for (auto plant : heapObj.plants)
+    {
         plant->heapGrowthTrack = 4;
     }
 
@@ -343,29 +387,35 @@ void Model::nextLevel(){
 bool Model::checkPlantInventory(Plants pType)
 {
     // will return true if that plant type will be at the limit after this add
-    switch (pType) {
+    switch (pType)
+    {
     case Plants::Corn:
-        if (cornCount++ + 1 == rounds.front().individualStackPlantLimit) {
+        if (cornCount++ + 1 == rounds.front().individualStackPlantLimit)
+        {
             emit disablePlantButton(currentPlantToolbarName);
         }
         return cornCount > rounds.front().individualStackPlantLimit;
     case Plants::Flower:
-        if (flowerCount++ + 1 == rounds.front().individualStackPlantLimit) {
+        if (flowerCount++ + 1 == rounds.front().individualStackPlantLimit)
+        {
             emit disablePlantButton(currentPlantToolbarName);
         }
         return flowerCount > rounds.front().individualStackPlantLimit;
     case Plants::Tree:
-        if (treeCount++ + 1 == rounds.front().individualHeapPlantLimit) {
+        if (treeCount++ + 1 == rounds.front().individualHeapPlantLimit)
+        {
             emit disablePlantButton(currentPlantToolbarName);
         }
         return treeCount > rounds.front().individualHeapPlantLimit;
     case Plants::Potato:
-        if (potatoCount++ + 1 == rounds.front().individualStackPlantLimit) {
+        if (potatoCount++ + 1 == rounds.front().individualStackPlantLimit)
+        {
             emit disablePlantButton(currentPlantToolbarName);
         }
         return potatoCount > rounds.front().individualStackPlantLimit;
     case Plants::Grapes:
-        if (grapesCount++ + 1 == rounds.front().individualHeapPlantLimit) {
+        if (grapesCount++ + 1 == rounds.front().individualHeapPlantLimit)
+        {
             emit disablePlantButton(currentPlantToolbarName);
         }
         return grapesCount > rounds.front().individualHeapPlantLimit;
@@ -392,7 +442,7 @@ void Model::pauseGame()
             startTutorial();
         }
 
-        if (tutorialCounter == 8)
+        if (tutorialCounter == 8) // at the end of the tutorial
         {
             tutorialComplete = true;
         }
