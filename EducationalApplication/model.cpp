@@ -19,7 +19,7 @@ Model::Model(QObject *parent)
     presetPlants[QString("actionTree")] = new Plant(Plants::Tree, "treeDefault");
     presetPlants[QString("actionGrapes")] = new Plant(Plants::Grapes, "grapesDefault");
 
-    rounds.push_back(Level(100, 100, 200, 2, 2));
+    rounds.push_back(Level(100, 100, 200, 4, 2));
 
     flowerCount = 0;
     cornCount = 0;
