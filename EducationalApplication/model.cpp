@@ -428,13 +428,13 @@ void Model::pauseGame()
     if (!gamePaused)
     {
         gamePaused = true;
-        qDebug() << "game paused";
+        //qDebug() << "game paused";
         timer.stop();
     }
     else
     {
         gamePaused = false;
-        qDebug() << "game resumed";
+        //qDebug() << "game resumed";
         timer.start();
 
         if (!tutorialComplete)
@@ -446,6 +446,20 @@ void Model::pauseGame()
         {
             tutorialComplete = true;
         }
+    }
+}
+
+void Model::helpPause()
+{
+    if (!gamePaused)
+    {
+        gamePaused = true;
+        timer.stop();
+    }
+    else
+    {
+        gamePaused = false;
+        timer.start();
     }
 }
 
@@ -518,6 +532,12 @@ void Model::startTutorial()
         emit displayTutorial(tutorialCounter);
         tutorialCounter++;
     }
+}
+
+void Model::skipTutorial()
+{
+    tutorialComplete = true;
+    pauseGame();
 }
 
 

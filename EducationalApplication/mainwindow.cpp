@@ -37,6 +37,8 @@ MainWindow::MainWindow(Model *m, QWidget *parent)
     tutorialComplete = false;
     tutorialCounter = 0;
 
+    helpDisplayed = false;
+    ui->helpLabel->hide();
 
     // add the slides
     slideShow.push_back(":/Slideshow/Images/titleSlide.png");
@@ -93,6 +95,8 @@ MainWindow::MainWindow(Model *m, QWidget *parent)
     QObject::connect(m, &Model::modelPause, this, &MainWindow::on_pauseButton_clicked);
     QObject::connect(m, &Model::displayTutorial, this, &MainWindow::displayTutorialBox);
     QObject::connect(m, &Model::disablePlantButton, this, &MainWindow::disablePlantButton);
+    QObject::connect(ui->skipTutorialButton, &QPushButton::clicked, m, &Model::skipTutorial);
+    QObject::connect(ui->helpButton, &QPushButton::clicked, m, &Model::helpPause);
 }
 
 MainWindow::~MainWindow()
@@ -345,6 +349,7 @@ void MainWindow::on_pauseButton_clicked()
         if (tutorialCounter == 8)
         {
             tutorialComplete = true;
+            ui->skipTutorialButton->hide();
         }
     }
 }
@@ -371,6 +376,33 @@ void MainWindow::disablePlantButton(QString name)
         {
             act->setEnabled(false);
         }
+    }
+}
+
+void MainWindow::on_skipTutorialButton_clicked()
+{
+    emit tutorialSkipped();
+    tutorialComplete = true;
+    ui->skipTutorialButton->hide();
+    on_pauseButton_clicked();
+    for (int i = 0; i < (int)tutorialBoxes.size(); i++) // hide all the tutorial text boxes
+    {
+        tutorialBoxes[i]->hide();
+    }
+}
+
+
+void MainWindow::on_helpButton_clicked()
+{
+    if (!helpDisplayed)
+    {
+        helpDisplayed = true;
+        ui->helpLabel->show();
+    }
+    else
+    {
+        helpDisplayed = false,
+        ui->helpLabel->hide();
     }
 }
 

@@ -198,9 +198,17 @@ public slots:
     ///
     void pauseGame();
     ///
+    /// \brief helpPause - pauses the game for the help page
+    ///
+    void helpPause();
+    ///
     /// \brief updateWorld - Updates the physics world so the plants fall out of the stack.
     ///
     void updateWorld();
+    ///
+    /// \brief skipTutorial - skips the tutorial
+    ///
+    void skipTutorial();
 
 signals:
     ///

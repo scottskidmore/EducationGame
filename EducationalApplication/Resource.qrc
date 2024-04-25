@@ -39,5 +39,6 @@
     </qresource>
     <qresource prefix="/Other">
         <file>Images/textbox.png</file>
+        <file>Images/helpImage.png</file>
     </qresource>
 </RCC>

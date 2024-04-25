@@ -58,6 +58,10 @@ public:
     /// \brief tutorialCounter - counter to track which tutorial label to show
     ///
     int tutorialCounter;
+    ///
+    /// \brief helpDisplayed - tracks if the help window is displayed
+    ///
+    bool helpDisplayed;
 
 private slots:
     ///
@@ -144,8 +148,18 @@ private slots:
     /// \brief displayTutorialBox - displays the respective tutorial box
     ///
     void displayTutorialBox(int);
-
+    ///
+    /// \brief disablePlantButton - disables a plants button
+    ///
     void disablePlantButton(QString);
+    ///
+    /// \brief on_skipTutorialButton_clicked - skips the tutorial
+    ///
+    void on_skipTutorialButton_clicked();
+    ///
+    /// \brief on_helpButton_clicked - displays the help window
+    ///
+    void on_helpButton_clicked();
 
 private:
     ///
@@ -166,5 +180,9 @@ signals:
     /// \brief messageBoxClosed - emitted when the close the end round box
     ///
     void messageBoxClosed();
+    ///
+    /// \brief tutorialSkipped - emitted when the tutorial is skipped
+    ///
+    void tutorialSkipped();
 };
 #endif // MAINWINDOW_H
