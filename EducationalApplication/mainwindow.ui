@@ -4723,7 +4723,7 @@
     <property name="geometry">
      <rect>
       <x>300</x>
-      <y>80</y>
+      <y>60</y>
       <width>250</width>
       <height>350</height>
      </rect>
@@ -4735,7 +4735,7 @@
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgb(78, 255, 161);</string>
+     <string notr="true">border-image: url(:/Other/Images/textbox.png);</string>
     </property>
     <property name="text">
      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Welcome to the &lt;/p&gt;&lt;p&gt;memory farming game! &lt;/p&gt;&lt;p&gt;A series of text &lt;/p&gt;&lt;p&gt;boxes will pop up in &lt;/p&gt;&lt;p&gt;the next few rounds to &lt;/p&gt;&lt;p&gt;provide you with some information.&lt;/p&gt;&lt;p&gt;Click the resume button on the right&lt;/p&gt;&lt;p&gt;to make the text boxes disappear and&lt;/p&gt;&lt;p&gt;proceed with the game.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -4745,6 +4745,9 @@
     </property>
     <property name="scaledContents">
      <bool>false</bool>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
     </property>
     <property name="wordWrap">
      <bool>false</bool>
@@ -4766,7 +4769,7 @@
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgb(78, 255, 161);</string>
+     <string notr="true">border-image: url(:/Other/Images/textbox.png);</string>
     </property>
     <property name="text">
      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Below is a selection of plants.&lt;/p&gt;&lt;p&gt;Click on a plant to see its information.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -4776,6 +4779,9 @@
     </property>
     <property name="scaledContents">
      <bool>false</bool>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
     </property>
     <property name="wordWrap">
      <bool>false</bool>
@@ -4797,7 +4803,7 @@
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgb(78, 255, 161);</string>
+     <string notr="true">border-image: url(:/Other/Images/textbox.png);</string>
     </property>
     <property name="text">
      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Above is the input text box.&lt;/p&gt;&lt;p&gt;Here you will type the syntax to place your plants.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -4808,6 +4814,9 @@
     <property name="scaledContents">
      <bool>false</bool>
     </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
     <property name="wordWrap">
      <bool>false</bool>
     </property>
@@ -4816,7 +4825,7 @@
     <property name="geometry">
      <rect>
       <x>300</x>
-      <y>80</y>
+      <y>60</y>
       <width>250</width>
       <height>350</height>
      </rect>
@@ -4828,7 +4837,7 @@
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgb(78, 255, 161);</string>
+     <string notr="true">border-image: url(:/Other/Images/textbox.png);</string>
     </property>
     <property name="text">
      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Remember to read the plant description&lt;/p&gt;&lt;p&gt;and think about if it should go on the&lt;/p&gt;&lt;p&gt;stack or heap. If you are unsure about&lt;/p&gt;&lt;p&gt;the syntax, you can click the hint button.&lt;/p&gt;&lt;p&gt;When you are ready to start the first round,&lt;/p&gt;&lt;p&gt;click the resume button on the right.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -4839,6 +4848,9 @@
     <property name="scaledContents">
      <bool>false</bool>
     </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
     <property name="wordWrap">
      <bool>true</bool>
     </property>
@@ -4847,7 +4859,7 @@
     <property name="geometry">
      <rect>
       <x>300</x>
-      <y>80</y>
+      <y>60</y>
       <width>250</width>
       <height>350</height>
      </rect>
@@ -4859,7 +4871,7 @@
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgb(78, 255, 161);</string>
+     <string notr="true">border-image: url(:/Other/Images/textbox.png);</string>
     </property>
     <property name="text">
      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;This is not the case with plants planted&lt;/p&gt;&lt;p&gt;on the heap. They will persist through rounds;&lt;/p&gt;&lt;p&gt;but remember, you must harvest heap plants&lt;/p&gt;&lt;p&gt;after 3 rounds in order to receive points &lt;/p&gt;&lt;p&gt;and get your RAM back. Otherwise, the heap&lt;/p&gt;&lt;p&gt;plants will die and will give you zero points&lt;/p&gt;&lt;p&gt;when harvested.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -4870,6 +4882,9 @@
     <property name="scaledContents">
      <bool>false</bool>
     </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
     <property name="wordWrap">
      <bool>true</bool>
     </property>
@@ -4878,7 +4893,7 @@
     <property name="geometry">
      <rect>
       <x>300</x>
-      <y>80</y>
+      <y>60</y>
       <width>250</width>
       <height>350</height>
      </rect>
@@ -4890,7 +4905,7 @@
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgb(78, 255, 161);</string>
+     <string notr="true">border-image: url(:/Other/Images/textbox.png);</string>
     </property>
     <property name="text">
      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;You will notice at the end of each round&lt;/p&gt;&lt;p&gt;the stack plants will automatically harvest.&lt;/p&gt;&lt;p&gt;Think of this as &amp;quot;exiting the scope&amp;quot; that&lt;/p&gt;&lt;p&gt;the plant was stored in.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -4901,6 +4916,9 @@
     <property name="scaledContents">
      <bool>false</bool>
     </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
     <property name="wordWrap">
      <bool>true</bool>
     </property>
@@ -4909,7 +4927,7 @@
     <property name="geometry">
      <rect>
       <x>300</x>
-      <y>80</y>
+      <y>60</y>
       <width>250</width>
       <height>350</height>
      </rect>
@@ -4921,7 +4939,7 @@
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgb(78, 255, 161);</string>
+     <string notr="true">border-image: url(:/Other/Images/textbox.png);</string>
     </property>
     <property name="text">
      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Heap plants can be harvested by&lt;/p&gt;&lt;p&gt;calling the respective destructor.&lt;/p&gt;&lt;p&gt;EXAMPLE: To delete a Tree named 't' planted &lt;/p&gt;&lt;p&gt;on the heap, first click it, then type&lt;/p&gt;&lt;p&gt;'delete t;' in the input text box.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -4932,6 +4950,9 @@
     <property name="scaledContents">
      <bool>false</bool>
     </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
     <property name="wordWrap">
      <bool>true</bool>
     </property>
@@ -4940,7 +4961,7 @@
     <property name="geometry">
      <rect>
       <x>300</x>
-      <y>80</y>
+      <y>60</y>
       <width>250</width>
       <height>350</height>
      </rect>
@@ -4952,7 +4973,7 @@
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgb(78, 255, 161);</string>
+     <string notr="true">border-image: url(:/Other/Images/textbox.png);</string>
     </property>
     <property name="text">
      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When you are ready to continue to round 2,&lt;/p&gt;&lt;p&gt;click the resume button on the right.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -4962,6 +4983,9 @@
     </property>
     <property name="scaledContents">
      <bool>false</bool>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
     </property>
     <property name="wordWrap">
      <bool>true</bool>
@@ -4983,18 +5007,18 @@
    <zorder>startRound</zorder>
    <zorder>pauseButton</zorder>
    <zorder>RoundLabel</zorder>
-   <zorder>tutorialLabel7</zorder>
-   <zorder>tutorialLabel2</zorder>
-   <zorder>tutorialLabel6</zorder>
-   <zorder>tutorialLabel5</zorder>
-   <zorder>tutorialLabel4</zorder>
-   <zorder>tutorialLabel8</zorder>
    <zorder>tutorialLabel1</zorder>
+   <zorder>tutorialLabel2</zorder>
    <zorder>tutorialLabel3</zorder>
+   <zorder>tutorialLabel4</zorder>
+   <zorder>tutorialLabel5</zorder>
+   <zorder>tutorialLabel6</zorder>
+   <zorder>tutorialLabel7</zorder>
+   <zorder>tutorialLabel8</zorder>
    <zorder>startLabel</zorder>
+   <zorder>startButton</zorder>
    <zorder>nextSlide</zorder>
    <zorder>previousSlide</zorder>
-   <zorder>startButton</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
@@ -5002,7 +5026,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>21</height>
+     <height>24</height>
     </rect>
    </property>
   </widget>

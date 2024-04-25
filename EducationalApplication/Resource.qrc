@@ -37,4 +37,7 @@
         <file>Images/grapesSlide.png</file>
         <file>Images/titleSlide.png</file>
     </qresource>
+    <qresource prefix="/Other">
+        <file>Images/textbox.png</file>
+    </qresource>
 </RCC>
