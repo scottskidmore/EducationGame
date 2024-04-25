@@ -1040,7 +1040,10 @@
      </font>
     </property>
     <property name="autoFillBackground">
-     <bool>true</bool>
+     <bool>false</bool>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-image: url(:/Other/Images/textbox.png);</string>
     </property>
     <property name="text">
      <string>STACK</string>
@@ -1534,7 +1537,10 @@
      </font>
     </property>
     <property name="autoFillBackground">
-     <bool>true</bool>
+     <bool>false</bool>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-image: url(:/Other/Images/textbox.png);</string>
     </property>
     <property name="text">
      <string>HEAP</string>
@@ -2054,10 +2060,16 @@
      </palette>
     </property>
     <property name="autoFillBackground">
-     <bool>true</bool>
+     <bool>false</bool>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-image: url(:/Other/Images/textbox.png);</string>
     </property>
     <property name="text">
      <string/>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
     </property>
    </widget>
    <widget class="QPushButton" name="startButton">
@@ -2070,10 +2082,10 @@
      </rect>
     </property>
     <property name="autoFillBackground">
-     <bool>true</bool>
+     <bool>false</bool>
     </property>
     <property name="styleSheet">
-     <string notr="true"/>
+     <string notr="true">border-image: url(:/Other/Images/textbox.png);</string>
     </property>
     <property name="text">
      <string>Start Game</string>
@@ -2088,6 +2100,9 @@
       <height>32</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">border-image: url(:/Other/Images/textbox.png);</string>
+    </property>
     <property name="text">
      <string>&gt;</string>
     </property>
@@ -2100,6 +2115,9 @@
       <width>100</width>
       <height>32</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-image: url(:/Other/Images/textbox.png);</string>
     </property>
     <property name="text">
      <string>&lt;</string>
@@ -2584,7 +2602,7 @@
      </palette>
     </property>
     <property name="autoFillBackground">
-     <bool>true</bool>
+     <bool>false</bool>
     </property>
     <property name="text">
      <string>Time:</string>
@@ -3074,8 +3092,13 @@
       </disabled>
      </palette>
     </property>
+    <property name="font">
+     <font>
+      <kerning>true</kerning>
+     </font>
+    </property>
     <property name="autoFillBackground">
-     <bool>true</bool>
+     <bool>false</bool>
     </property>
     <property name="text">
      <string>Available Ram:</string>
@@ -3560,7 +3583,7 @@
      </palette>
     </property>
     <property name="autoFillBackground">
-     <bool>true</bool>
+     <bool>false</bool>
     </property>
     <property name="text">
      <string>Target Score:</string>
@@ -3574,6 +3597,9 @@
       <width>100</width>
       <height>32</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-image: url(:/Other/Images/textbox.png);</string>
     </property>
     <property name="text">
      <string>Help</string>
@@ -3595,7 +3621,7 @@
      <bool>false</bool>
     </property>
     <property name="styleSheet">
-     <string notr="true">#hintButton {background-color: orange}</string>
+     <string notr="true">border-image: url(:/Other/Images/textbox.png);</string>
     </property>
     <property name="text">
      <string>Hint</string>
@@ -4099,7 +4125,7 @@
      </palette>
     </property>
     <property name="autoFillBackground">
-     <bool>true</bool>
+     <bool>false</bool>
     </property>
     <property name="text">
      <string>Current Score:</string>
@@ -4111,11 +4137,14 @@
     </property>
     <property name="geometry">
      <rect>
-      <x>320</x>
+      <x>370</x>
       <y>410</y>
       <width>101</width>
       <height>31</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-image: url(:/Other/Images/textbox.png);</string>
     </property>
     <property name="text">
      <string>Next Round</string>
@@ -4228,7 +4257,7 @@
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">#pauseButton{background-color: orange}</string>
+     <string notr="true">border-image: url(:/Other/Images/textbox.png);</string>
     </property>
     <property name="text">
      <string>Pause</string>
@@ -4713,7 +4742,7 @@
      </palette>
     </property>
     <property name="autoFillBackground">
-     <bool>true</bool>
+     <bool>false</bool>
     </property>
     <property name="text">
      <string>Round:</string>
@@ -4991,22 +5020,33 @@
      <bool>true</bool>
     </property>
    </widget>
-   <zorder>CurrentScoreLabel</zorder>
-   <zorder>timerLabel</zorder>
+   <widget class="QLabel" name="statLabel">
+    <property name="geometry">
+     <rect>
+      <x>667</x>
+      <y>5</y>
+      <width>141</width>
+      <height>131</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-image: url(:/Other/Images/textbox.png);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
    <zorder>scrollArea_2</zorder>
    <zorder>label</zorder>
    <zorder>label_2</zorder>
    <zorder>lineEdit</zorder>
    <zorder>label_3</zorder>
    <zorder>centerTextDisplayBox</zorder>
-   <zorder>currentRamLabel</zorder>
-   <zorder>targetScoreLabel</zorder>
    <zorder>helpButton</zorder>
    <zorder>hintButton</zorder>
    <zorder>scrollArea</zorder>
    <zorder>startRound</zorder>
    <zorder>pauseButton</zorder>
-   <zorder>RoundLabel</zorder>
    <zorder>tutorialLabel1</zorder>
    <zorder>tutorialLabel2</zorder>
    <zorder>tutorialLabel3</zorder>
@@ -5015,10 +5055,16 @@
    <zorder>tutorialLabel6</zorder>
    <zorder>tutorialLabel7</zorder>
    <zorder>tutorialLabel8</zorder>
+   <zorder>statLabel</zorder>
+   <zorder>currentRamLabel</zorder>
+   <zorder>CurrentScoreLabel</zorder>
+   <zorder>RoundLabel</zorder>
+   <zorder>targetScoreLabel</zorder>
+   <zorder>timerLabel</zorder>
    <zorder>startLabel</zorder>
    <zorder>startButton</zorder>
-   <zorder>nextSlide</zorder>
    <zorder>previousSlide</zorder>
+   <zorder>nextSlide</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
